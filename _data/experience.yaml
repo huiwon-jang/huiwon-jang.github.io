@@ -1,0 +1,16 @@
+experiences:
+- place: "KAIST ALIN-LAB"
+  time: "Mar. 2023 - Present"
+  title: "Graduate student in KAIST AI"
+  category: "school"
+
+- place: "i-SENS"
+  time: "Oct. 2022 - Oct. 2023"
+  title: "Research Intern"
+  subtitle: "AI engineer"
+  category: "work"
+
+- place: "KAIST"
+  time: "Mar. 2019 - Feb. 2023"
+  title: "B.S. in Mathematical Science and Computer Science"
+  category: "school"

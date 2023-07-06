@@ -1,0 +1,23 @@
+papers:
+  - title: "Modality-Agnostic Self-Supervised Learning with Meta-Learned Masked Auto-Encoder"
+    authors: "<b><u>Huiwon Jang</u><sup>*</sup></b>, <a href='https://jihoontack.github.io/'>Jihoon Tack<sup>*</sup></a>, Daewon Choi, <a href='https://jh-jeong.github.io/'>Jongheon Jeong</a>, <a href='https://alinlab.kaist.ac.kr/shin.html'>Jinwoo Shin</a>"
+    venue: Under review
+    selected: y
+
+  - title: "Unsupervised Meta-learning via Few-shot Pseudo-supervised Contrastive Learning"
+    authors: "<b><u>Huiwon Jang</u><sup>*</sup></b>, <a href='https://hankook.github.io/'>Hankook Lee<sup>*</sup></a>, <a href='https://alinlab.kaist.ac.kr/shin.html'>Jinwoo Shin</a>"
+    venue: "International Conference on Learning Representations (ICLR), 2023, Spotlight Presentation (280/4956=5.6%)"
+    venue: "Neural Information Processing Systems Workshop on Meta-Learning (NeurIPSW-MetaLearn), 2022"
+    paper_pdf: "https://openreview.net/forum?id=TdTGGj7fYYJ"
+    arxiv: "https://arxiv.org/abs/2303.00996"
+    code: "https://github.com/alinlab/PsCo"
+    poster: "/assets/publications/2023_PsCo/PsCo_poster.pdf"
+    slides: "/assets/publications/2023_PsCo/PsCo_ppt_v2.pdf"
+    selected: y
+
+  - title: "AltUB: Alternating Training Method to Update Base Distribution of Normalizing Flow for Anomaly Detection"
+    authors: "Yeongmin Kim<sup>*</sup>, <b><u>Huiwon Jang</u><sup>*</sup></b>, Dongkeon Lee, <a href='https://keai.kaist.ac.kr/people/professor/'>Hojin Choi</a>"
+    venue: "Arxiv preprint, 2022"
+    arxiv: "https://arxiv.org/abs/2210.14913"
+    selected: n
+
