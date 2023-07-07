@@ -6,7 +6,7 @@ papers:
 
   - title: "Unsupervised Meta-learning via Few-shot Pseudo-supervised Contrastive Learning"
     authors: "<b><u>Huiwon Jang</u><sup>*</sup></b>, <a href='https://hankook.github.io/'>Hankook Lee<sup>*</sup></a>, <a href='https://alinlab.kaist.ac.kr/shin.html'>Jinwoo Shin</a>"
-    venue: "International Conference on Learning Representations (ICLR), 2023, Spotlight Presentation (280/4956=5.6%)"
+    venue: "International Conference on Learning Representations (ICLR), 2023, <b>Spotlight Presentation (280/4956=5.6%)<\b>"
     paper_pdf: "https://openreview.net/forum?id=TdTGGj7fYYJ"
     arxiv: "https://arxiv.org/abs/2303.00996"
     code: "https://github.com/alinlab/PsCo"
