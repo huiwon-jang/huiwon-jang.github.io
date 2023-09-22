@@ -1,7 +1,7 @@
 papers:
   - title: "Modality-agnostic Self-supervised Learning with Meta-learned Masked Auto-encoder"
     authors: "<b><u>Huiwon Jang</u><sup>*</sup></b>, <a href='https://jihoontack.github.io/'>Jihoon Tack<sup>*</sup></a>, Daewon Choi, <a href='https://jh-jeong.github.io/'>Jongheon Jeong</a>, <a href='https://alinlab.kaist.ac.kr/shin.html'>Jinwoo Shin</a>"
-    venue: Under review
+    venue: "Conference on Neural Information Processing Systems (NeurIPS), 2023"
     selected: y
 
   - title: "Unsupervised Meta-learning via Few-shot Pseudo-supervised Contrastive Learning"
