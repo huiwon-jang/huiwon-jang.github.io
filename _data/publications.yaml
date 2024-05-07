@@ -1,4 +1,10 @@
 papers:
+  - title: "Visual Representation Learning with Stochastic Frame Prediction"
+    authors: "<b><u>Huiwon Jang</u></b>, Dongyoung Kim, <a href='https://junsu-kim97.github.io/'>Junsu Kim</a>, <a href='https://alinlab.kaist.ac.kr/shin.html'>Jinwoo Shin</a>, <a href='https://people.eecs.berkeley.edu/~pabbeel/'>Pieter Abbeel</a>, <a href='https://younggyo.me/'>Younggyo Seo</a>"
+    venue: "International Conference on Machine Learning (ICML), 2024"
+    paper_pdf: "https://openreview.net/forum?id=rI6lxIX0uX"
+    selected: y
+
   - title: "Modality-agnostic Self-supervised Learning with Meta-learned Masked Auto-encoder"
     authors: "<b><u>Huiwon Jang</u><sup>*</sup></b>, <a href='https://jihoontack.github.io/'>Jihoon Tack<sup>*</sup></a>, Daewon Choi, <a href='https://jh-jeong.github.io/'>Jongheon Jeong</a>, <a href='https://alinlab.kaist.ac.kr/shin.html'>Jinwoo Shin</a>"
     venue: "Conference on Neural Information Processing Systems (NeurIPS), 2023"
