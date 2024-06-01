@@ -3,6 +3,8 @@ papers:
     authors: "<b><u>Huiwon Jang</u></b>, Dongyoung Kim, <a href='https://junsu-kim97.github.io/'>Junsu Kim</a>, <a href='https://alinlab.kaist.ac.kr/shin.html'>Jinwoo Shin</a>, <a href='https://people.eecs.berkeley.edu/~pabbeel/'>Pieter Abbeel</a>, <a href='https://younggyo.me/'>Younggyo Seo</a>"
     venue: "International Conference on Machine Learning (ICML), 2024"
     paper_pdf: "https://openreview.net/forum?id=rI6lxIX0uX"
+    website: "https://sites.google.com/view/2024rsp"
+    code: "https://github.com/huiwon-jang/RSP"
     selected: y
 
   - title: "Modality-agnostic Self-supervised Learning with Meta-learned Masked Auto-encoder"
