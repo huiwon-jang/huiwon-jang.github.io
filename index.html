@@ -93,6 +93,10 @@ layout: default
               <a class="button" href="{{ paper.slides | prepend: site.baseurl }}" target="_blank">Slides</a>
             {% endif %}
 
+            {% if paper.website %}
+              <a class="button" href="{{ paper.website | prepend: site.baseurl }}" target="_blank">Website</a>
+            {% endif %}
+
             {% if paper.poster %}
               <a class="button" href="{{ paper.poster | prepend: site.baseurl }}" target="_blank">Poster</a>
             {% endif %}
