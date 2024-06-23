@@ -4,6 +4,7 @@ papers:
     venue: "International Conference on Machine Learning (ICML), 2024"
     paper_pdf: "https://openreview.net/forum?id=rI6lxIX0uX"
     website: "https://sites.google.com/view/2024rsp"
+    arxiv: "https://arxiv.org/abs/2406.07398"
     code: "https://github.com/huiwon-jang/RSP"
     selected: y
 
