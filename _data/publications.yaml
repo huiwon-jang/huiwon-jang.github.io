@@ -1,6 +1,6 @@
 papers:
   - title: "Adversarial Robustification via Text-to-Image Diffusion Models"
-    authors: "Daewon Choi, <a href='https://jh-jeong.github.io/'>Jongheon Jeong</a>, <b><u>Huiwon Jang</u><sup>*</sup></b>, <a href='https://alinlab.kaist.ac.kr/shin.html'>Jinwoo Shin</a>"
+    authors: "Daewon Choi, <a href='https://jh-jeong.github.io/'>Jongheon Jeong</a>, <b><u>Huiwon Jang</u></b>, <a href='https://alinlab.kaist.ac.kr/shin.html'>Jinwoo Shin</a>"
     venue: "European Conference on Computer Vision (ECCV), 2024"
     selected: y
 
