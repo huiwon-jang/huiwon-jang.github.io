@@ -1,7 +1,9 @@
 papers:
   - title: "Adversarial Robustification via Text-to-Image Diffusion Models"
-    authors: "Daewon Choi, <a href='https://jh-jeong.github.io/'>Jongheon Jeong</a>, <b><u>Huiwon Jang</u></b>, <a href='https://alinlab.kaist.ac.kr/shin.html'>Jinwoo Shin</a>"
-    venue: "European Conference on Computer Vision (ECCV), 2024"
+    authors: "<a href='https://choidae1.github.io/'>Daewon Choi</a>, <a href='https://jh-jeong.github.io/'>Jongheon Jeong</a>, <b><u>Huiwon Jang</u></b>, <a href='https://alinlab.kaist.ac.kr/shin.html'>Jinwoo Shin</a>"
+    venue: "European Conference on Computer Vision (ECCV), 2024, <b>Oral Presentation</b>"
+    arxiv: "https://arxiv.org/abs/2407.18658"
+    code: "https://github.com/ChoiDae1/robustify-T2I"
     selected: y
 
   - title: "Visual Representation Learning with Stochastic Frame Prediction"
@@ -11,10 +13,11 @@ papers:
     website: "https://sites.google.com/view/2024rsp"
     arxiv: "https://arxiv.org/abs/2406.07398"
     code: "https://github.com/huiwon-jang/RSP"
+    poster: "/assets/publications/2024_RSP/RSP_poster.pdf"
     selected: y
 
   - title: "Modality-agnostic Self-supervised Learning with Meta-learned Masked Auto-encoder"
-    authors: "<b><u>Huiwon Jang</u><sup>*</sup></b>, <a href='https://jihoontack.github.io/'>Jihoon Tack<sup>*</sup></a>, Daewon Choi, <a href='https://jh-jeong.github.io/'>Jongheon Jeong</a>, <a href='https://alinlab.kaist.ac.kr/shin.html'>Jinwoo Shin</a>"
+    authors: "<b><u>Huiwon Jang</u><sup>*</sup></b>, <a href='https://jihoontack.github.io/'>Jihoon Tack<sup>*</sup></a>, <a href='https://choidae1.github.io/'>Daewon Choi</a>, <a href='https://jh-jeong.github.io/'>Jongheon Jeong</a>, <a href='https://alinlab.kaist.ac.kr/shin.html'>Jinwoo Shin</a>"
     venue: "Conference on Neural Information Processing Systems (NeurIPS), 2023"
     paper_pdf: "https://openreview.net/forum?id=RZGtK2nDDJ"
     arxiv: "https://arxiv.org/abs/2310.16318"
