@@ -1,4 +1,10 @@
 papers:
+  - title: "TrackIME: Enhanced Video Point Tracking via Instance Motion Estimation"
+    authors: "<a href='https://www.shpark.org/'>Seong Hyeon Park</a>, <b><u>Huiwon Jang</u></b>, Byungwoo Jeon, <a href='https://sites.google.com/view/sukmin-yun'>Sukmin Yun</a>, <a href='https://phseo.github.io/'>Paul Hongsuck Seo</a>, <a href='https://alinlab.kaist.ac.kr/shin.html'>Jinwoo Shin</a>"
+    venue: "Conference on Neural Information Processing Systems (NeurIPS), 2024, <b>Spotlight Presentation</b>"
+    paper_pdf: "https://openreview.net/forum?id=eKHQbgvL3G"
+    selected: y
+
   - title: "Adversarial Robustification via Text-to-Image Diffusion Models"
     authors: "<a href='https://choidae1.github.io/'>Daewon Choi</a>, <a href='https://jh-jeong.github.io/'>Jongheon Jeong</a>, <b><u>Huiwon Jang</u></b>, <a href='https://alinlab.kaist.ac.kr/shin.html'>Jinwoo Shin</a>"
     venue: "European Conference on Computer Vision (ECCV), 2024, <b>Oral Presentation</b>"
