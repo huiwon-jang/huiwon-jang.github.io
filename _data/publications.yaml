@@ -1,13 +1,13 @@
 papers:
   - title: "TrackIME: Enhanced Video Point Tracking via Instance Motion Estimation"
     authors: "<a href='https://www.shpark.org/'>Seong Hyeon Park</a>, <b><u>Huiwon Jang</u></b>, Byungwoo Jeon, <a href='https://sites.google.com/view/sukmin-yun'>Sukmin Yun</a>, <a href='https://phseo.github.io/'>Paul Hongsuck Seo</a>, <a href='https://alinlab.kaist.ac.kr/shin.html'>Jinwoo Shin</a>"
-    venue: "Conference on Neural Information Processing Systems (NeurIPS), 2024, <b>Spotlight Presentation</b>"
+    venue: "Conference on Neural Information Processing Systems (NeurIPS), 2024, <b><span style='color:red;'>Spotlight Presentation</span></b>"
     paper_pdf: "https://openreview.net/forum?id=eKHQbgvL3G"
     selected: y
 
   - title: "Adversarial Robustification via Text-to-Image Diffusion Models"
-    authors: "<a href='https://choidae1.github.io/'>Daewon Choi</a>, <a href='https://jh-jeong.github.io/'>Jongheon Jeong</a>, <b><u>Huiwon Jang</u></b>, <a href='https://alinlab.kaist.ac.kr/shin.html'>Jinwoo Shin</a>"
-    venue: "European Conference on Computer Vision (ECCV), 2024, <b>Oral Presentation</b>"
+    authors: "<a href='https://choidae1.github.io/'>Daewon Choi<sup>*</sup></a>, <a href='https://jh-jeong.github.io/'>Jongheon Jeong<sup>*</sup></a>, <b><u>Huiwon Jang</u></b>, <a href='https://alinlab.kaist.ac.kr/shin.html'>Jinwoo Shin</a>"
+    venue: "European Conference on Computer Vision (ECCV), 2024, <b><span style='color:red;'>Oral Presentation</span></b>"
     arxiv: "https://arxiv.org/abs/2407.18658"
     code: "https://github.com/ChoiDae1/robustify-T2I"
     selected: y
@@ -34,7 +34,7 @@ papers:
 
   - title: "Unsupervised Meta-learning via Few-shot Pseudo-supervised Contrastive Learning"
     authors: "<b><u>Huiwon Jang</u><sup>*</sup></b>, <a href='https://hankook.github.io/'>Hankook Lee<sup>*</sup></a>, <a href='https://alinlab.kaist.ac.kr/shin.html'>Jinwoo Shin</a>"
-    venue: "International Conference on Learning Representations (ICLR), 2023, <b>Spotlight Presentation (280/4956=5.6%)</b>"
+    venue: "International Conference on Learning Representations (ICLR), 2023, <b><span style='color:red;'>Spotlight Presentation (280/4956=5.6%)</span></b>"
     venue2: "Neural Information Processing Systems Workshop on Meta-Learning (NeurIPSW-MetaLearn), 2022"
     paper_pdf: "https://openreview.net/forum?id=TdTGGj7fYYJ"
     arxiv: "https://arxiv.org/abs/2303.00996"
