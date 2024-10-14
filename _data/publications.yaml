@@ -5,6 +5,7 @@ papers:
     website: "https://sihyun.me/REPA/"
     arxiv: "https://arxiv.org/abs/2410.06940"
     code: "https://github.com/sihyun-yu/REPA"
+    selected: y
 
   - title: "TrackIME: Enhanced Video Point Tracking via Instance Motion Estimation"
     authors: "<a href='https://www.shpark.org/'>Seong Hyeon Park</a>, <b><u>Huiwon Jang</u></b>, Byungwoo Jeon, <a href='https://sites.google.com/view/sukmin-yun'>Sukmin Yun</a>, <a href='https://phseo.github.io/'>Paul Hongsuck Seo</a>, <a href='https://alinlab.kaist.ac.kr/shin.html'>Jinwoo Shin</a>"
