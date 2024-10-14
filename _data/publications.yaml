@@ -1,4 +1,11 @@
 papers:
+  - title: "Representation Alignment for Generation: Training Diffusion Transformers Is Easier Than You Think"
+    authors: "<a href='https://sihyun.me/'>Sihyun Yu</a>, Sangkyung Kwak, <b><u>Huiwon Jang</u></b>, <a href='https://jh-jeong.github.io/'>Jongheon Jeong</a>, <a href='http://jonathan-huang.org/'>Jonathan Huang</a>, <a href='https://alinlab.kaist.ac.kr/shin.html'>Jinwoo Shin</a>, <a href='https://www.sainingxie.com/'>Saining Xie</a>"
+    venue: "Preprint"
+    website: "https://sihyun.me/REPA/"
+    arxiv: "https://arxiv.org/abs/2410.06940"
+    code: "https://github.com/sihyun-yu/REPA"
+
   - title: "TrackIME: Enhanced Video Point Tracking via Instance Motion Estimation"
     authors: "<a href='https://www.shpark.org/'>Seong Hyeon Park</a>, <b><u>Huiwon Jang</u></b>, Byungwoo Jeon, <a href='https://sites.google.com/view/sukmin-yun'>Sukmin Yun</a>, <a href='https://phseo.github.io/'>Paul Hongsuck Seo</a>, <a href='https://alinlab.kaist.ac.kr/shin.html'>Jinwoo Shin</a>"
     venue: "Conference on Neural Information Processing Systems (NeurIPS), 2024, <b><span style='color:red;'>Spotlight Presentation</span></b>"
