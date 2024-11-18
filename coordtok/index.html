@@ -239,12 +239,11 @@
     <div class="columns is-centered">
       <div class="column is-full-width">
         <h2 class="title is-3">Long video reconstruction</h2>
-
-        <!-- Comparison -->
-        <h3 class="title is-4">Comparison with existing video tokenizers</h3>
         <div class="content has-text-justified">
           <p>If the videos for GT and the different approaches are not properly synchronized, please try out refreshing the page!</p>
         </div>
+        <!-- Comparison -->
+        <h3 class="title is-4">Comparison with existing video tokenizers</h3>
         <div class="row">
           <div class="label"><b>GT</b></div>
           <div class="video-container">
@@ -281,21 +280,21 @@
 
         <!-- Qualitative results. -->
         <h3 class="title is-4">More qualitative results</h3>
-        <div class="content has-text-justified">
-          <p>
-            xxxx
-          </p>
+        <div class="row">
+          <div class="label"><b>GT</b></div>
+          <div class="video-container">
+            <video id="gt" autoplay controls muted loop playsinline>
+              <source src="./static/videos/recon_gt2.mp4" type="video/mp4">
+            </video>
+          </div>
         </div>
-        <div class="content has-text-centered">
-          <video id="replay-video"
-                 controls
-                 muted
-                 preload
-                 playsinline
-                 width="75%">
-            <source src="./static/videos/replay.mp4"
-                    type="video/mp4">
-          </video>
+        <div class="row">
+          <div class="label"><b>CoordTok (Ours)</b></div>
+          <div class="video-container">
+            <video id="CoordTok (Ours)" autoplay controls muted loop playsinline>
+              <source src="./static/videos/recon_ours2.mp4" type="video/mp4">
+            </video>
+          </div>
         </div>
         <!--/ Qualitative results. -->
       </div>
