@@ -38,6 +38,7 @@
   <script src="./static/js/bulma-carousel.min.js"></script>
   <script src="./static/js/bulma-slider.min.js"></script>
   <script src="./static/js/index.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
 <body>
 
@@ -164,10 +165,10 @@
             However, training existing tokenizers on long videos often incurs a huge training cost as they are trained to reconstruct all the frames at once.
             In this paper, we introduce CoordTok, a video tokenizer that learns a mapping from coordinate-based representations to the corresponding patches of input videos,
             inspired by recent advances in 3D generative models.
-            In particular, CoordTok encodes a video into factorized triplane representations and reconstructs patches that correspond to randomly sampled (x,y,t) coordinates.
+            In particular, CoordTok encodes a video into factorized triplane representations and reconstructs patches that correspond to randomly sampled $$(x, y, t)$$ coordinates.
             This allows for training large tokenizer models directly on long videos without requiring excessive training resources.
             Our experiments show that CoordTok can drastically reduce the number of tokens for encoding long video clips.
-            For instance, CoordTok can encode a 128-frame video with 128×128 resolution into 1280 tokens,
+            For instance, CoordTok can encode a 128-frame video with 128$$\times$$128 resolution into 1280 tokens,
             while baselines need 6144 or 8192 tokens to achieve similar reconstruction quality.
             We further show that this efficient video tokenization enables memory-efficient training of a diffusion transformer that can generate 128 frames at once.
           </p>
@@ -188,7 +189,15 @@
           <img src="./static/images/method_overview.png" alt>
         </div>
         <div class="content has-text-justified">
-          <p>We design our encoder to encode a video <b>x</b> </p>
+          <p>We design our encoder to encode a video $$\mathbf{x}$$ into factorized triplane representations $$\mathbf{z} = \left[\mathbf{z}^{xy}, \mathbf{z}^{yt}, \mathbf{z}^{xt}\right]$$
+            which can efficiently represent the video with three 2D latent planes.
+            Given the triplane representations $$\mathbf{z}$$,
+            our decoder learns a mapping from $$(x, y, t)$$ coordinates to RGB pixels within the corresponding patches.
+            In particular, we extract coordinate-based representations of $$N$$ sampled coordinates by querying the coordinates from triplane representations via bilinear interpolation.
+            Then the decoder aggregates and fuses information from different coordinates with self-attention layers and project outputs into corresponding patches.
+          </p>
+          <p>This design enables us to train tokenizers on long videos in a compute-efficient manner by avoiding reconstruction of entire frames at once.
+          </p>
         </div>
       </div>
     </div>
