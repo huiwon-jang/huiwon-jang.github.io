@@ -202,8 +202,7 @@
             our decoder learns a mapping from $(x, y, t)$ coordinates to RGB pixels within the corresponding patches.
             In particular, we extract coordinate-based representations of $N$ sampled coordinates by querying the coordinates from triplane representations via bilinear interpolation.
             Then the decoder aggregates and fuses information from different coordinates with self-attention layers and project outputs into corresponding patches.
-          </p>
-          <p>This design enables us to train tokenizers on long videos in a compute-efficient manner by avoiding reconstruction of entire frames at once.
+            This design enables us to train tokenizers on long videos in a compute-efficient manner by avoiding reconstruction of entire frames at once.
           </p>
         </div>
       </div>
