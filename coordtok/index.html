@@ -356,46 +356,75 @@
     <div class="columns is-centered">
       <div class="column is-full-width">
         <h2 class="title is-3 has-text-centered">Latent visualization</h2>
+        <div class="content has-text-justified">
+          <p>
+            Illustration of factorized triplane representations of CoordTok trained on the UCF-101 dataset.
+            We note that $\textbf{z}_{xy}$ captures the global content in the video across time, e.g., layout and appearance of the scene or object,
+            and $\textbf{z}_{yt}$, $\textbf{z}_{xt}$ capture the underlying motion in the video across two spatial axes.
+          </p>
+        </div>
         <div class="content has-text-centered">
-          <!-- 제목 행 -->
           <div class="columns is-centered is-vcentered" style="margin-bottom: 15px;">
             <div class="column is-one-quarter has-text-centered"><b>GT</b></div>
-            <div class="column is-one-quarter has-text-centered"><b>$\textbf{z}_xy$</b></div>
-            <div class="column is-one-quarter has-text-centered"><b>$\textbf{z}_yt$</b></div>
-            <div class="column is-one-quarter has-text-centered"><b>$\textbf{z}_xt$</b></div>
+            <div class="column is-one-quarter has-text-centered"><b>$\textbf{z}_{xy}$</b></div>
+            <div class="column is-one-quarter has-text-centered"><b>$\textbf{z}_{yt}$</b></div>
+            <div class="column is-one-quarter has-text-centered"><b>$\textbf{z}_{xt}$</b></div>
           </div>
-          <!-- 데이터 행 -->
-          <div class="columns is-multiline is-centered" style="gap: 10px;">
+          <div class="columns is-multiline is-centered" style="gap: 20px;">
             <!-- 세트 1 -->
-            <div class="column is-one-quarter" style="margin-bottom: 20px;">
-              <video autoplay controls muted loop playsinline style="width: 100%; height: auto;">
-                <source src="./static/videos/gt1.mp4" type="video/mp4">
-              </video>
+            <div class="column is-one-quarter has-text-centered">
+              <div style="position: relative; width: 100%; height: 200px; overflow: hidden;">
+                <video autoplay controls muted loop playsinline
+                       style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
+                  <source src="./static/videos/gt1.mp4" type="video/mp4">
+                </video>
+              </div>
             </div>
-            <div class="column is-one-quarter">
-              <img src="./static/images/zxy1.jpg" alt="zxy1 visualization" style="width: 100%; height: auto;">
+            <div class="column is-one-quarter has-text-centered">
+              <div style="position: relative; width: 100%; height: 200px; overflow: hidden;">
+                <img src="./static/images/zxy1.jpg" alt="zxy1 visualization"
+                     style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
+              </div>
             </div>
-            <div class="column is-one-quarter">
-              <img src="./static/images/zyt1.jpg" alt="zyt1 visualization" style="width: 100%; height: auto;">
+            <div class="column is-one-quarter has-text-centered">
+              <div style="position: relative; width: 100%; height: 200px; overflow: hidden;">
+                <img src="./static/images/zyt1.jpg" alt="zyt1 visualization"
+                     style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
+              </div>
             </div>
-            <div class="column is-one-quarter">
-              <img src="./static/images/zxt1.jpg" alt="zxt1 visualization" style="width: 100%; height: auto;">
+            <div class="column is-one-quarter has-text-centered">
+              <div style="position: relative; width: 100%; height: 200px; overflow: hidden;">
+                <img src="./static/images/zxt1.jpg" alt="zxt1 visualization"
+                     style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
+              </div>
             </div>
 
             <!-- 세트 2 -->
-            <div class="column is-one-quarter" style="margin-bottom: 20px;">
-              <video autoplay controls muted loop playsinline style="width: 100%; height: auto;">
-                <source src="./static/videos/gt2.mp4" type="video/mp4">
-              </video>
+            <div class="column is-one-quarter has-text-centered">
+              <div style="position: relative; width: 100%; height: 200px; overflow: hidden;">
+                <video autoplay controls muted loop playsinline
+                       style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
+                  <source src="./static/videos/gt2.mp4" type="video/mp4">
+                </video>
+              </div>
             </div>
-            <div class="column is-one-quarter">
-              <img src="./static/images/zxy2.jpg" alt="zxy2 visualization" style="width: 100%; height: auto;">
+            <div class="column is-one-quarter has-text-centered">
+              <div style="position: relative; width: 100%; height: 200px; overflow: hidden;">
+                <img src="./static/images/zxy2.jpg" alt="zxy2 visualization"
+                     style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
+              </div>
             </div>
-            <div class="column is-one-quarter">
-              <img src="./static/images/zyt2.jpg" alt="zyt2 visualization" style="width: 100%; height: auto;">
+            <div class="column is-one-quarter has-text-centered">
+              <div style="position: relative; width: 100%; height: 200px; overflow: hidden;">
+                <img src="./static/images/zyt2.jpg" alt="zyt2 visualization"
+                     style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
+              </div>
             </div>
-            <div class="column is-one-quarter">
-              <img src="./static/images/zxt2.jpg" alt="zxt2 visualization" style="width: 100%; height: auto;">
+            <div class="column is-one-quarter has-text-centered">
+              <div style="position: relative; width: 100%; height: 200px; overflow: hidden;">
+                <img src="./static/images/zxt2.jpg" alt="zxt2 visualization"
+                     style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
+              </div>
             </div>
           </div>
         </div>
