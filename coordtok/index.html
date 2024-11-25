@@ -352,18 +352,56 @@
     </div>
     <!--/ Long video generation. -->
 
-    <!-- Latent visualization. -->
+    <!-- Latent visualization -->
     <div class="columns is-centered">
       <div class="column is-full-width">
         <h2 class="title is-3 has-text-centered">Latent visualization</h2>
-        <div class="content has-text-justified">
-          <p>
-            TBD
-          </p>
+        <div class="content has-text-centered">
+          <!-- 제목 행 -->
+          <div class="columns is-centered is-vcentered" style="margin-bottom: 15px;">
+            <div class="column is-one-quarter has-text-centered"><b>GT</b></div>
+            <div class="column is-one-quarter has-text-centered"><b>$\textbf{z}_xy$</b></div>
+            <div class="column is-one-quarter has-text-centered"><b>$\textbf{z}_yt$</b></div>
+            <div class="column is-one-quarter has-text-centered"><b>$\textbf{z}_xt$</b></div>
+          </div>
+          <!-- 데이터 행 -->
+          <div class="columns is-multiline is-centered" style="gap: 10px;">
+            <!-- 세트 1 -->
+            <div class="column is-one-quarter" style="margin-bottom: 20px;">
+              <video autoplay controls muted loop playsinline style="width: 100%; height: auto;">
+                <source src="./static/videos/gt1.mp4" type="video/mp4">
+              </video>
+            </div>
+            <div class="column is-one-quarter">
+              <img src="./static/images/zxy1.jpg" alt="zxy1 visualization" style="width: 100%; height: auto;">
+            </div>
+            <div class="column is-one-quarter">
+              <img src="./static/images/zyt1.jpg" alt="zyt1 visualization" style="width: 100%; height: auto;">
+            </div>
+            <div class="column is-one-quarter">
+              <img src="./static/images/zxt1.jpg" alt="zxt1 visualization" style="width: 100%; height: auto;">
+            </div>
+
+            <!-- 세트 2 -->
+            <div class="column is-one-quarter" style="margin-bottom: 20px;">
+              <video autoplay controls muted loop playsinline style="width: 100%; height: auto;">
+                <source src="./static/videos/gt2.mp4" type="video/mp4">
+              </video>
+            </div>
+            <div class="column is-one-quarter">
+              <img src="./static/images/zxy2.jpg" alt="zxy2 visualization" style="width: 100%; height: auto;">
+            </div>
+            <div class="column is-one-quarter">
+              <img src="./static/images/zyt2.jpg" alt="zyt2 visualization" style="width: 100%; height: auto;">
+            </div>
+            <div class="column is-one-quarter">
+              <img src="./static/images/zxt2.jpg" alt="zxt2 visualization" style="width: 100%; height: auto;">
+            </div>
+          </div>
         </div>
       </div>
     </div>
-    <!--/ Latent visualization. -->
+    <!--/ Latent visualization -->
   </div>
 </section>
 
