@@ -242,7 +242,7 @@
   .media-container {
     position: relative;
     width: 100%;
-    padding-top: 100%; /* For 1:1 aspect ratio */
+    padding-top: 100%; /* Default to 1:1 aspect ratio */
     overflow: hidden;
   }
 
@@ -255,6 +255,11 @@
     height: 100%;
     object-fit: contain;
     max-width: 100%;
+  }
+
+  /* Adjust aspect ratio for z_yt and z_xt images */
+  .column.has-text-centered[style*="flex: 2;"] .media-container {
+    padding-top: 50%; /* For 2:1 aspect ratio */
   }
 
   /* Remove default padding and margins from columns */
@@ -423,8 +428,8 @@
             <div class="column has-text-centered" style="flex: 1; padding: 0;"><b>GT</b></div>
             <div class="column" style="width: 1%;"></div> <!-- Spacer -->
             <div class="column has-text-centered" style="flex: 1; padding: 0;"><b>$\textbf{z}_{xy}$</b></div>
-            <div class="column has-text-centered" style="flex: 1; padding: 0;"><b>$\textbf{z}_{yt}$</b></div>
-            <div class="column has-text-centered" style="flex: 1; padding: 0;"><b>$\textbf{z}_{xt}$</b></div>
+            <div class="column has-text-centered" style="flex: 2; padding: 0;"><b>$\textbf{z}_{yt}$</b></div>
+            <div class="column has-text-centered" style="flex: 2; padding: 0;"><b>$\textbf{z}_{xt}$</b></div>
           </div>
           <!-- Content Rows -->
           <!-- Set 1 -->
@@ -446,13 +451,13 @@
               </div>
             </div>
             <!-- z_yt Image -->
-            <div class="column has-text-centered" style="flex: 1; padding: 0;">
+            <div class="column has-text-centered" style="flex: 2; padding: 0;">
               <div class="media-container">
                 <img src="./static/images/zyt1.jpg" alt="zyt1 visualization">
               </div>
             </div>
             <!-- z_xt Image -->
-            <div class="column has-text-centered" style="flex: 1; padding: 0;">
+            <div class="column has-text-centered" style="flex: 2; padding: 0;">
               <div class="media-container">
                 <img src="./static/images/zxt1.jpg" alt="zxt1 visualization">
               </div>
@@ -477,13 +482,13 @@
               </div>
             </div>
             <!-- z_yt Image -->
-            <div class="column has-text-centered" style="flex: 1; padding: 0;">
+            <div class="column has-text-centered" style="flex: 2; padding: 0;">
               <div class="media-container">
                 <img src="./static/images/zyt2.jpg" alt="zyt2 visualization">
               </div>
             </div>
             <!-- z_xt Image -->
-            <div class="column has-text-centered" style="flex: 1; padding: 0;">
+            <div class="column has-text-centered" style="flex: 2; padding: 0;">
               <div class="media-container">
                 <img src="./static/images/zxt2.jpg" alt="zxt2 visualization">
               </div>
