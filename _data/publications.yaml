@@ -1,4 +1,12 @@
 papers:
+  - title: "Efficient Long Video Tokenization via Coordinated-based Patch Reconstrution"
+    authors: "<b><u>Huiwon Jang</u></b>, <a href='https://sihyun.me/'>Sihyun Yu</a>, <a href='https://alinlab.kaist.ac.kr/shin.html'>Jinwoo Shin</a>, <a href='https://people.eecs.berkeley.edu/~pabbeel/'>Pieter Abbeel</a>, <a href='https://younggyo.me/'>Younggyo Seo</a>"
+    venue: "Preprint"
+    website: "https://huiwon-jang.github.io/coordtok/"
+    arxiv: https://arxiv.org/abs/2411.14762
+    code: "https://github.com/huiwon-jang/CoordTok"
+    selected: y
+
   - title: "Representation Alignment for Generation: Training Diffusion Transformers Is Easier Than You Think"
     authors: "<a href='https://sihyun.me/'>Sihyun Yu</a>, Sangkyung Kwak, <b><u>Huiwon Jang</u></b>, <a href='https://jh-jeong.github.io/'>Jongheon Jeong</a>, <a href='http://jonathan-huang.org/'>Jonathan Huang</a>, <a href='https://alinlab.kaist.ac.kr/shin.html'>Jinwoo Shin</a>, <a href='https://www.sainingxie.com/'>Saining Xie</a>"
     venue: "Preprint"
