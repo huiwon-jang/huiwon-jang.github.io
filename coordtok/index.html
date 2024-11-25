@@ -258,7 +258,7 @@
   }
 
   /* Adjust aspect ratio for z_yt and z_xt images */
-  .column.has-text-centered[style*="flex: 2;"] .media-container {
+  .column[data-size="2"] .media-container {
     padding-top: 50%; /* For 2:1 aspect ratio */
   }
 
@@ -275,8 +275,8 @@
   }
 
   /* Reduce margin between rows */
-  .columns[style*="margin-bottom: 10px;"] {
-    margin-bottom: 10px;
+  .content-row {
+    margin-bottom: 15px; /* Slightly increased spacing between rows */
   }
 
   /* Responsive adjustments for mobile */
@@ -294,6 +294,27 @@
     .media-container {
       padding-top: 100%;
     }
+  }
+
+  /* Align text labels according to column ratios */
+  .label-row .column {
+    text-align: center;
+  }
+
+  /* Set flex ratios for columns */
+  .column[data-size="1"] {
+    flex: 1;
+  }
+
+  .column[data-size="2"] {
+    flex: 2;
+  }
+
+  /* Adjust vertical alignment for labels */
+  .label-row .column {
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 </style>
 
@@ -424,12 +445,13 @@
         </div>
         <div class="content has-text-centered">
           <!-- Labels Row -->
-          <div class="columns is-mobile is-centered is-vcentered" style="margin-bottom: 10px;">
-            <div class="column has-text-centered" style="flex: 1; padding: 0;"><b>GT</b></div>
-            <div class="column" style="width: 1%;"></div> <!-- Spacer -->
-            <div class="column has-text-centered" style="flex: 1; padding: 0;"><b>$\textbf{z}_{xy}$</b></div>
-            <div class="column has-text-centered" style="flex: 2; padding: 0;"><b>$\textbf{z}_{yt}$</b></div>
-            <div class="column has-text-centered" style="flex: 2; padding: 0;"><b>$\textbf{z}_{xt}$</b></div>
+          <div class="columns is-mobile is-centered is-vcentered label-row" style="margin-bottom: 10px;">
+            <div class="column" data-size="1"><b>GT</b></div>
+            <!-- Spacer -->
+            <div style="width: 1%;"></div>
+            <div class="column" data-size="1"><b>$\textbf{z}_{xy}$</b></div>
+            <div class="column" data-size="2"><b>$\textbf{z}_{yt}$</b></div>
+            <div class="column" data-size="2"><b>$\textbf{z}_{xt}$</b></div>
           </div>
           <!-- Content Rows -->
           <!-- Set 1 -->
