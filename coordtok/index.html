@@ -274,6 +274,7 @@
     margin-right: 0;
     margin-top: 0;
     margin-bottom: 0;
+    flex-wrap: nowrap; /* Prevent wrapping */
   }
 
   /* Reduce margin between rows */
@@ -288,16 +289,16 @@
     justify-content: center;
     white-space: nowrap; /* Prevent text from wrapping */
     flex-shrink: 0;
-    min-width: 50px; /* Prevent columns from becoming too narrow */
+    min-width: 50px;
   }
 
   /* Set flex ratios for columns */
   .column[data-size="1"] {
-    flex: 1;
+    flex: 0 0 calc(16.6666%); /* 1/6 of the width */
   }
 
   .column[data-size="2"] {
-    flex: 2;
+    flex: 0 0 calc(33.3333%); /* 2/6 of the width */
   }
 
   /* Prevent label row from wrapping */
@@ -305,25 +306,15 @@
     flex-wrap: nowrap;
   }
 
+  /* Ensure the spacer has a consistent width */
+  .columns > div[style*="width: 1%"] {
+    flex: 0 0 1%;
+  }
+
   /* Responsive adjustments for mobile */
   @media (max-width: 768px) {
-    .columns.is-mobile .column {
-      flex: 1 1 auto;
-      max-width: 100%;
-    }
-
     .columns.is-mobile {
-      flex-wrap: wrap;
-    }
-
-    /* Prevent labels from wrapping */
-    .label-row {
       flex-wrap: nowrap;
-    }
-
-    .label-row .column {
-      flex: 1 0 auto;
-      max-width: none;
     }
 
     /* Adjust aspect ratios on mobile */
@@ -472,7 +463,7 @@
       <!-- Set 1 -->
       <div class="columns is-gapless is-mobile is-centered is-vcentered content-row">
         <!-- GT Video -->
-        <div class="column has-text-centered" data-size="1" style="padding: 0;">
+        <div class="column has-text-centered" data-size="1">
           <div class="media-container">
             <video autoplay controls muted loop playsinline>
               <source src="./static/videos/gt1.mp4" type="video/mp4">
@@ -482,19 +473,19 @@
         <!-- Spacer between GT and z_xy -->
         <div style="width: 1%;"></div>
         <!-- z_xy Image -->
-        <div class="column has-text-centered" data-size="1" style="padding: 0;">
+        <div class="column has-text-centered" data-size="1">
           <div class="media-container">
             <img src="./static/images/zxy1.jpg" alt="zxy1 visualization">
           </div>
         </div>
         <!-- z_yt Image -->
-        <div class="column has-text-centered" data-size="2" style="padding: 0;">
+        <div class="column has-text-centered" data-size="2">
           <div class="media-container">
             <img src="./static/images/zyt1.jpg" alt="zyt1 visualization">
           </div>
         </div>
         <!-- z_xt Image -->
-        <div class="column has-text-centered" data-size="2" style="padding: 0;">
+        <div class="column has-text-centered" data-size="2">
           <div class="media-container">
             <img src="./static/images/zxt1.jpg" alt="zxt1 visualization">
           </div>
@@ -503,7 +494,7 @@
       <!-- Set 2 -->
       <div class="columns is-gapless is-mobile is-centered is-vcentered content-row">
         <!-- GT Video -->
-        <div class="column has-text-centered" data-size="1" style="padding: 0;">
+        <div class="column has-text-centered" data-size="1">
           <div class="media-container">
             <video autoplay controls muted loop playsinline>
               <source src="./static/videos/gt2.mp4" type="video/mp4">
@@ -513,19 +504,19 @@
         <!-- Spacer between GT and z_xy -->
         <div style="width: 1%;"></div>
         <!-- z_xy Image -->
-        <div class="column has-text-centered" data-size="1" style="padding: 0;">
+        <div class="column has-text-centered" data-size="1">
           <div class="media-container">
             <img src="./static/images/zxy2.jpg" alt="zxy2 visualization">
           </div>
         </div>
         <!-- z_yt Image -->
-        <div class="column has-text-centered" data-size="2" style="padding: 0;">
+        <div class="column has-text-centered" data-size="2">
           <div class="media-container">
             <img src="./static/images/zyt2.jpg" alt="zyt2 visualization">
           </div>
         </div>
         <!-- z_xt Image -->
-        <div class="column has-text-centered" data-size="2" style="padding: 0;">
+        <div class="column has-text-centered" data-size="2">
           <div class="media-container">
             <img src="./static/images/zxt2.jpg" alt="zxt2 visualization">
           </div>
