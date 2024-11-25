@@ -276,7 +276,7 @@
 
   /* Reduce margin between rows */
   .content-row {
-    margin-bottom: 3px; /* Slightly increased spacing between rows */
+    margin-bottom: 0px; /* Slightly increased spacing between rows */
   }
 
   /* Responsive adjustments for mobile */
@@ -298,7 +298,11 @@
 
   /* Align text labels according to column ratios */
   .label-row .column {
-    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap; /* Prevent text from wrapping */
+    flex-shrink: 0;      /* Prevent columns from shrinking too much */
   }
 
   /* Set flex ratios for columns */
