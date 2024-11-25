@@ -257,12 +257,12 @@
   }
 
   /* Adjust aspect ratio for z_yt and z_xt images */
-  .column.has-text-centered[style*="flex: 2;"] .media-container {
+  .column.has-text-centered[style*="flex: 4;"] .media-container {
     padding-top: 50%; /* For 2:1 aspect ratio */
   }
 
   /* Remove spacing between z_yt and z_xt images */
-  .column.has-text-centered[style*="flex: 2;"] .media-container:not(:last-child) {
+  .column.has-text-centered[style*="flex: 4;"] .media-container:not(:last-child) {
     margin-right: 0;
   }
 
@@ -277,7 +277,7 @@
       flex-wrap: wrap;
     }
 
-    .column.has-text-centered[style*="flex: 2;"] {
+    .column.has-text-centered[style*="flex: 4;"] {
       flex-direction: column !important;
     }
 
@@ -286,7 +286,7 @@
       padding-top: 100%;
     }
 
-    .column.has-text-centered[style*="flex: 2;"] .media-container {
+    .column.has-text-centered[style*="flex: 4;"] .media-container {
       padding-top: 100%;
     }
   }
@@ -421,9 +421,10 @@
           <!-- Labels Row -->
           <div class="columns is-mobile is-centered is-vcentered" style="margin-bottom: 20px;">
             <div class="column has-text-centered" style="flex: 1;"><b>GT</b></div>
+            <div class="column" style="width: 2%;"></div> <!-- Spacer -->
             <div class="column has-text-centered" style="flex: 1;"><b>$\textbf{z}_{xy}$</b></div>
-            <div class="column has-text-centered" style="flex: 1;"><b>$\textbf{z}_{yt}$</b></div>
-            <div class="column has-text-centered" style="flex: 1;"><b>$\textbf{z}_{xt}$</b></div>
+            <div class="column has-text-centered" style="flex: 2;"><b>$\textbf{z}_{yt}$</b></div>
+            <div class="column has-text-centered" style="flex: 2;"><b>$\textbf{z}_{xt}$</b></div>
           </div>
           <!-- Content Rows -->
           <!-- Set 1 -->
@@ -445,22 +446,16 @@
               </div>
             </div>
             <!-- z_yt and z_xt Images -->
-            <div class="column has-text-centered" style="flex: 2; display: flex; flex-direction: row;">
+            <div class="column has-text-centered" style="flex: 4; display: flex; flex-direction: row;">
               <!-- z_yt Image -->
-              <div class="media-container" style="flex: 1;">
+              <div class="media-container" style="flex: 2;">
                 <img src="./static/images/zyt1.jpg" alt="zyt1 visualization">
               </div>
               <!-- z_xt Image -->
-              <div class="media-container" style="flex: 1;">
+              <div class="media-container" style="flex: 2;">
                 <img src="./static/images/zxt1.jpg" alt="zxt1 visualization">
               </div>
             </div>
-          </div>
-          <!-- Labels for z_yt and z_xt -->
-          <div class="columns is-mobile is-centered is-vcentered" style="margin-top: -20px;">
-            <div class="column" style="flex: 2;"></div> <!-- Empty space to align labels -->
-            <div class="column has-text-centered" style="flex: 1;"><b>$\textbf{z}_{yt}$</b></div>
-            <div class="column has-text-centered" style="flex: 1;"><b>$\textbf{z}_{xt}$</b></div>
           </div>
           <!-- Set 2 -->
           <div class="columns is-mobile is-centered is-vcentered">
@@ -481,22 +476,16 @@
               </div>
             </div>
             <!-- z_yt and z_xt Images -->
-            <div class="column has-text-centered" style="flex: 2; display: flex; flex-direction: row;">
+            <div class="column has-text-centered" style="flex: 4; display: flex; flex-direction: row;">
               <!-- z_yt Image -->
-              <div class="media-container" style="flex: 1;">
+              <div class="media-container" style="flex: 2;">
                 <img src="./static/images/zyt2.jpg" alt="zyt2 visualization">
               </div>
               <!-- z_xt Image -->
-              <div class="media-container" style="flex: 1;">
+              <div class="media-container" style="flex: 2;">
                 <img src="./static/images/zxt2.jpg" alt="zxt2 visualization">
               </div>
             </div>
-          </div>
-          <!-- Labels for z_yt and z_xt -->
-          <div class="columns is-mobile is-centered is-vcentered" style="margin-top: -20px;">
-            <div class="column" style="flex: 2;"></div> <!-- Empty space to align labels -->
-            <div class="column has-text-centered" style="flex: 1;"><b>$\textbf{z}_{yt}$</b></div>
-            <div class="column has-text-centered" style="flex: 1;"><b>$\textbf{z}_{xt}$</b></div>
           </div>
         </div>
       </div>
