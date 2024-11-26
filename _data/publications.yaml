@@ -1,5 +1,5 @@
 papers:
-  - title: "Efficient Long Video Tokenization via Coordinated-based Patch Reconstrution"
+  - title: "Efficient Long Video Tokenization via Coordinate-based Patch Reconstrution"
     authors: "<b><u>Huiwon Jang</u></b>, <a href='https://sihyun.me/'>Sihyun Yu</a>, <a href='https://alinlab.kaist.ac.kr/shin.html'>Jinwoo Shin</a>, <a href='https://people.eecs.berkeley.edu/~pabbeel/'>Pieter Abbeel</a>, <a href='https://younggyo.me/'>Younggyo Seo</a>"
     venue: "Preprint"
     website: "https://huiwon-jang.github.io/coordtok/"
