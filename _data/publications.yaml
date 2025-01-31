@@ -9,7 +9,7 @@ papers:
 
   - title: "Representation Alignment for Generation: Training Diffusion Transformers Is Easier Than You Think"
     authors: "<a href='https://sihyun.me/'>Sihyun Yu</a>, <a href='https://sang-kyung.github.io/'>Sangkyung Kwak</a>, <b><u>Huiwon Jang</u></b>, <a href='https://jh-jeong.github.io/'>Jongheon Jeong</a>, <a href='http://jonathan-huang.org/'>Jonathan Huang</a>, <a href='https://alinlab.kaist.ac.kr/shin.html'>Jinwoo Shin</a>, <a href='https://www.sainingxie.com/'>Saining Xie</a>"
-    venue: "Preprint"
+    venue: "International Conference on Learning Representations (ICLR), 2025"
     website: "https://sihyun.me/REPA/"
     arxiv: "https://arxiv.org/abs/2410.06940"
     code: "https://github.com/sihyun-yu/REPA"
