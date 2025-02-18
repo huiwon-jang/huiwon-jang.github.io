@@ -9,7 +9,7 @@ papers:
 
   - title: "Representation Alignment for Generation: Training Diffusion Transformers Is Easier Than You Think"
     authors: "<a href='https://sihyun.me/'>Sihyun Yu</a>, <a href='https://sang-kyung.github.io/'>Sangkyung Kwak</a>, <b><u>Huiwon Jang</u></b>, <a href='https://jh-jeong.github.io/'>Jongheon Jeong</a>, <a href='http://jonathan-huang.org/'>Jonathan Huang</a>, <a href='https://alinlab.kaist.ac.kr/shin.html'>Jinwoo Shin</a>, <a href='https://www.sainingxie.com/'>Saining Xie</a>"
-    venue: "International Conference on Learning Representations (ICLR), 2025"
+    venue: "International Conference on Learning Representations (ICLR), 2025, <b><span style='color:red;'>Oral Presentation (207/11672=1.77%)</span></b>"
     website: "https://sihyun.me/REPA/"
     arxiv: "https://arxiv.org/abs/2410.06940"
     code: "https://github.com/sihyun-yu/REPA"
@@ -17,13 +17,13 @@ papers:
 
   - title: "TrackIME: Enhanced Video Point Tracking via Instance Motion Estimation"
     authors: "<a href='https://www.shpark.org/'>Seong Hyeon Park</a>, <b><u>Huiwon Jang</u></b>, Byungwoo Jeon, <a href='https://sites.google.com/view/sukmin-yun'>Sukmin Yun</a>, <a href='https://phseo.github.io/'>Paul Hongsuck Seo</a>, <a href='https://alinlab.kaist.ac.kr/shin.html'>Jinwoo Shin</a>"
-    venue: "Conference on Neural Information Processing Systems (NeurIPS), 2024, <b><span style='color:red;'>Spotlight Presentation</span></b>"
+    venue: "Conference on Neural Information Processing Systems (NeurIPS), 2024, <b><span style='color:red;'>Spotlight Presentation (326/15671=2%)</span></b>"
     paper_pdf: "https://openreview.net/forum?id=eKHQbgvL3G"
     selected: y
 
   - title: "Adversarial Robustification via Text-to-Image Diffusion Models"
     authors: "<a href='https://choidae1.github.io/'>Daewon Choi<sup>*</sup></a>, <a href='https://jh-jeong.github.io/'>Jongheon Jeong<sup>*</sup></a>, <b><u>Huiwon Jang</u></b>, <a href='https://alinlab.kaist.ac.kr/shin.html'>Jinwoo Shin</a>"
-    venue: "European Conference on Computer Vision (ECCV), 2024, <b><span style='color:red;'>Oral Presentation</span></b>"
+    venue: "European Conference on Computer Vision (ECCV), 2024, <b><span style='color:red;'>Oral Presentation (200/8585=2.3%)</span></b>"
     arxiv: "https://arxiv.org/abs/2407.18658"
     code: "https://github.com/ChoiDae1/robustify-T2I"
     selected: y
