@@ -1,7 +1,13 @@
 papers:
+  - title: "ContextVLA: Vision-Language-Action Model with Amortized Multi-Frame Context"
+    authors: "<b><u>Huiwon Jang</u></b>, <a href='https://sihyun.me/'>Sihyun Yu</a>, <a href='https://arunos728.github.io/'>Heeseung Kwon</a>, Hojin Jeon, <a href='https://younggyo.me/'>Younggyo Seo<sup>*</sup></a>, <a href='https://alinlab.kaist.ac.kr/shin.html'>Jinwoo Shin<sup>*</sup></a>"
+    venue: "Arxiv preprint, 2025"
+    arxiv: "https://arxiv.org/abs/2510.04246"
+    selected: y
+
   - title: "Robot-R1: Reinforcement Learning for Enhanced Embodied Reasoning in Robotics"
     authors: "<a href='https://kingdy2002.github.io/'>Dongyoung Kim</a>, Sumin Park, <b><u>Huiwon Jang</u></b>, <a href='https://alinlab.kaist.ac.kr/shin.html'>Jinwoo Shin</a>, <a href='https://sites.google.com/view/jaehyungkim'>Jaehyung Kim<sup>*</sup></a>, <a href='https://younggyo.me/'>Younggyo Seo<sup>*</sup></a>"
-    venue: "Arxiv preprint, 2025"
+    venue: "NeurIPS 2025"
     arxiv: "https://arxiv.org/abs/2506.00070"
     selected: y
 

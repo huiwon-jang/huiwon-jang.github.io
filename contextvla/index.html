@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="ContextVLA: Vision-Language-Action Model with Amortized Multi-Frame Context">
+  <meta name="keywords" content="ContextVLA, Vision-Language-Action Model, Robotics">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CoordTok</title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']] /* $...$를 인라인 수식으로 설정 */
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+  <div class="navbar-menu">
+    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+      <a class="navbar-item" href="https://huiwon-jang.github.io/">
+      <span class="icon">
+          <i class="fas fa-home"></i>
+      </span>
+      </a>
+
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">
+          More Research
+        </a>
+        <div class="navbar-dropdown">
+          <a class="navbar-item" href="https://sites.google.com/view/2024rsp">
+            RSP
+          </a>
+          <a class="navbar-item" href="https://huiwon-jang.github.io/coordtok/">
+            CoordTok
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">ContextVLA: Vision-Language-Action Model with Amortized Multi-Frame Context</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://huiwon-jang.github.io/">Huiwon Jang</a><sup>1,2</sup>,</span>
+            <span class="author-block">
+              <a href="https://sihyun.me/">Sihyun Yu</a><sup>1</sup>,</span>
+            <span class="author-block">
+              <a href="https://arunos728.github.io/">Heeseung Kwon</a><sup>1,2</sup>
+            <span class="author-block">
+              Hojin Jeon<sup>1,2</sup>
+            <span class="author-block">
+              <a href="https://younggyo.me/">Younggyo Seo</a><sup>3*</sup>
+            </span>
+            <span class="author-block">
+              <a href="https://alinlab.kaist.ac.kr/shin.html">Jinwoo Shin</a><sup>1,2*</sup>,
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>KAIST,</span>
+            <span class="author-block"><sup>2</sup>RLWRLD,</span>
+            <span class="author-block"><sup>3</sup>UC Berkeley</span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>*</sup>Equal advising</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href="XX"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="XX"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="https://github.com/huiwon-jang/ContextVLA"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <h2 class="subtitle has-text-centered">
+        <b>TL; DR.</b> We propose ContextVLA, an efficient Vision-Language-Action model that leverages multi-frame observations.
+      </h2>
+    </div>
+    <div class="column has-text-centered">
+          <img src="./static/images/paper_overview.png" alt>
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Leveraging temporal context is crucial for success in partially observable robotic tasks. 
+            However, prior work in behavior cloning has demonstrated inconsistent performance gains when using multi-frame observations. 
+            In this paper, we introduce ContextVLA, a policy model that robustly improves robotic task performance by effectively leveraging multi-frame observations. 
+            Our approach is motivated by the key observation that Vision-Language-Action models (VLA), i.e., policy models built upon a Vision-Language Model (VLM), 
+            more effectively utilize multi-frame observations for action generation. 
+            This suggests that VLMs' inherent temporal understanding capability enables them to extract more meaningful context from multi-frame observations. 
+            However, the high dimensionality of video inputs introduces significant computational overhead, making VLA training and inference inefficient. 
+            To address this, ContextVLA compresses past observations into a single context token, allowing the policy to efficiently leverage temporal context for action generation. 
+            Our experiments show that ContextVLA consistently improves over single-frame VLAs and achieves the benefits of full multi-frame training but with reduced training and inference times.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Method overview. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3 has-text-centered">Observation: Effect of multi-frame observations for various policy models.</h2>
+        <div class="column has-text-centered">
+          <img src="./static/images/observations.png" alt>
+        </div>
+        <div class="content has-text-justified">
+          <p>
+            (a) When training policy models using multi-frame observations,
+            traditional policy model (Diffusion policy) shows significant performance degradation, 
+            whereas recent Vision-Language-Action models (VLA; $\pi_0$ and GR00T N1.5) do not.
+            (b) We find that the key factor in overcoming this problem is leveraging a pre-trained Vision-Language Model (VLM) to extract temporal information for action generation. 
+            ViT, VLM, and VLA-init indicate how the VLA architecture is initialized for training; 
+            we use a pre-trained vision encoder, VLM, or VLA, respectively, and other parameters are randomly initialized.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Method overview. -->
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Method overview. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3 has-text-centered">Method: ContextVLA</h2>
+        <div class="column has-text-centered">
+          <img src="./static/images/method_overview.png" alt>
+        </div>
+        <div class="content has-text-justified">
+          <p>We propose ContextVLA, an efficient framework that leverages a VLM's temporal understanding to learn a policy model that utilizes multi-frame observations.
+            We use a Vision-Language Model (VLM) to encode multi-frame observations $\mathbf{o}_{t-k:t}$, 
+            where we compress past observations $\mathbf{o}_{t-k:t-1}$ into a single context token $\mathbf{m}$ at the VLM block $n$.
+            We then leverage the VLM features to generate actions via either autoregressive modeling or diffusion-based modeling.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Method overview. -->
+  </div>
+</section>
+
+<style>
+  .row {
+    display: flex;
+    align-items: center; /* 수직 가운데 정렬 */
+    margin-bottom: 1px; /* 위아래 간격 줄이기 */
+    flex-wrap: wrap; /* 칸이 작아지면 텍스트가 아래로 이동 */
+  }
+  .label {
+    width: 12%; /* 텍스트 너비 */
+    text-align: center; /* 텍스트 가운데 정렬 */
+    font-size: 13px; /* 기본 글자 크기 */
+    overflow-wrap: break-word; /* 띄어쓰기 기준으로 줄바꿈 */
+    word-break: keep-all; /* 단어가 중간에서 끊어지지 않도록 설정 */
+  }
+  .label small {
+    display: block; /* 무조건 줄바꿈 */
+    font-size: 11px; /* (#tokens=xx) 폰트 크기 */
+  }
+  .video-container {
+    width: 88%; /* 비디오 컨테이너 너비 */
+    text-align: center; /* 비디오 가운데 정렬 */
+  }
+  video {
+    width: 100%; /* 비디오 크기 조정 */
+  }
+</style>
+
+<style>
+  .media-container {
+    position: relative;
+    width: 100%;
+    padding-top: 100%; /* Default to 1:1 aspect ratio */
+    overflow: hidden;
+  }
+
+  .media-container img,
+  .media-container video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    max-width: 100%;
+  }
+
+  /* Adjust aspect ratio for z_yt and z_xt images */
+  .column[data-size="2"] .media-container {
+    padding-top: 50%; /* For 2:1 aspect ratio */
+  }
+
+  /* Remove default padding and margins from columns */
+  .column {
+    padding: 0;
+    margin: 0;
+  }
+
+  /* Remove spacing between columns */
+  .columns {
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    flex-wrap: nowrap; /* Prevent wrapping */
+  }
+
+  /* Reduce margin between rows */
+  .content-row {
+    margin-bottom: 0;
+    padding-bottom: 0px;
+  }
+  .label-row {
+    margin-bottom: 0px; /* 마진 절반으로 줄이기 */
+    flex-wrap: nowrap;
+  }
+  /* Align text labels according to column ratios */
+  .label-row .column {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap; /* Prevent text from wrapping */
+    flex-shrink: 0;
+    min-width: 50px;
+  }
+
+  /* Set flex ratios for columns */
+  .column[data-size="1"] {
+    flex: 0 0 calc(12.5%); /* 1/6 of the width */
+  }
+
+  .column[data-size="2"] {
+    flex: 0 0 calc(25%); /* 2/6 of the width */
+  }
+
+  /* Prevent label row from wrapping */
+  .label-row {
+    flex-wrap: nowrap;
+  }
+
+  /* Ensure the spacer has a consistent width */
+  .columns > div[style*="width: 1%"] {
+    flex: 0 0 1%;
+  }
+
+  /* Responsive adjustments for mobile */
+  @media (max-width: 768px) {
+    .columns.is-mobile {
+      flex-wrap: nowrap;
+    }
+
+    /* Adjust aspect ratios on mobile */
+    .media-container {
+      padding-top: 100%;
+    }
+  }
+</style>
+</body>
+</html>
