@@ -1,7 +1,36 @@
 papers:
+  - title: "RLDX-1 Technical Report"
+    authors: "<b><u>Huiwon Jang</u><sup>*§</sup></b>, <a href='https://kingdy2002.github.io/'>Dongyoung Kim<sup>*§</sup></a>, <a href='https://myungkyukoo.github.io/'>Myungkyu Koo<sup>*</sup></a>, <a href='https://suhyeok-jang.github.io/'>Suhyeok Jang<sup>*</sup></a>, Taeyoung Kim<sup>*</sup>, et al., <a href='https://alinlab.kaist.ac.kr/shin.html'>Jinwoo Shin<sup>§</sup></a>"
+    venue: "Arxiv preprint, 2026"
+    website: "https://www.rlwrld.ai/rldx-1"
+    code: "https://github.com/RLWRLD/RLDX-1"
+    arxiv: "https://arxiv.org/abs/2605.03269"
+    selected: y
+
+  - title: "Modular Sensory Stream for Integrating Physical Feedback in Vision-Language-Action Models"
+    authors: "<a href='https://jiminlx.github.io/'>Jimin Lee</a>, <b><u>Huiwon Jang</u></b>, <a href='https://myungkyukoo.github.io/'>Myungkyu Koo</a>, Jungwoo Park, <a href='https://alinlab.kaist.ac.kr/shin.html'>Jinwoo Shin</a>"
+    venue: "Arxiv preprint, 2026"
+    website: "https://jiminlx.github.io/MoSS/"
+    arxiv: "https://arxiv.org/abs/2604.23272v1"
+    selected: y
+
+  - title: "RoboAlign: Learning Test-Time Reasoning for Language-Action Alignment in Vision-Language-Action Models"
+    authors: "<a href='https://kingdy2002.github.io/'>Dongyoung Kim</a>, Sumin Park, <a href='https://woominsong.github.io/'>Woomin Song</a>, Seungku Kim, Taeyoung Kim, <b><u>Huiwon Jang</u></b>, <a href='https://alinlab.kaist.ac.kr/shin.html'>Jinwoo Shin</a>, <a href='https://sites.google.com/view/jaehyungkim'>Jaehyung Kim<sup>*</sup></a>, <a href='https://younggyo.me/'>Younggyo Seo<sup>*</sup></a>"
+    venue: "Arxiv preprint, 2026"
+    arxiv: "https://arxiv.org/abs/2603.21341"
+    selected: y
+
+  - title: "Dual-stream diffusion for world-model augmented vision-language-action model"
+    authors: "John Won, <a href='https://kyungmnlee.github.io/'>Kyungmin Lee</a>, <b><u>Huiwon Jang</u></b>, <a href='https://kingdy2002.github.io/'>Dongyoung Kim</a>, <a href='https://alinlab.kaist.ac.kr/shin.html'>Jinwoo Shin</a>"
+    venue: "ICML 2026"
+    arxiv: "https://arxiv.org/abs/2510.27607"
+    selected: y
+
   - title: "ContextVLA: Vision-Language-Action Model with Amortized Multi-Frame Context"
     authors: "<b><u>Huiwon Jang</u></b>, <a href='https://sihyun.me/'>Sihyun Yu</a>, <a href='https://arunos728.github.io/'>Heeseung Kwon</a>, Hojin Jeon, <a href='https://younggyo.me/'>Younggyo Seo<sup>*</sup></a>, <a href='https://alinlab.kaist.ac.kr/shin.html'>Jinwoo Shin<sup>*</sup></a>"
     venue: "Arxiv preprint, 2025"
+    website: "https://huiwon-jang.github.io/contextvla/"
+    code: "https://github.com/huiwon-jang/ContextVLA"
     arxiv: "https://arxiv.org/abs/2510.04246"
     selected: y
 
