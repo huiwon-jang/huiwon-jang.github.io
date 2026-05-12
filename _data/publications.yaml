@@ -18,7 +18,7 @@ papers:
     authors: "<a href='https://kingdy2002.github.io/'>Dongyoung Kim</a>, Sumin Park, <a href='https://woominsong.github.io/'>Woomin Song</a>, Seungku Kim, Taeyoung Kim, <b><u>Huiwon Jang</u></b>, <a href='https://alinlab.kaist.ac.kr/shin.html'>Jinwoo Shin</a>, <a href='https://sites.google.com/view/jaehyungkim'>Jaehyung Kim<sup>*</sup></a>, <a href='https://younggyo.me/'>Younggyo Seo<sup>*</sup></a>"
     venue: "Arxiv preprint, 2026"
     arxiv: "https://arxiv.org/abs/2603.21341"
-    selected: y
+    selected: n
 
   - title: "Dual-stream diffusion for world-model augmented vision-language-action model"
     authors: "John Won, <a href='https://kyungmnlee.github.io/'>Kyungmin Lee</a>, <b><u>Huiwon Jang</u></b>, <a href='https://kingdy2002.github.io/'>Dongyoung Kim</a>, <a href='https://alinlab.kaist.ac.kr/shin.html'>Jinwoo Shin</a>"
@@ -38,6 +38,12 @@ papers:
     authors: "<a href='https://kingdy2002.github.io/'>Dongyoung Kim</a>, Sumin Park, <b><u>Huiwon Jang</u></b>, <a href='https://alinlab.kaist.ac.kr/shin.html'>Jinwoo Shin</a>, <a href='https://sites.google.com/view/jaehyungkim'>Jaehyung Kim<sup>*</sup></a>, <a href='https://younggyo.me/'>Younggyo Seo<sup>*</sup></a>"
     venue: "NeurIPS 2025"
     arxiv: "https://arxiv.org/abs/2506.00070"
+    selected: y
+
+  - title: "SpatialBoost: Enhancing Visual Representation through Language-Guided Reasoning"
+    authors: "<a href='https://rootyjeon.github.io/'>Byungwoo Jeon<sup>*</sup></a>, <a href='https://kingdy2002.github.io/'>Dongyoung Kim<sup>*</sup></a>, <b><u>Huiwon Jang</u></b>, <a href='https://insoo-best.github.io/'>Insoo Kim</a>, <a href='https://alinlab.kaist.ac.kr/shin.html'>Jinwoo Shin</a>"
+    venue: "NeurIPS 2025 Workshop on Space in Vision, Language, and Embodied AI"
+    arxiv: "https://arxiv.org/abs/2603.22057"
     selected: y
 
   - title: "Efficient Long Video Tokenization via Coordinate-based Patch Reconstruction"
@@ -60,14 +66,14 @@ papers:
     authors: "<a href='https://www.shpark.org/'>Seong Hyeon Park</a>, <b><u>Huiwon Jang</u></b>, Byungwoo Jeon, <a href='https://sites.google.com/view/sukmin-yun'>Sukmin Yun</a>, <a href='https://phseo.github.io/'>Paul Hongsuck Seo</a>, <a href='https://alinlab.kaist.ac.kr/shin.html'>Jinwoo Shin</a>"
     venue: "NeurIPS 2024, <b><span style='color:red;'>Spotlight Presentation (326/15671=2%)</span></b>"
     paper_pdf: "https://openreview.net/forum?id=eKHQbgvL3G"
-    selected: y
+    selected: n
 
   - title: "Adversarial Robustification via Text-to-Image Diffusion Models"
     authors: "<a href='https://choidae1.github.io/'>Daewon Choi<sup>*</sup></a>, <a href='https://jh-jeong.github.io/'>Jongheon Jeong<sup>*</sup></a>, <b><u>Huiwon Jang</u></b>, <a href='https://alinlab.kaist.ac.kr/shin.html'>Jinwoo Shin</a>"
     venue: "ECCV 2024, <b><span style='color:red;'>Oral Presentation (200/8585=2.3%)</span></b>"
     arxiv: "https://arxiv.org/abs/2407.18658"
     code: "https://github.com/ChoiDae1/robustify-T2I"
-    selected: y
+    selected: n
 
   - title: "Visual Representation Learning with Stochastic Frame Prediction"
     authors: "<b><u>Huiwon Jang</u></b>, Dongyoung Kim, <a href='https://junsu-kim97.github.io/'>Junsu Kim</a>, <a href='https://alinlab.kaist.ac.kr/shin.html'>Jinwoo Shin</a>, <a href='https://people.eecs.berkeley.edu/~pabbeel/'>Pieter Abbeel</a>, <a href='https://younggyo.me/'>Younggyo Seo</a>"
