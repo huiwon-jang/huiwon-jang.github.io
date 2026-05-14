@@ -1,7 +1,7 @@
 papers:
   - title: "RLDX-1 Technical Report"
     authors: "<b><u>Huiwon Jang</u><sup>*§</sup></b>, <a href='https://kingdy2002.github.io/'>Dongyoung Kim<sup>*§</sup></a>, <a href='https://myungkyukoo.github.io/'>Myungkyu Koo<sup>*</sup></a>, <a href='https://suhyeok-jang.github.io/'>Suhyeok Jang<sup>*</sup></a>, Taeyoung Kim<sup>*</sup>, et al., <a href='https://alinlab.kaist.ac.kr/shin.html'>Jinwoo Shin<sup>§</sup></a>"
-    venue: "Arxiv preprint, 2026"
+    venue: "Technical Report, 2026"
     website: "https://www.rlwrld.ai/rldx-1"
     code: "https://github.com/RLWRLD/RLDX-1"
     arxiv: "https://arxiv.org/abs/2605.03269"
