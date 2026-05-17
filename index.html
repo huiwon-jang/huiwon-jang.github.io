@@ -28,7 +28,7 @@ layout: default
       {% for paper in selected_papers %}
         <div class="paper">
           <p class="title"><b>{{ paper.title }}</b></p>
-          <p>{{ paper.authors }}</p>
+          <p class="authors">{{ paper.authors }}</p>
           <p><i>{{ paper.venue }}</i></p>
           {% if paper.venue2 %}
             <p><i>{{ paper.venue2 }}</i></p>
@@ -75,7 +75,7 @@ layout: default
       {% for paper in site.data.publications.papers %}
         <div class="paper">
           <p class="title"><b>{{ paper.title }}</b></p>
-          <p>{{ paper.authors }}</p>
+          <p class="authors">{{ paper.authors }}</p>
           <p><i>{{ paper.venue }}</i></p>
           {% if paper.venue2 %}
             <p><i>{{ paper.venue2 }}</i></p>
