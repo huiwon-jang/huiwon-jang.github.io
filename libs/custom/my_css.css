@@ -30,6 +30,27 @@ h4 {
   font-weight: 100;
   line-height: 25px;
   text-transform: none; }
+#publications .paper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px; }
+#publications .paper-figure {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+  max-width: 280px; }
+#publications .paper-figure img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 3px; }
+#publications .paper-info {
+  flex: 1;
+  min-width: 0;
+  width: 100%; }
 .section-header {
   text-transform: uppercase;
   font-size: 1.5rem;
@@ -77,6 +98,13 @@ h4 {
 @media (min-width: 550px) {
   .header {
     margin-top: 5rem; }
+  #publications .paper {
+    flex-direction: row;
+    gap: 18px; }
+  #publications .paper-figure {
+    flex: 0 0 200px;
+    width: 200px;
+    max-width: none; }
 }
 
 /* Larger than tablet */
