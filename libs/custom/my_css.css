@@ -26,8 +26,13 @@ h4 {
 #education .paper p:not(.title),
 #experience .paper > a,
 #experience .paper p:not(.title),
-#talks .paper p:not(.title) {
+#talks .paper p:not(.title),
+#services .paper .title,
+#honors .paper .title {
   font-size: 13px; }
+#services .paper .title b,
+#honors .paper .title b {
+  font-size: 15px; }
 .paper-buttons {
   margin-top: 5px }
 .paper .button {
