@@ -23,6 +23,7 @@ h4 {
   margin-bottom: 2px }
 .paper .authors,
 .paper .venue,
+#education .paper p:not(.title),
 #experience .paper > a,
 #experience .paper p:not(.title),
 #talks .paper p:not(.title) {
