@@ -1,10 +1,11 @@
 papers:
   - title: "RLDX-1 Technical Report"
-    authors: "<b><u>Huiwon Jang</u><sup>*§</sup></b>, <a href='https://kingdy2002.github.io/'>Dongyoung Kim<sup>*§</sup></a>, <a href='https://myungkyukoo.github.io/'>Myungkyu Koo<sup>*</sup></a>, <a href='https://suhyeok-jang.github.io/'>Suhyeok Jang<sup>*</sup></a>, Taeyoung Kim<sup>*</sup>, et al., <a href='https://alinlab.kaist.ac.kr/shin.html'>Jinwoo Shin<sup>§</sup></a>"
+    authors: "<b><u>Huiwon Jang</u><sup>*§</sup></b>, <a href='https://kingdy2002.github.io/'>Dongyoung Kim<sup>*§</sup></a>, <a href='https://myungkyukoo.github.io/'>Myungkyu Koo<sup>*</sup></a>, <a href='https://suhyeok-jang.github.io/'>Suhyeok Jang<sup>*</sup></a>, Taeyoung Kim<sup>*</sup>,  Beomjun Kim, Byungjun Yoon, Changsung Jang, Daewon Choi, Dongsu Han, Donguk Lee, Heeseung Kwon, Hojin Jeon, Jaehyun Kang, Jaekyoung Bae, Jihyuk Lee, Jimin Lee, John Won, Joonwoo Ahn, Junhyeong Park, Junyoung Sung, Kyungmin Lee, Minseong Han, Minsung Yoon, Sejune Joo, Seonil Son, Seungcheol Park, Seunggeun Cho, Seungjun Moon, Seungku Kim, Yonghoon Dong, Yongjin Cho, Youngchan Kim, Chang Hwan Kim, Dohyeon Kim, Heecheol Kim, Heewon Lee, Hensen Ahn, Hyungkyu Ryu, Hyunsoo Choi, Hyunsoo Shin, Jaeheon Jung, Jaewoo Kim, Jinwook Kim, Joochul Chang, Joonsoo Kim, Junghun Park, Jungwoo Park, Junho Cho, Junhyeok Park, Junwon Lee, Kangwook Lee, Kwanghoon Kim, Kyoungwhan Choe, Manoj Bhadu, Nayoung Oh, Sangjun Kim, Sangwoo Kim, Seunghoon Shim, Seunghyun Kim, Seungjun Lee, Seungyup Ka, Sungryol Yang, Wook Jung, Yashu Shukla, Yeonjae Lee, Yeonwoo Bae, <a href='https://alinlab.kaist.ac.kr/shin.html'>Jinwoo Shin<sup>§</sup></a>"
     venue: "Technical Report, 2026"
     website: "https://www.rlwrld.ai/rldx-1"
     code: "https://github.com/RLWRLD/RLDX-1"
     arxiv: "https://arxiv.org/abs/2605.03269"
+    figure: "/assets/publications/2026_RLDX-1/main_fig.gif"
     selected: y
 
   - title: "Modular Sensory Stream for Integrating Physical Feedback in Vision-Language-Action Models"
@@ -12,6 +13,7 @@ papers:
     venue: "Arxiv preprint, 2026"
     website: "https://jiminlx.github.io/MoSS/"
     arxiv: "https://arxiv.org/abs/2604.23272v1"
+    figure: "/assets/publications/2026_MoSS/main_fig.png"
     selected: y
 
   - title: "RoboAlign: Learning Test-Time Reasoning for Language-Action Alignment in Vision-Language-Action Models"
@@ -24,6 +26,7 @@ papers:
     authors: "John Won, <a href='https://kyungmnlee.github.io/'>Kyungmin Lee</a>, <b><u>Huiwon Jang</u></b>, <a href='https://kingdy2002.github.io/'>Dongyoung Kim</a>, <a href='https://alinlab.kaist.ac.kr/shin.html'>Jinwoo Shin</a>"
     venue: "ICML 2026"
     arxiv: "https://arxiv.org/abs/2510.27607"
+    figure: "/assets/publications/2026_DUST/main_fig.png"
     selected: y
 
   - title: "ContextVLA: Vision-Language-Action Model with Amortized Multi-Frame Context"
@@ -32,18 +35,21 @@ papers:
     website: "https://huiwon-jang.github.io/contextvla/"
     code: "https://github.com/huiwon-jang/ContextVLA"
     arxiv: "https://arxiv.org/abs/2510.04246"
+    figure: "/assets/publications/2025_ContextVLA/main_fig_1.png,/assets/publications/2025_ContextVLA/main_fig_2.png"
     selected: y
 
   - title: "Robot-R1: Reinforcement Learning for Enhanced Embodied Reasoning in Robotics"
     authors: "<a href='https://kingdy2002.github.io/'>Dongyoung Kim</a>, Sumin Park, <b><u>Huiwon Jang</u></b>, <a href='https://alinlab.kaist.ac.kr/shin.html'>Jinwoo Shin</a>, <a href='https://sites.google.com/view/jaehyungkim'>Jaehyung Kim<sup>*</sup></a>, <a href='https://younggyo.me/'>Younggyo Seo<sup>*</sup></a>"
     venue: "NeurIPS 2025"
     arxiv: "https://arxiv.org/abs/2506.00070"
+    figure: "/assets/publications/2025_Robot-R1/main_fig.png"
     selected: y
 
   - title: "SpatialBoost: Enhancing Visual Representation through Language-Guided Reasoning"
     authors: "<a href='https://rootyjeon.github.io/'>Byungwoo Jeon<sup>*</sup></a>, <a href='https://kingdy2002.github.io/'>Dongyoung Kim<sup>*</sup></a>, <b><u>Huiwon Jang</u></b>, <a href='https://insoo-best.github.io/'>Insoo Kim</a>, <a href='https://alinlab.kaist.ac.kr/shin.html'>Jinwoo Shin</a>"
     venue: "NeurIPS 2025 Workshop on Space in Vision, Language, and Embodied AI"
     arxiv: "https://arxiv.org/abs/2603.22057"
+    figure: "/assets/publications/2025_SpatialBoost/main_fig.png"
     selected: y
 
   - title: "Efficient Long Video Tokenization via Coordinate-based Patch Reconstruction"
@@ -52,6 +58,7 @@ papers:
     website: "https://huiwon-jang.github.io/coordtok/"
     arxiv: "https://arxiv.org/abs/2411.14762"
     code: "https://github.com/huiwon-jang/CoordTok"
+    figure: "/assets/publications/2025_CoordTok/main_fig.gif"
     selected: y
 
   - title: "Representation Alignment for Generation: Training Diffusion Transformers Is Easier Than You Think"
@@ -60,6 +67,7 @@ papers:
     website: "https://sihyun.me/REPA/"
     arxiv: "https://arxiv.org/abs/2410.06940"
     code: "https://github.com/sihyun-yu/REPA"
+    figure: "/assets/publications/2025_REPA/main_fig.png"
     selected: y
 
   - title: "TrackIME: Enhanced Video Point Tracking via Instance Motion Estimation"
@@ -83,6 +91,7 @@ papers:
     arxiv: "https://arxiv.org/abs/2406.07398"
     code: "https://github.com/huiwon-jang/RSP"
     poster: "/assets/publications/2024_RSP/RSP_poster.pdf"
+    figure: "/assets/publications/2024_RSP/main_fig_1.png,/assets/publications/2024_RSP/main_fig_2.gif"
     selected: y
 
   - title: "Modality-agnostic Self-supervised Learning with Meta-learned Masked Auto-encoder"
@@ -93,6 +102,7 @@ papers:
     code: "https://github.com/alinlab/MetaMAE"
     poster: "/assets/publications/2023_MetaMAE/MetaMAE_poster.pdf"
     slides: "/assets/publications/2023_MetaMAE/MetaMAE_ppt.pdf"
+    figure: "/assets/publications/2023_MetaMAE/main_fig.png"
     selected: y
 
   - title: "Unsupervised Meta-learning via Few-shot Pseudo-supervised Contrastive Learning"
@@ -104,6 +114,7 @@ papers:
     code: "https://github.com/alinlab/PsCo"
     poster: "/assets/publications/2023_PsCo/PsCo_poster.pdf"
     slides: "/assets/publications/2023_PsCo/PsCo_ppt_v2.pdf"
+    figure: "/assets/publications/2023_PsCo/main_fig.png"
     selected: y
 
   - title: "AltUB: Alternating Training Method to Update Base Distribution of Normalizing Flow for Anomaly Detection"

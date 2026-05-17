@@ -1,0 +1,238 @@
+diff --git a/index.html b/index.html
+index d93f7d8..83f38ec 100644
+--- a/index.html
++++ b/index.html
+@@ -27,45 +27,55 @@ layout: default
+       {% assign selected_papers = site.data.publications.papers | where: "selected", "y" %}
+       {% for paper in selected_papers %}
+         <div class="paper">
+-          <p class="title"><b>{{ paper.title }}</b></p>
+-          <p>{{ paper.authors }}</p>
+-          <p><i>{{ paper.venue }}</i></p>
+-          {% if paper.venue2 %}
+-            <p><i>{{ paper.venue2 }}</i></p>
++          {% if paper.figure and paper.selected == "y" %}
++            <div class="paper-figure">
++              {% assign figures = paper.figure | split: "," %}
++              {% for fig in figures %}
++                <img src="{{ fig | strip | prepend: site.baseurl }}" alt="{{ paper.title }}" loading="lazy">
++              {% endfor %}
++            </div>
+           {% endif %}
+-           <div class="paper-buttons">
+-            {% if paper.paper_pdf %}
+-              <a class="button" href="{{ paper.paper_pdf | prepend: site.baseurl }}" target="_blank">Paper</a>
+-            {% endif %}
+-
+-            {% if paper.arxiv %}
+-              <a class="button" href="{{ paper.arxiv | prepend: site.baseurl }}" target="_blank">Arxiv</a>
+-            {% endif %}
+-
+-            {% if paper.slides %}
+-              <a class="button" href="{{ paper.slides | prepend: site.baseurl }}" target="_blank">Slides</a>
+-            {% endif %}
+-
+-            {% if paper.website %}
+-              <a class="button" href="{{ paper.website | prepend: site.baseurl }}" target="_blank">Website</a>
+-            {% endif %}
+-
+-            {% if paper.poster %}
+-              <a class="button" href="{{ paper.poster | prepend: site.baseurl }}" target="_blank">Poster</a>
+-            {% endif %}
+-
+-            {% if paper.video %}
+-              <a class="button" href="{{ paper.video }}" target="_blank">Video</a>
+-            {% endif %}
+-
+-            {% if paper.code %}
+-              <a class="button" href="{{ paper.code }}" target="_blank">Code</a>
+-            {% endif %}
+-
+-            {% if paper.data %}
+-              <a class="button" href="{{ paper.data }}" target="_blank">Data</a>
+-            {% endif %}
+-
++          <div class="paper-info">
++            <p class="title"><b>{{ paper.title }}</b></p>
++            <p>{{ paper.authors }}</p>
++            <p><i>{{ paper.venue }}</i></p>
++            {% if paper.venue2 %}
++              <p><i>{{ paper.venue2 }}</i></p>
++            {% endif %}
++             <div class="paper-buttons">
++              {% if paper.paper_pdf %}
++                <a class="button" href="{{ paper.paper_pdf | prepend: site.baseurl }}" target="_blank">Paper</a>
++              {% endif %}
++
++              {% if paper.arxiv %}
++                <a class="button" href="{{ paper.arxiv | prepend: site.baseurl }}" target="_blank">Arxiv</a>
++              {% endif %}
++
++              {% if paper.slides %}
++                <a class="button" href="{{ paper.slides | prepend: site.baseurl }}" target="_blank">Slides</a>
++              {% endif %}
++
++              {% if paper.website %}
++                <a class="button" href="{{ paper.website | prepend: site.baseurl }}" target="_blank">Website</a>
++              {% endif %}
++
++              {% if paper.poster %}
++                <a class="button" href="{{ paper.poster | prepend: site.baseurl }}" target="_blank">Poster</a>
++              {% endif %}
++
++              {% if paper.video %}
++                <a class="button" href="{{ paper.video }}" target="_blank">Video</a>
++              {% endif %}
++
++              {% if paper.code %}
++                <a class="button" href="{{ paper.code }}" target="_blank">Code</a>
++              {% endif %}
++
++              {% if paper.data %}
++                <a class="button" href="{{ paper.data }}" target="_blank">Data</a>
++              {% endif %}
++
++            </div>
+           </div>
+         </div>
+       {% endfor %}
+@@ -74,45 +84,55 @@ layout: default
+     <div class="tab-pane" id="papers-all">
+       {% for paper in site.data.publications.papers %}
+         <div class="paper">
+-          <p class="title"><b>{{ paper.title }}</b></p>
+-          <p>{{ paper.authors }}</p>
+-          <p><i>{{ paper.venue }}</i></p>
+-          {% if paper.venue2 %}
+-            <p><i>{{ paper.venue2 }}</i></p>
++          {% if paper.figure and paper.selected == "y" %}
++            <div class="paper-figure">
++              {% assign figures = paper.figure | split: "," %}
++              {% for fig in figures %}
++                <img src="{{ fig | strip | prepend: site.baseurl }}" alt="{{ paper.title }}" loading="lazy">
++              {% endfor %}
++            </div>
+           {% endif %}
+-           <div class="paper-buttons">
+-            {% if paper.paper_pdf %}
+-              <a class="button" href="{{ paper.paper_pdf | prepend: site.baseurl }}" target="_blank">Paper</a>
+-            {% endif %}
+-
+-            {% if paper.arxiv %}
+-              <a class="button" href="{{ paper.arxiv | prepend: site.baseurl }}" target="_blank">Arxiv</a>
+-            {% endif %}
+-
+-            {% if paper.slides %}
+-              <a class="button" href="{{ paper.slides | prepend: site.baseurl }}" target="_blank">Slides</a>
+-            {% endif %}
+-
+-            {% if paper.website %}
+-              <a class="button" href="{{ paper.website | prepend: site.baseurl }}" target="_blank">Website</a>
+-            {% endif %}
+-
+-            {% if paper.poster %}
+-              <a class="button" href="{{ paper.poster | prepend: site.baseurl }}" target="_blank">Poster</a>
+-            {% endif %}
+-
+-            {% if paper.video %}
+-              <a class="button" href="{{ paper.video }}" target="_blank">Video</a>
+-            {% endif %}
+-
+-            {% if paper.code %}
+-              <a class="button" href="{{ paper.code }}" target="_blank">Code</a>
+-            {% endif %}
+-
+-            {% if paper.data %}
+-              <a class="button" href="{{ paper.data }}" target="_blank">Data</a>
+-            {% endif %}
+-
++          <div class="paper-info">
++            <p class="title"><b>{{ paper.title }}</b></p>
++            <p>{{ paper.authors }}</p>
++            <p><i>{{ paper.venue }}</i></p>
++            {% if paper.venue2 %}
++              <p><i>{{ paper.venue2 }}</i></p>
++            {% endif %}
++             <div class="paper-buttons">
++              {% if paper.paper_pdf %}
++                <a class="button" href="{{ paper.paper_pdf | prepend: site.baseurl }}" target="_blank">Paper</a>
++              {% endif %}
++
++              {% if paper.arxiv %}
++                <a class="button" href="{{ paper.arxiv | prepend: site.baseurl }}" target="_blank">Arxiv</a>
++              {% endif %}
++
++              {% if paper.slides %}
++                <a class="button" href="{{ paper.slides | prepend: site.baseurl }}" target="_blank">Slides</a>
++              {% endif %}
++
++              {% if paper.website %}
++                <a class="button" href="{{ paper.website | prepend: site.baseurl }}" target="_blank">Website</a>
++              {% endif %}
++
++              {% if paper.poster %}
++                <a class="button" href="{{ paper.poster | prepend: site.baseurl }}" target="_blank">Poster</a>
++              {% endif %}
++
++              {% if paper.video %}
++                <a class="button" href="{{ paper.video }}" target="_blank">Video</a>
++              {% endif %}
++
++              {% if paper.code %}
++                <a class="button" href="{{ paper.code }}" target="_blank">Code</a>
++              {% endif %}
++
++              {% if paper.data %}
++                <a class="button" href="{{ paper.data }}" target="_blank">Data</a>
++              {% endif %}
++
++            </div>
+           </div>
+         </div>
+       {% endfor %}
+diff --git a/libs/custom/my_css.css b/libs/custom/my_css.css
+index f9caea8..4decec3 100644
+--- a/libs/custom/my_css.css
++++ b/libs/custom/my_css.css
+@@ -30,6 +30,27 @@ h4 {
+   font-weight: 100;
+   line-height: 25px;
+   text-transform: none; }
++#publications .paper {
++  display: flex;
++  flex-direction: column;
++  align-items: flex-start;
++  gap: 12px; }
++#publications .paper-figure {
++  display: flex;
++  flex-direction: column;
++  gap: 8px;
++  width: 100%;
++  max-width: 280px; }
++#publications .paper-figure img {
++  width: 100%;
++  height: auto;
++  display: block;
++  border: 1px solid rgba(0, 0, 0, 0.08);
++  border-radius: 3px; }
++#publications .paper-info {
++  flex: 1;
++  min-width: 0;
++  width: 100%; }
+ .section-header {
+   text-transform: uppercase;
+   font-size: 1.5rem;
+@@ -77,6 +98,13 @@ h4 {
+ @media (min-width: 550px) {
+   .header {
+     margin-top: 5rem; }
++  #publications .paper {
++    flex-direction: row;
++    gap: 18px; }
++  #publications .paper-figure {
++    flex: 0 0 200px;
++    width: 200px;
++    max-width: none; }
+ }
+ 
+ /* Larger than tablet */
