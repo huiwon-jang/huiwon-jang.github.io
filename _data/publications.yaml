@@ -10,7 +10,7 @@ papers:
 
   - title: "Modular Sensory Stream for Integrating Physical Feedback in Vision-Language-Action Models"
     authors: "<a href='https://jiminlx.github.io/'>Jimin Lee</a>, <b><u>Huiwon Jang</u></b>, <a href='https://myungkyukoo.github.io/'>Myungkyu Koo</a>, Jungwoo Park, <a href='https://alinlab.kaist.ac.kr/shin.html'>Jinwoo Shin</a>"
-    venue: "Arxiv preprint, 2026"
+    venue: "CoRL, 2026"
     website: "https://jiminlx.github.io/MoSS/"
     arxiv: "https://arxiv.org/abs/2604.23272v1"
     figure: "/assets/publications/2026_MoSS/main_fig.png"
