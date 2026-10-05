@@ -87,7 +87,7 @@ papers:
     selected: n
 
   - title: "Visual Representation Learning with Stochastic Frame Prediction"
-    authors: "<b><u>Huiwon Jang</u></b>, Dongyoung Kim, <a href='https://junsu-kim97.github.io/'>Junsu Kim</a>, <a href='https://alinlab.kaist.ac.kr/shin.html'>Jinwoo Shin</a>, <a href='https://people.eecs.berkeley.edu/~pabbeel/'>Pieter Abbeel</a>, <a href='https://younggyo.me/'>Younggyo Seo</a>"
+    authors: "<b><u>Huiwon Jang</u></b>, <a href='https://kingdy2002.github.io/'>Dongyoung Kim</a>, <a href='https://junsu-kim97.github.io/'>Junsu Kim</a>, <a href='https://alinlab.kaist.ac.kr/shin.html'>Jinwoo Shin</a>, <a href='https://people.eecs.berkeley.edu/~pabbeel/'>Pieter Abbeel</a>, <a href='https://younggyo.me/'>Younggyo Seo</a>"
     venue: "ICML 2024"
     paper_pdf: "https://openreview.net/forum?id=rI6lxIX0uX"
     website: "https://sites.google.com/view/2024rsp"
