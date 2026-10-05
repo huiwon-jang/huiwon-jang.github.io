@@ -1,7 +1,7 @@
 papers:
   - title: "RLDX-1 Technical Report"
-    authors: "<b><u>Huiwon Jang</u><sup>*§</sup></b>, <a href='https://kingdy2002.github.io/'>Dongyoung Kim<sup>*§</sup></a>, <a href='https://myungkyukoo.github.io/'>Myungkyu Koo<sup>*</sup></a>, <a href='https://suhyeok-jang.github.io/'>Suhyeok Jang<sup>*</sup></a>, <a href='https://ismty0805.github.io/'>Taeyoung Kim<sup>*</sup></a>,  Beomjun Kim, Byungjun Yoon, Changsung Jang, Daewon Choi, Dongsu Han, Donguk Lee, Heeseung Kwon, Hojin Jeon, Jaehyun Kang, Jaekyoung Bae, Jihyuk Lee, Jimin Lee, John Won, Joonwoo Ahn, Junhyeong Park, Junyoung Sung, Kyungmin Lee, Minseong Han, Minsung Yoon, Sejune Joo, Seonil Son, Seungcheol Park, Seunggeun Cho, Seungjun Moon, Seungku Kim, Yonghoon Dong, Yongjin Cho, Youngchan Kim, Chang Hwan Kim, Dohyeon Kim, Heecheol Kim, Heewon Lee, Hensen Ahn, Hyungkyu Ryu, Hyunsoo Choi, Hyunsoo Shin, Jaeheon Jung, Jaewoo Kim, Jinwook Kim, Joochul Chang, Joonsoo Kim, Junghun Park, Jungwoo Park, Junho Cho, Junhyeok Park, Junwon Lee, Kangwook Lee, Kwanghoon Kim, Kyoungwhan Choe, Manoj Bhadu, Nayoung Oh, Sangjun Kim, Sangwoo Kim, Seunghoon Shim, Seunghyun Kim, Seungjun Lee, Seungyup Ka, Sungryol Yang, Wook Jung, Yashu Shukla, Yeonjae Lee, Yeonwoo Bae, <a href='https://alinlab.kaist.ac.kr/shin.html'>Jinwoo Shin<sup>§</sup></a>"
-    authors_short: "<b><u>Huiwon Jang</u><sup>*§</sup></b>, <a href='https://kingdy2002.github.io/'>Dongyoung Kim<sup>*§</sup></a>, <a href='https://myungkyukoo.github.io/'>Myungkyu Koo<sup>*</sup></a>, <a href='https://suhyeok-jang.github.io/'>Suhyeok Jang<sup>*</sup></a>, <a href='https://ismty0805.github.io/'>Taeyoung Kim<sup>*</sup></a>, et al., <a href='https://alinlab.kaist.ac.kr/shin.html'>Jinwoo Shin<sup>§</sup></a>"
+    authors: "<b><u>Huiwon Jang</u>*§</b>, <a href='https://kingdy2002.github.io/'>Dongyoung Kim*§</a>, <a href='https://myungkyukoo.github.io/'>Myungkyu Koo*</a>, <a href='https://suhyeok-jang.github.io/'>Suhyeok Jang*</a>, <a href='https://ismty0805.github.io/'>Taeyoung Kim*</a>,  Beomjun Kim, Byungjun Yoon, Changsung Jang, Daewon Choi, Dongsu Han, Donguk Lee, Heeseung Kwon, Hojin Jeon, Jaehyun Kang, Jaekyoung Bae, Jihyuk Lee, Jimin Lee, John Won, Joonwoo Ahn, Junhyeong Park, Junyoung Sung, Kyungmin Lee, Minseong Han, Minsung Yoon, Sejune Joo, Seonil Son, Seungcheol Park, Seunggeun Cho, Seungjun Moon, Seungku Kim, Yonghoon Dong, Yongjin Cho, Youngchan Kim, Chang Hwan Kim, Dohyeon Kim, Heecheol Kim, Heewon Lee, Hensen Ahn, Hyungkyu Ryu, Hyunsoo Choi, Hyunsoo Shin, Jaeheon Jung, Jaewoo Kim, Jinwook Kim, Joochul Chang, Joonsoo Kim, Junghun Park, Jungwoo Park, Junho Cho, Junhyeok Park, Junwon Lee, Kangwook Lee, Kwanghoon Kim, Kyoungwhan Choe, Manoj Bhadu, Nayoung Oh, Sangjun Kim, Sangwoo Kim, Seunghoon Shim, Seunghyun Kim, Seungjun Lee, Seungyup Ka, Sungryol Yang, Wook Jung, Yashu Shukla, Yeonjae Lee, Yeonwoo Bae, <a href='https://alinlab.kaist.ac.kr/shin.html'>Jinwoo Shin§</a>"
+    authors_short: "<b><u>Huiwon Jang</u>*§</b>, <a href='https://kingdy2002.github.io/'>Dongyoung Kim*§</a>, <a href='https://myungkyukoo.github.io/'>Myungkyu Koo*</a>, <a href='https://suhyeok-jang.github.io/'>Suhyeok Jang*</a>, <a href='https://ismty0805.github.io/'>Taeyoung Kim*</a>, et al., <a href='https://alinlab.kaist.ac.kr/shin.html'>Jinwoo Shin§</a>"
     venue: "Technical Report, 2026"
     website: "https://www.rlwrld.ai/rldx-1"
     code: "https://github.com/RLWRLD/RLDX-1"
@@ -18,7 +18,7 @@ papers:
     selected: y
 
   - title: "RoboAlign: Learning Test-Time Reasoning for Language-Action Alignment in Vision-Language-Action Models"
-    authors: "<a href='https://kingdy2002.github.io/'>Dongyoung Kim</a>, Sumin Park, <a href='https://woominsong.github.io/'>Woomin Song</a>, Seungku Kim, Taeyoung Kim, <b><u>Huiwon Jang</u></b>, <a href='https://alinlab.kaist.ac.kr/shin.html'>Jinwoo Shin</a>, <a href='https://sites.google.com/view/jaehyungkim'>Jaehyung Kim<sup>*</sup></a>, <a href='https://younggyo.me/'>Younggyo Seo<sup>*</sup></a>"
+    authors: "<a href='https://kingdy2002.github.io/'>Dongyoung Kim</a>, Sumin Park, <a href='https://woominsong.github.io/'>Woomin Song</a>, Seungku Kim, Taeyoung Kim, <b><u>Huiwon Jang</u></b>, <a href='https://alinlab.kaist.ac.kr/shin.html'>Jinwoo Shin</a>, <a href='https://sites.google.com/view/jaehyungkim'>Jaehyung Kim*</a>, <a href='https://younggyo.me/'>Younggyo Seo*</a>"
     venue: "Arxiv preprint, 2026"
     arxiv: "https://arxiv.org/abs/2603.21341"
     selected: n
@@ -31,7 +31,7 @@ papers:
     selected: y
 
   - title: "ContextVLA: Vision-Language-Action Model with Amortized Multi-Frame Context"
-    authors: "<b><u>Huiwon Jang</u></b>, <a href='https://sihyun.me/'>Sihyun Yu</a>, <a href='https://arunos728.github.io/'>Heeseung Kwon</a>, Hojin Jeon, <a href='https://younggyo.me/'>Younggyo Seo<sup>*</sup></a>, <a href='https://alinlab.kaist.ac.kr/shin.html'>Jinwoo Shin<sup>*</sup></a>"
+    authors: "<b><u>Huiwon Jang</u></b>, <a href='https://sihyun.me/'>Sihyun Yu</a>, <a href='https://arunos728.github.io/'>Heeseung Kwon</a>, Hojin Jeon, <a href='https://younggyo.me/'>Younggyo Seo*</a>, <a href='https://alinlab.kaist.ac.kr/shin.html'>Jinwoo Shin*</a>"
     venue: "Arxiv preprint, 2025"
     website: "https://huiwon-jang.github.io/contextvla/"
     code: "https://github.com/huiwon-jang/ContextVLA"
@@ -40,14 +40,14 @@ papers:
     selected: y
 
   - title: "Robot-R1: Reinforcement Learning for Enhanced Embodied Reasoning in Robotics"
-    authors: "<a href='https://kingdy2002.github.io/'>Dongyoung Kim</a>, Sumin Park, <b><u>Huiwon Jang</u></b>, <a href='https://alinlab.kaist.ac.kr/shin.html'>Jinwoo Shin</a>, <a href='https://sites.google.com/view/jaehyungkim'>Jaehyung Kim<sup>*</sup></a>, <a href='https://younggyo.me/'>Younggyo Seo<sup>*</sup></a>"
+    authors: "<a href='https://kingdy2002.github.io/'>Dongyoung Kim</a>, Sumin Park, <b><u>Huiwon Jang</u></b>, <a href='https://alinlab.kaist.ac.kr/shin.html'>Jinwoo Shin</a>, <a href='https://sites.google.com/view/jaehyungkim'>Jaehyung Kim*</a>, <a href='https://younggyo.me/'>Younggyo Seo*</a>"
     venue: "NeurIPS 2025"
     arxiv: "https://arxiv.org/abs/2506.00070"
     figure: "/assets/publications/2025_Robot-R1/main_fig.png"
     selected: n
 
   - title: "SpatialBoost: Enhancing Visual Representation through Language-Guided Reasoning"
-    authors: "<a href='https://rootyjeon.github.io/'>Byungwoo Jeon<sup>*</sup></a>, <a href='https://kingdy2002.github.io/'>Dongyoung Kim<sup>*</sup></a>, <b><u>Huiwon Jang</u></b>, <a href='https://insoo-best.github.io/'>Insoo Kim</a>, <a href='https://alinlab.kaist.ac.kr/shin.html'>Jinwoo Shin</a>"
+    authors: "<a href='https://rootyjeon.github.io/'>Byungwoo Jeon*</a>, <a href='https://kingdy2002.github.io/'>Dongyoung Kim*</a>, <b><u>Huiwon Jang</u></b>, <a href='https://insoo-best.github.io/'>Insoo Kim</a>, <a href='https://alinlab.kaist.ac.kr/shin.html'>Jinwoo Shin</a>"
     venue: "ECCV 2026"
     venue2: "NeurIPSW-SpaVLE 2025"
     website: "https://rootyjeon.github.io/spatial-boost/"
@@ -65,7 +65,7 @@ papers:
     selected: y
 
   - title: "Representation Alignment for Generation: Training Diffusion Transformers Is Easier Than You Think"
-    authors: "<a href='https://sihyun.me/'>Sihyun Yu</a>, <a href='https://sang-kyung.github.io/'>Sangkyung Kwak</a>, <b><u>Huiwon Jang</u></b>, <a href='https://jh-jeong.github.io/'>Jongheon Jeong</a>, <a href='http://jonathan-huang.org/'>Jonathan Huang</a>, <a href='https://alinlab.kaist.ac.kr/shin.html'>Jinwoo Shin<sup>*</sup></a>, <a href='https://www.sainingxie.com/'>Saining Xie<sup>*</sup></a>"
+    authors: "<a href='https://sihyun.me/'>Sihyun Yu</a>, <a href='https://sang-kyung.github.io/'>Sangkyung Kwak</a>, <b><u>Huiwon Jang</u></b>, <a href='https://jh-jeong.github.io/'>Jongheon Jeong</a>, <a href='http://jonathan-huang.org/'>Jonathan Huang</a>, <a href='https://alinlab.kaist.ac.kr/shin.html'>Jinwoo Shin*</a>, <a href='https://www.sainingxie.com/'>Saining Xie*</a>"
     venue: "ICLR 2025, <b><span style='color:red;'>Oral Presentation (207/11672=1.77%)</span></b>"
     website: "https://sihyun.me/REPA/"
     arxiv: "https://arxiv.org/abs/2410.06940"
@@ -80,7 +80,7 @@ papers:
     selected: n
 
   - title: "Adversarial Robustification via Text-to-Image Diffusion Models"
-    authors: "<a href='https://choidae1.github.io/'>Daewon Choi<sup>*</sup></a>, <a href='https://jh-jeong.github.io/'>Jongheon Jeong<sup>*</sup></a>, <b><u>Huiwon Jang</u></b>, <a href='https://alinlab.kaist.ac.kr/shin.html'>Jinwoo Shin</a>"
+    authors: "<a href='https://choidae1.github.io/'>Daewon Choi*</a>, <a href='https://jh-jeong.github.io/'>Jongheon Jeong*</a>, <b><u>Huiwon Jang</u></b>, <a href='https://alinlab.kaist.ac.kr/shin.html'>Jinwoo Shin</a>"
     venue: "ECCV 2024, <b><span style='color:red;'>Oral Presentation (200/8585=2.3%)</span></b>"
     arxiv: "https://arxiv.org/abs/2407.18658"
     code: "https://github.com/ChoiDae1/robustify-T2I"
@@ -98,7 +98,7 @@ papers:
     selected: y
 
   - title: "Modality-agnostic Self-supervised Learning with Meta-learned Masked Auto-encoder"
-    authors: "<b><u>Huiwon Jang</u><sup>*</sup></b>, <a href='https://jihoontack.github.io/'>Jihoon Tack<sup>*</sup></a>, <a href='https://choidae1.github.io/'>Daewon Choi</a>, <a href='https://jh-jeong.github.io/'>Jongheon Jeong</a>, <a href='https://alinlab.kaist.ac.kr/shin.html'>Jinwoo Shin</a>"
+    authors: "<b><u>Huiwon Jang</u>*</b>, <a href='https://jihoontack.github.io/'>Jihoon Tack*</a>, <a href='https://choidae1.github.io/'>Daewon Choi</a>, <a href='https://jh-jeong.github.io/'>Jongheon Jeong</a>, <a href='https://alinlab.kaist.ac.kr/shin.html'>Jinwoo Shin</a>"
     venue: "NeurIPS 2023"
     paper_pdf: "https://openreview.net/forum?id=RZGtK2nDDJ"
     arxiv: "https://arxiv.org/abs/2310.16318"
@@ -109,7 +109,7 @@ papers:
     selected: y
 
   - title: "Unsupervised Meta-learning via Few-shot Pseudo-supervised Contrastive Learning"
-    authors: "<b><u>Huiwon Jang</u><sup>*</sup></b>, <a href='https://hankook.github.io/'>Hankook Lee<sup>*</sup></a>, <a href='https://alinlab.kaist.ac.kr/shin.html'>Jinwoo Shin</a>"
+    authors: "<b><u>Huiwon Jang</u>*</b>, <a href='https://hankook.github.io/'>Hankook Lee*</a>, <a href='https://alinlab.kaist.ac.kr/shin.html'>Jinwoo Shin</a>"
     venue: "ICLR 2023, <b><span style='color:red;'>Spotlight Presentation (280/4956=5.6%)</span></b>"
     venue2: "NeurIPSW-MetaLearn 2022"
     paper_pdf: "https://openreview.net/forum?id=TdTGGj7fYYJ"
@@ -121,7 +121,7 @@ papers:
     selected: y
 
   - title: "AltUB: Alternating Training Method to Update Base Distribution of Normalizing Flow for Anomaly Detection"
-    authors: "Yeongmin Kim<sup>*</sup>, <b><u>Huiwon Jang</u><sup>*</sup></b>, Dongkeon Lee, <a href='https://keai.kaist.ac.kr/people/professor/'>Hojin Choi</a>"
+    authors: "Yeongmin Kim*, <b><u>Huiwon Jang</u>*</b>, Dongkeon Lee, <a href='https://keai.kaist.ac.kr/people/professor/'>Hojin Choi</a>"
     venue: "Arxiv preprint, 2022"
     arxiv: "https://arxiv.org/abs/2210.14913"
     selected: n
