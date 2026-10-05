@@ -25,99 +25,48 @@ layout: default
     <li><div class="button" data-ref="#papers-all">All</div></li>
   </ul>
 
+  {% comment %}
+    Publication tags, numbered oldest-first like [C1], [C2], ...
+      T: technical report
+      C: main conference (NeurIPS / ICLR / ICML / CVPR / ECCV / ICCV / CoRL)
+      W: workshop that is not a main-conference paper
+      P: everything else (arXiv preprint)
+  {% endcomment %}
+  {% assign papers = site.data.publications.papers %}
+  {% assign n_c = 0 %}{% assign n_w = 0 %}{% assign n_t = 0 %}{% assign n_p = 0 %}
+  {% assign tag_list = "" %}
+  {% for paper in papers reversed %}
+    {% assign v = paper.venue | downcase %}
+    {% if v contains "technical report" %}
+      {% assign n_t = n_t | plus: 1 %}{% assign tag = "T" | append: n_t %}
+    {% elsif v contains "neurips 20" or v contains "iclr 20" or v contains "icml 20" or v contains "cvpr 20" or v contains "eccv 20" or v contains "iccv 20" or v contains "corl 20" %}
+      {% assign n_c = n_c | plus: 1 %}{% assign tag = "C" | append: n_c %}
+    {% elsif v contains "workshop" or v contains "neuripsw" or v contains "iclrw" or v contains "icmlw" or v contains "cvprw" or v contains "eccvw" or v contains "iccvw" or v contains "corlw" %}
+      {% assign n_w = n_w | plus: 1 %}{% assign tag = "W" | append: n_w %}
+    {% else %}
+      {% assign n_p = n_p | plus: 1 %}{% assign tag = "P" | append: n_p %}
+    {% endif %}
+    {% assign tag_list = tag_list | append: tag | append: "," %}
+  {% endfor %}
+  {% assign tags = tag_list | split: "," %}
+  {% assign last_idx = papers.size | minus: 1 %}
+
   <div class="tab-content">
     <div class="tab-pane active" id="papers-selected">
-      {% assign selected_papers = site.data.publications.papers | where: "selected", "y" %}
-      {% for paper in selected_papers %}
-        <div class="paper">
-          <p class="title"><b>{{ paper.title }}</b></p>
-          <p class="authors">{{ paper.authors }}</p>
-          <p class="venue"><i>{{ paper.venue }}</i></p>
-          {% if paper.venue2 %}
-            <p class="venue"><i>{{ paper.venue2 }}</i></p>
-          {% endif %}
-           <div class="paper-buttons">
-            {% if paper.paper_pdf %}
-              <a class="button" href="{{ paper.paper_pdf | prepend: site.baseurl }}" target="_blank">Paper</a>
-            {% endif %}
-
-            {% if paper.arxiv %}
-              <a class="button" href="{{ paper.arxiv | prepend: site.baseurl }}" target="_blank">Arxiv</a>
-            {% endif %}
-
-            {% if paper.slides %}
-              <a class="button" href="{{ paper.slides | prepend: site.baseurl }}" target="_blank">Slides</a>
-            {% endif %}
-
-            {% if paper.website %}
-              <a class="button" href="{{ paper.website | prepend: site.baseurl }}" target="_blank">Website</a>
-            {% endif %}
-
-            {% if paper.poster %}
-              <a class="button" href="{{ paper.poster | prepend: site.baseurl }}" target="_blank">Poster</a>
-            {% endif %}
-
-            {% if paper.video %}
-              <a class="button" href="{{ paper.video }}" target="_blank">Video</a>
-            {% endif %}
-
-            {% if paper.code %}
-              <a class="button" href="{{ paper.code }}" target="_blank">Code</a>
-            {% endif %}
-
-            {% if paper.data %}
-              <a class="button" href="{{ paper.data }}" target="_blank">Data</a>
-            {% endif %}
-
-          </div>
-        </div>
+      {% for paper in papers %}
+        {% if paper.selected == "y" %}
+          {% assign ti = last_idx | minus: forloop.index0 %}
+          {% assign tag = tags[ti] %}
+          {% include paper_card.html paper=paper tag=tag %}
+        {% endif %}
       {% endfor %}
     </div>
 
     <div class="tab-pane" id="papers-all">
-      {% for paper in site.data.publications.papers %}
-        <div class="paper">
-          <p class="title"><b>{{ paper.title }}</b></p>
-          <p class="authors">{{ paper.authors }}</p>
-          <p class="venue"><i>{{ paper.venue }}</i></p>
-          {% if paper.venue2 %}
-            <p class="venue"><i>{{ paper.venue2 }}</i></p>
-          {% endif %}
-           <div class="paper-buttons">
-            {% if paper.paper_pdf %}
-              <a class="button" href="{{ paper.paper_pdf | prepend: site.baseurl }}" target="_blank">Paper</a>
-            {% endif %}
-
-            {% if paper.arxiv %}
-              <a class="button" href="{{ paper.arxiv | prepend: site.baseurl }}" target="_blank">Arxiv</a>
-            {% endif %}
-
-            {% if paper.slides %}
-              <a class="button" href="{{ paper.slides | prepend: site.baseurl }}" target="_blank">Slides</a>
-            {% endif %}
-
-            {% if paper.website %}
-              <a class="button" href="{{ paper.website | prepend: site.baseurl }}" target="_blank">Website</a>
-            {% endif %}
-
-            {% if paper.poster %}
-              <a class="button" href="{{ paper.poster | prepend: site.baseurl }}" target="_blank">Poster</a>
-            {% endif %}
-
-            {% if paper.video %}
-              <a class="button" href="{{ paper.video }}" target="_blank">Video</a>
-            {% endif %}
-
-            {% if paper.code %}
-              <a class="button" href="{{ paper.code }}" target="_blank">Code</a>
-            {% endif %}
-
-            {% if paper.data %}
-              <a class="button" href="{{ paper.data }}" target="_blank">Data</a>
-            {% endif %}
-
-          </div>
-        </div>
+      {% for paper in papers %}
+        {% assign ti = last_idx | minus: forloop.index0 %}
+        {% assign tag = tags[ti] %}
+        {% include paper_card.html paper=paper tag=tag %}
       {% endfor %}
     </div>
   </div>
