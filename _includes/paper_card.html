@@ -1,6 +1,10 @@
 <div class="paper">
   <p class="title"><b>[{{ include.tag }}] {{ include.paper.title }}</b></p>
-  <p class="authors">{{ include.paper.authors }}</p>
+  {% if include.short and include.paper.authors_short %}
+    <p class="authors">{{ include.paper.authors_short }}</p>
+  {% else %}
+    <p class="authors">{{ include.paper.authors }}</p>
+  {% endif %}
   <p class="venue"><i>{{ include.paper.venue }}</i></p>
   {% if include.paper.venue2 %}
     <p class="venue"><i>{{ include.paper.venue2 }}</i></p>

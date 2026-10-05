@@ -57,7 +57,7 @@ layout: default
         {% if paper.selected == "y" %}
           {% assign ti = last_idx | minus: forloop.index0 %}
           {% assign tag = tags[ti] %}
-          {% include paper_card.html paper=paper tag=tag %}
+          {% include paper_card.html paper=paper tag=tag short=true %}
         {% endif %}
       {% endfor %}
     </div>
