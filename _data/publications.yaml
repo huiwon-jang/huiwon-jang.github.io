@@ -49,6 +49,7 @@ papers:
     authors: "<a href='https://rootyjeon.github.io/'>Byungwoo Jeon<sup>*</sup></a>, <a href='https://kingdy2002.github.io/'>Dongyoung Kim<sup>*</sup></a>, <b><u>Huiwon Jang</u></b>, <a href='https://insoo-best.github.io/'>Insoo Kim</a>, <a href='https://alinlab.kaist.ac.kr/shin.html'>Jinwoo Shin</a>"
     venue: "ECCV 2026"
     venue2: "NeurIPSW-SpaVLE 2025"
+    website: "https://rootyjeon.github.io/spatial-boost/"
     arxiv: "https://arxiv.org/abs/2603.22057"
     figure: "/assets/publications/2025_SpatialBoost/main_fig.png"
     selected: y
