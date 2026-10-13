@@ -52,6 +52,7 @@
     /* figures */
     .figure-img { max-width: 100%; height: auto; }
     .figure-caption { font-size: 0.9rem; color: #555; margin-top: 0.5rem; margin-bottom: 1rem; }
+    .analysis-img { max-width: 420px; width: 100%; }
     /* hardware setup: equal-height image boxes, captions aligned */
     .hw-col { display: flex; flex-direction: column; align-items: center; text-align: center; }
     .hw-img { width: 100%; height: 300px; display: flex; align-items: flex-end; justify-content: center; }
@@ -247,21 +248,21 @@
           <p>
             <span style="color: #EA4335;"><b>Self-distillation from noisy futures.</b></span>
             The <span style="color: #EA4335;">student</span> $\mathbf{f}_\theta$ generates $\mathbf{h}$ from noise, while a momentum
-            <span style="color: #4285F4;">teacher</span> $\mathbf{f}_\phi$ processes a lightly corrupted ground-truth future observation
+            <span style="color: #4285F4;">teacher</span> $\mathbf{f}_{\theta^-}$ processes a lightly corrupted ground-truth future observation
             $\mathbf{o}^\tau_{t+1} = (1-\tau)\,\mathbf{o}_{t+1} + \tau\,\boldsymbol{\epsilon}$ under the same conditioning to produce the target $\mathbf{h}^\tau$:
           </p>
           <p class="has-text-centered">
             $\mathbf{h} = \mathbf{f}_\theta(\boldsymbol{\epsilon} \mid \mathbf{o}_{t-H:t}, \mathbf{c}) \quad \text{and} \quad
-             \mathbf{h}^\tau = \mathbf{f}_\phi(\mathbf{o}^\tau_{t+1} \mid \mathbf{o}_{t-H:t}, \mathbf{c})$
+             \mathbf{h}^\tau = \mathbf{f}_{\theta^-}(\mathbf{o}^\tau_{t+1} \mid \mathbf{o}_{t-H:t}, \mathbf{c})$
           </p>
           <p>
-            Patch-wise projection heads $\mathbf{g}_\theta, \mathbf{g}_\phi$ map both representations to distributions;
-            the teacher logits are centered by their running mean $\mathbf{m}$ and sharpened with a lower temperature to prevent collapse.
+            Patch-wise projection heads $\mathbf{g}_\theta, \mathbf{g}_{\theta^-}$ map both representations to distributions;
+            the teacher logits are centered by the mean teacher logits $\mathbf{m}$ and sharpened with a lower temperature $\gamma_2$ to prevent representation collapse, following DINO and iBOT.
             The self-distillation loss is a per-patch KL divergence:
           </p>
           <p class="has-text-centered">
-            $\mathbf{p} = \mathrm{softmax}\!\left(\mathbf{g}_\theta(\mathbf{h}) / T_1\right), \quad
-             \mathbf{p}^\tau = \mathrm{softmax}\!\left((\mathbf{g}_\phi(\mathbf{h}^\tau) - \mathbf{m}) / T_2\right), \quad
+            $\mathbf{p} = \mathrm{softmax}\!\left(\mathbf{g}_\theta(\mathbf{h}) / \gamma_1\right), \quad
+             \mathbf{p}^\tau = \mathrm{softmax}\!\left((\mathbf{g}_{\theta^-}(\mathbf{h}^\tau) - \mathbf{m}) / \gamma_2\right), \quad
              \mathcal{L}_{\mathrm{SD}}(\theta) = \frac{1}{N} \sum_{i=1}^{N} \mathrm{KL}\!\left(\mathbf{p}^\tau_i \,\|\, \mathbf{p}_i\right)$
           </p>
           <p>
@@ -271,7 +272,7 @@
           </p>
           <p>
             <b>Training objective.</b> The video model is trained with the video flow-matching loss plus self-distillation, and the action decoder with its own flow-matching loss.
-            The action loss does <b>not</b> update the video model; the teacher is the EMA of the student, $\phi \leftarrow m\phi + (1-m)\theta$.
+            The action loss does <b>not</b> update the video model, so the representation generator $\mathbf{f}_\theta$ is trained only by the video generation and self-distillation objectives; the teacher is the EMA of the student, $\theta^- \leftarrow m\theta^- + (1-m)\theta$.
           </p>
           <p class="has-text-centered">
             $\mathcal{L}_{\text{video}}(\theta) = \mathcal{L}_{\mathrm{FM}}(\theta) + \lambda_{\mathrm{SD}}\,\mathcal{L}_{\mathrm{SD}}(\theta)
@@ -466,11 +467,46 @@
     <div class="columns is-centered has-text-centered">
       <div class="column is-full-width">
         <h2 class="title is-3 has-text-centered">Analysis</h2>
-        <h3 class="title is-4">A single denoising step is a future representation generator</h3>
+
+        <h3 class="title is-4">The video model learns future representations during WAM training, and FRED improves them</h3>
+        <div class="columns is-centered is-variable is-4">
+          <div class="column is-half hw-col">
+            <img class="figure-img analysis-img" src="./static/images/fig_probe_vs_iter.png" alt="Future-motion probing accuracy of video-model hidden states versus training iteration">
+            <p class="figure-caption">
+              (a) Future-motion probing accuracy of hidden states generated from noise ($\tau=1.0$).
+            </p>
+          </div>
+          <div class="column is-half hw-col">
+            <img class="figure-img analysis-img" src="./static/images/fig_cknna_vs_iter.png" alt="CKNNA between representations generated from noise and representations of clean future observations versus training iteration">
+            <p class="figure-caption">
+              (b) Structural similarity (CKNNA) to representations extracted from clean future observations ($\tau=0.0$).
+            </p>
+          </div>
+        </div>
+        <div class="content has-text-justified">
+          <p>
+            Do the hidden states of the video diffusion model actually learn information about the future during WAM training?
+            Using <a href="https://arxiv.org/abs/2603.10448">DiT4DiT</a> as the base WAM on RoboCasa Kitchen, we train a lightweight attentive probe on frozen hidden states (layer 18) to classify 16-frame clips into 15 motion-primitive classes
+            (e.g., forward, down, close gripper), and measure structural similarity to representations of clean future observations with
+            <a href="https://arxiv.org/abs/2405.07987">CKNNA</a>.
+            In Figure (a), hidden states generated from noise already capture information about future robot motion, and probing accuracy increases throughout WAM training.
+            In Figure (b), these hidden states also become increasingly similar to representations extracted from ground-truth future observations at the same layer.
+            Together, these suggest that the video model progressively learns to generate future video representations from noise.
+          </p>
+          <p>
+            However, a clear gap in probing accuracy remains relative to representations extracted from clean future observations (dashed line),
+            indicating that generating sufficiently informative future representations from noise remains challenging.
+            FRED reduces this gap and further improves structural similarity to representations of clean future observations;
+            as shown below, this closer alignment translates into better robot control performance.
+          </p>
+        </div>
+
+        <h3 class="title is-4" style="margin-top: 2.5rem;">A single denoising step is a future representation generator</h3>
         <div class="column has-text-centered">
           <img class="figure-img" src="./static/images/fig3_correlation.png" alt="Success rate versus one-step video quality, clean-feature probing, and one-step feature probing">
           <p class="figure-caption">
-            Using <a href="https://arxiv.org/abs/2603.10448">DiT4DiT</a> as the base WAM on RoboCasa Kitchen, task success is only weakly correlated with
+            Using <a href="https://arxiv.org/abs/2603.10448">DiT4DiT</a> as the base WAM on RoboCasa Kitchen, we compare variants trained with different video-model objectives
+            (DMD2, VideoREPA, SRA, Self-Flow, and FRED). Task success is only weakly correlated with
             (a) one-step video generation quality ($r=0.24$) and (b) the quality of representations extracted from <i>observed</i> future videos ($r=0.49$),
             but strongly correlated with (c) the quality of future representations <i>generated from noise</i> in one step ($r=0.89$).
           </p>
@@ -487,6 +523,10 @@
           </p>
           <p>
             Is the quality of this generated future representation what matters for control?
+            Since the action decoder directly conditions on future representations generated from noise, their quality may be closely correlated with control performance.
+            We compare WAM variants trained with different video-model objectives, including one that explicitly improves one-step video generation through distillation (DMD2)
+            and representation-learning objectives that improve intermediate video representations (VideoREPA, SRA, Self-Flow), along three dimensions:
+            one-step video generation quality (FVD), representation quality on observed future videos, and the quality of future representations generated from noise (both measured by attentive probing of motion primitives).
             In Figures (a) and (b), task success is only weakly correlated with one-step video generation quality ($r=0.24$) and representation quality on observed future videos ($r=0.49$).
             In contrast, in Figure (c), the quality of future representations generated from noise shows a stronger correlation with task success ($r=0.89$).
             This supports our view of the video diffusion model as a future representation generator and suggests that improving the representations directly used for
