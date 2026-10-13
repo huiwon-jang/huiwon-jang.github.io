@@ -485,7 +485,7 @@
         </div>
         <div class="content has-text-justified">
           <p>
-            Do the hidden states of the video diffusion model actually learn information about the future during WAM training?
+            We first examine whether the hidden states of the video diffusion model learn information about the future during WAM training.
             Using <a href="https://arxiv.org/abs/2603.10448">DiT4DiT</a> as the base WAM on RoboCasa Kitchen, we train a lightweight attentive probe on frozen hidden states (layer 18) to classify 16-frame clips into 15 motion-primitive classes
             (e.g., forward, down, close gripper), and measure structural similarity to representations of clean future observations with
             <a href="https://arxiv.org/abs/2405.07987">CKNNA</a>.
@@ -522,8 +522,7 @@
             since the generator must infer them from the current observation alone.
           </p>
           <p>
-            Is the quality of this generated future representation what matters for control?
-            Since the action decoder directly conditions on future representations generated from noise, their quality may be closely correlated with control performance.
+            Since the action decoder directly conditions on future representations generated from noise, we expect their quality to be closely correlated with control performance.
             We compare WAM variants trained with different video-model objectives, including one that explicitly improves one-step video generation through distillation (DMD2)
             and representation-learning objectives that improve intermediate video representations (VideoREPA, SRA, Self-Flow), along three dimensions:
             one-step video generation quality (FVD), representation quality on observed future videos, and the quality of future representations generated from noise (both measured by attentive probing of motion primitives).
