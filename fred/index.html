@@ -295,7 +295,7 @@
             which provides motion cues (e.g., where the arm is heading) that disambiguate the future.
           </p>
           <p>
-            <span style="color: #4285F4;"><b>Training objective.</b></span> The video model is trained with the video flow-matching loss plus self-distillation, and the action decoder with its own flow-matching loss.
+            <b>Training objective.</b> The video model is trained with the video flow-matching loss plus self-distillation, and the action decoder with its own flow-matching loss.
             The action loss does <b>not</b> update the video model, so the representation generator $\mathbf{f}_\theta$ is trained only by the video generation and self-distillation objectives; the teacher is the EMA of the student, $\bar{\theta} \leftarrow m\bar{\theta} + (1-m)\theta$.
           </p>
           <p class="has-text-centered">
