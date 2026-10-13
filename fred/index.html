@@ -243,7 +243,9 @@
             and a diffusion-based action decoder $\pi_\phi$ conditioned on $\mathbf{h}$ and the proprioceptive state.
             Given the current observation $\mathbf{o}_t$ and a language instruction $\mathbf{c}$, the video model runs a single denoising step from Gaussian noise $\boldsymbol{\epsilon}$ to produce $\mathbf{h}$,
             and the action decoder predicts actions from $\mathbf{h}$ without generating a video.
-            FRED adds two components to this architecture.
+            We therefore interpret the video diffusion model as a <span style="color: #EA4335;"><b>future representation generator</b></span>,
+            $\mathbf{h} = \mathbf{f}_\theta(\boldsymbol{\epsilon} \mid \mathbf{o}_t, \mathbf{c})$:
+            policy performance depends on how accurately $\mathbf{h}$ captures future robot-object dynamics, and FRED improves $\mathbf{h}$ with two components.
           </p>
           <p>
             <span style="color: #EA4335;"><b>Self-distillation from noisy futures.</b></span>
@@ -485,19 +487,12 @@
         </div>
         <div class="content has-text-justified">
           <p>
-            We first examine whether the hidden states of the video diffusion model learn information about the future during WAM training.
-            Using <a href="https://arxiv.org/abs/2603.10448">DiT4DiT</a> as the base WAM on RoboCasa Kitchen, we train a lightweight attentive probe on frozen hidden states (layer 18) to classify 16-frame clips into 15 motion-primitive classes
-            (e.g., forward, down, close gripper), and measure structural similarity to representations of clean future observations with
+            Using <a href="https://arxiv.org/abs/2603.10448">DiT4DiT</a> as the base WAM on RoboCasa Kitchen, we probe hidden states generated from noise with a lightweight attentive probe
+            that classifies future motion primitives, and measure their structural similarity to representations of clean future observations with
             <a href="https://arxiv.org/abs/2405.07987">CKNNA</a>.
-            In Figure (a), hidden states generated from noise already capture information about future robot motion, and probing accuracy increases throughout WAM training.
-            In Figure (b), these hidden states also become increasingly similar to representations extracted from ground-truth future observations at the same layer.
-            Together, these suggest that the video model progressively learns to generate future video representations from noise.
-          </p>
-          <p>
-            However, a clear gap in probing accuracy remains relative to representations extracted from clean future observations (dashed line),
-            indicating that generating sufficiently informative future representations from noise remains challenging.
-            FRED reduces this gap and further improves structural similarity to representations of clean future observations;
-            as shown below, this closer alignment translates into better robot control performance.
+            Both increase throughout WAM training, showing that the video model progressively learns to generate future representations from noise,
+            but a clear gap to clean-future representations remains (dashed line).
+            FRED reduces this gap and further improves the structural similarity.
           </p>
         </div>
 
@@ -505,31 +500,18 @@
         <div class="column has-text-centered">
           <img class="figure-img" src="./static/images/fig3_correlation.png" alt="Success rate versus one-step video quality, clean-feature probing, and one-step feature probing">
           <p class="figure-caption">
-            Using <a href="https://arxiv.org/abs/2603.10448">DiT4DiT</a> as the base WAM on RoboCasa Kitchen, we compare variants trained with different video-model objectives
-            (DMD2, VideoREPA, SRA, Self-Flow, and FRED). Task success is only weakly correlated with
+            Using <a href="https://arxiv.org/abs/2603.10448">DiT4DiT</a> as the base WAM on RoboCasa Kitchen, task success is only weakly correlated with
             (a) one-step video generation quality ($r=0.24$) and (b) the quality of representations extracted from <i>observed</i> future videos ($r=0.49$),
             but strongly correlated with (c) the quality of future representations <i>generated from noise</i> in one step ($r=0.89$).
           </p>
         </div>
         <div class="content has-text-justified">
           <p>
-            Recent WAMs achieve competitive performance with a separate action decoder that generates actions conditioned on intermediate hidden states of the video diffusion model,
-            obtained from a single forward pass with Gaussian noise $\boldsymbol{\epsilon}$ as input.
-            This design avoids iterative denoising with large video backbones, but it also means that policy performance depends on how accurately these hidden states capture future robot-object dynamics.
-            We therefore interpret the hidden states as future representations and the video diffusion model as a <span style="color: #EA4335;"><b>future representation generator</b></span>,
-            $\mathbf{h} = \mathbf{f}_\theta(\boldsymbol{\epsilon} \mid \mathbf{o}_t, \mathbf{c})$.
-            The generated representation captures the semantics of plausible futures, yet it may still lack details needed for control (e.g., target object location or end-effector pose),
-            since the generator must infer them from the current observation alone.
-          </p>
-          <p>
-            Since the action decoder directly conditions on future representations generated from noise, we expect their quality to be closely correlated with control performance.
-            We compare WAM variants trained with different video-model objectives, including one that explicitly improves one-step video generation through distillation (DMD2)
-            and representation-learning objectives that improve intermediate video representations (VideoREPA, SRA, Self-Flow), along three dimensions:
-            one-step video generation quality (FVD), representation quality on observed future videos, and the quality of future representations generated from noise (both measured by attentive probing of motion primitives).
-            In Figures (a) and (b), task success is only weakly correlated with one-step video generation quality ($r=0.24$) and representation quality on observed future videos ($r=0.49$).
-            In contrast, in Figure (c), the quality of future representations generated from noise shows a stronger correlation with task success ($r=0.89$).
-            This supports our view of the video diffusion model as a future representation generator and suggests that improving the representations directly used for
-            action generation may be particularly relevant to control performance.
+            We compare WAM variants trained with different video-model objectives, from one-step video distillation (DMD2) to representation learning (VideoREPA, SRA, Self-Flow),
+            along three dimensions.
+            Task success is only weakly correlated with one-step video generation quality and with representation quality on observed future videos,
+            but strongly correlated with the quality of future representations generated from noise.
+            Improving the representations that are directly used for action generation is therefore what matters for control, and this is what FRED targets.
           </p>
         </div>
       </div>
