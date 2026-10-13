@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="FRED: Self-Distilling Future Video Representations for World Action Models">
+  <meta name="keywords" content="FRED, World Action Model, video diffusion, self-distillation, robot learning, representation learning">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>FRED</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  <style>
+    /* TL;DR callout (MoSS style, light Google blue) */
+    .tldr { margin-top: 1.5rem; padding: 1rem 1.5rem; border-left: 4px solid #7BAAF7; background: #EEF4FE; border-radius: 4px; text-align: left; font-size: 1.05rem; line-height: 1.5; }
+    .tldr p { margin: 0; }
+    .tldr strong { color: #4285F4; }
+    /* result tables */
+    .results-table { margin: 0 auto 0.5rem auto; font-size: 0.92rem; }
+    .results-table th, .results-table td { vertical-align: middle; white-space: nowrap; }
+    .results-table th:not([align]), .results-table td:not([align]) { text-align: center; }
+    .results-table td:first-child:not([align]), .results-table th:first-child:not([align]) { text-align: left; }
+    .results-table thead tr:not(:first-child) th:first-child:not([align]) { text-align: center; }
+    .results-table tr.ours td { font-weight: 700; }
+    .results-table td.best { font-weight: 700; }
+    .results-table tr.sep td { border-top: 2px solid #b5b5b5; }
+    .table-note { font-size: 0.85rem; color: #666; }
+    .table-scroll { overflow-x: auto; }
+    /* figures */
+    .figure-img { max-width: 100%; height: auto; }
+    .figure-caption { font-size: 0.9rem; color: #555; margin-top: 0.5rem; margin-bottom: 1rem; }
+    /* hardware setup: equal-height image boxes, captions aligned */
+    .hw-col { display: flex; flex-direction: column; align-items: center; text-align: center; }
+    .hw-img { width: 100%; height: 300px; display: flex; align-items: flex-end; justify-content: center; }
+    .hw-img img { max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; }
+    .hw-col .figure-caption { margin-top: 0.75rem; }
+    @media screen and (max-width: 768px) { .hw-img { height: auto; } }
+    [hidden] { display: none !important; }
+    /* benchmark tabs */
+    .js-tabs { margin-bottom: 1rem; }
+    .js-tabs a { font-family: 'Google Sans', sans-serif; }
+    .tabs.is-toggle.js-tabs li.is-active a { background-color: #363636; border-color: #363636; color: #fff; z-index: 1; }
+    /* rollout rows: one horizontal row, scroll when more tiles than fit */
+    .tab-panel .columns.is-multiline.is-centered { flex-wrap: nowrap; justify-content: flex-start; overflow-x: auto; overflow-y: hidden; padding-bottom: 0.5rem; scroll-snap-type: x proximity; }
+    .tab-panel .columns.is-multiline.is-centered > .column { flex: 0 0 33.333%; max-width: 33.333%; scroll-snap-align: start; }
+    .tab-panel .columns.is-multiline.is-centered > .column:first-child { margin-left: auto; }
+    .tab-panel .columns.is-multiline.is-centered > .column:last-child { margin-right: auto; }
+    @media screen and (max-width: 768px) { .tab-panel .columns.is-multiline.is-centered > .column { flex: 0 0 70%; max-width: 70%; } }
+    /* rollout videos */
+    .video-card { text-align: center; }
+    .video-card video { width: 100%; aspect-ratio: 16 / 9; border-radius: 10px; background: #000; display: block; }
+    .video-title { font-weight: 700; color: #444; font-size: 0.9rem; margin-top: 0.35rem; }
+    .video-sub { font-size: 0.8rem; color: #777; }
+    .h2r-arrow { color: #888; font-size: 1.1rem; margin: 0.15rem 0; }
+    .video-card .video-sub + video, .video-card .video-sub + .video-slot { margin-top: 0.25rem; }
+    .video-wrap { position: relative; }
+    .video-wrap video { display: block; width: 100%; }
+    .video-card .video-wrap.wide video { aspect-ratio: 32 / 9; }
+    .speed-badge { position: absolute; top: 8px; left: 8px; background: rgba(0,0,0,0.65); color: #fff; font-size: 0.75rem; font-weight: 700; padding: 2px 7px; border-radius: 6px; pointer-events: none; font-family: 'Google Sans', sans-serif; }
+    /* empty video slots */
+    .video-slot {
+      aspect-ratio: 16 / 9;
+      border: 2px dashed #c9c9c9;
+      border-radius: 10px;
+      background: #fafafa;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: #777;
+      font-size: 0.9rem;
+      padding: 0.5rem;
+      text-align: center;
+    }
+    .video-slot .slot-title { font-weight: 700; color: #444; }
+    .video-slot .slot-sub { font-size: 0.8rem; }
+    .video-slot .icon { font-size: 1.6rem; margin-bottom: 0.3rem; color: #aaa; }
+  </style>
+  <script>
+    // Tabs + lazy video playback: a video loads and plays only while visible.
+    $(function () {
+      var io = ('IntersectionObserver' in window) ? new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          var v = e.target;
+          if (e.isIntersecting) { if (v.paused) { v.play().catch(function(){}); } }
+          else if (!v.paused) { v.pause(); }
+        });
+      }, { threshold: 0.25 }) : null;
+      document.querySelectorAll('video').forEach(function (v) { if (io) io.observe(v); });
+      $('.js-tabs li').on('click', function () {
+        var group = $(this).closest('.js-tabs').data('group'), target = $(this).data('target');
+        $(this).siblings().removeClass('is-active'); $(this).addClass('is-active');
+        $('.tab-panel[data-group="' + group + '"]').each(function () {
+          var show = this.id === target; this.hidden = !show;
+          if (!show) { this.querySelectorAll('video').forEach(function (v) { v.pause(); }); }
+        });
+      });
+    });
+  </script>
+</head>
+<body>
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">Self-Distilling Future Video Representations for World Action Models</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://huiwon-jang.github.io/">Huiwon Jang</a><sup>1,2*</sup>,</span>
+            <span class="author-block">
+              <a href="https://suhyeok-jang.github.io/">Suhyeok Jang</a><sup>1,2*</sup>,</span>
+            <span class="author-block">
+              <a href="https://sihyun.me/">Sihyun Yu</a><sup>2</sup>,</span>
+            <span class="author-block">
+              Hyeonmo Kang<sup>2</sup>,</span>
+            <span class="author-block">
+              Seungku Kim<sup>2</sup>,</span>
+            <span class="author-block">
+              <a href="https://alinlab.kaist.ac.kr/shin.html">Jinwoo Shin</a><sup>1,2</sup>
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>RLWRLD,</span>
+            <span class="author-block"><sup>2</sup>KAIST</span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>*</sup>Equal Contribution</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href="#"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="#"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="#"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+            </div>
+          </div>
+
+          <div class="tldr">
+            <p>
+              <strong>TL;DR:</strong> We introduce FRED, a framework that trains World Action Models to generate better future video representations from a single denoising step, by self-distilling from a momentum teacher that processes noisy ground-truth futures and by conditioning on observation history.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            World Action Models (WAMs) have emerged as a promising approach to learning generalist robot policies using rich spatiotemporal priors from pre-trained video diffusion models.
+            A recent line of WAMs improves inference efficiency by conditioning a separate action decoder on intermediate future video representations extracted from a single denoising step, avoiding costly iterative denoising required for video generation.
+            This design makes action prediction depend directly on the quality of these future representations.
+            In this paper, we introduce <i>Future REpresentation learning via self-Distillation with temporal context</i> (FRED), a framework that trains WAMs to improve the quality of future video representations from noise in a single denoising step.
+            Specifically, FRED uses self-distillation to predict future representations from noise, using representations extracted from ground-truth future observations as targets.
+            We further condition the video model on historical observations, providing temporal context for predicting future representations better.
+            Across diverse real-world manipulation scenarios, FRED consistently outperforms competing WAMs.
+            It achieves particularly large gains on long-horizon and out-of-domain tasks under zero-shot environment generalization, and substantially improves human-to-robot skill transfer, reaching 50.0% task success on tasks absent from robot training data and demonstrated only in human videos, compared with 19.4% for the best competing WAM.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+  </div>
+</section>
+
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Method overview. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3 has-text-centered">Method overview</h2>
+        <div class="column has-text-centered">
+          <img class="figure-img" src="./static/images/fig1_overview.png" alt="Overview of FRED">
+        </div>
+        <div class="content has-text-justified">
+          <p>
+            FRED is built on the decoupled WAM architecture: a video diffusion model $\mathbf{v}_\theta$, whose first layers $\mathbf{f}_\theta$ produce an intermediate representation $\mathbf{h}$,
+            and a diffusion-based action decoder $\pi_\psi$ conditioned on $\mathbf{h}$ and the proprioceptive state.
+            Given the current observation $\mathbf{o}_t$ and a language instruction $\mathbf{c}$, the video model runs a single denoising step from Gaussian noise $\boldsymbol{\epsilon}$ to produce $\mathbf{h}$,
+            and the action decoder predicts actions from $\mathbf{h}$ without generating a video.
+            FRED adds two components to this architecture.
+          </p>
+          <p>
+            <span style="color: #EA4335;"><b>Self-distillation from noisy futures.</b></span>
+            The <span style="color: #EA4335;">student</span> $\mathbf{f}_\theta$ generates $\mathbf{h}$ from noise, while a momentum
+            <span style="color: #4285F4;">teacher</span> $\mathbf{f}_\phi$ processes a lightly corrupted ground-truth future observation
+            $\mathbf{o}^\tau_{t+1} = (1-\tau)\,\mathbf{o}_{t+1} + \tau\,\boldsymbol{\epsilon}$ under the same conditioning to produce the target $\mathbf{h}^\tau$:
+          </p>
+          <p class="has-text-centered">
+            $\mathbf{h} = \mathbf{f}_\theta(\boldsymbol{\epsilon} \mid \mathbf{o}_{t-H:t}, \mathbf{c}) \quad \text{and} \quad
+             \mathbf{h}^\tau = \mathbf{f}_\phi(\mathbf{o}^\tau_{t+1} \mid \mathbf{o}_{t-H:t}, \mathbf{c})$
+          </p>
+          <p>
+            Patch-wise projection heads $\mathbf{g}_\theta, \mathbf{g}_\phi$ map both representations to distributions;
+            the teacher logits are centered by their running mean $\mathbf{m}$ and sharpened with a lower temperature to prevent collapse.
+            The self-distillation loss is a per-patch KL divergence:
+          </p>
+          <p class="has-text-centered">
+            $\mathbf{p} = \mathrm{softmax}\!\left(\mathbf{g}_\theta(\mathbf{h}) / T_1\right), \quad
+             \mathbf{p}^\tau = \mathrm{softmax}\!\left((\mathbf{g}_\phi(\mathbf{h}^\tau) - \mathbf{m}) / T_2\right), \quad
+             \mathcal{L}_{\mathrm{SD}}(\theta) = \frac{1}{N} \sum_{i=1}^{N} \mathrm{KL}\!\left(\mathbf{p}^\tau_i \,\|\, \mathbf{p}_i\right)$
+          </p>
+          <p>
+            <span style="color: #EA4335;"><b>History as temporal context.</b></span>
+            Both student and teacher are conditioned on a short history $\mathbf{o}_{t-H:t}$ rather than only the current frame,
+            which provides motion cues (e.g., where the arm is heading) that disambiguate the future.
+          </p>
+          <p>
+            <b>Training objective.</b> The video model is trained with the video flow-matching loss plus self-distillation, and the action decoder with its own flow-matching loss.
+            The action loss does <b>not</b> update the video model; the teacher is the EMA of the student, $\phi \leftarrow m\phi + (1-m)\theta$.
+          </p>
+          <p class="has-text-centered">
+            $\mathcal{L}_{\text{video}}(\theta) = \mathcal{L}_{\mathrm{FM}}(\theta) + \lambda_{\mathrm{SD}}\,\mathcal{L}_{\mathrm{SD}}(\theta)
+             \quad \text{and} \quad
+             \mathcal{L}_{\text{action}}(\psi) = \mathcal{L}_{\mathrm{FM}}(\psi)$
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Method overview. -->
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Real-world experiments. -->
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3 has-text-centered">Real-world experiments</h2>
+        <div class="column has-text-centered">
+          <img class="figure-img" src="./static/images/fig2_setup.png" alt="Training and evaluation setup">
+          <p class="figure-caption">
+            (a) Zero-shot environment generalization: train on <a href="https://droid-dataset.github.io/">DROID</a> and evaluate in a new real-world environment on a Franka Research 3 without task-specific fine-tuning.
+            (b) Human-robot co-training: train an OpenArm humanoid on robot demonstrations, optionally jointly with egocentric human videos, and evaluate on in-domain robot tasks and human-to-robot skill-transfer tasks.
+          </p>
+        </div>
+
+        <!-- Zero-shot. -->
+        <h3 class="title is-4 has-text-centered">Zero-shot Environment Generalization Results (DROID)</h3>
+        <div class="table-scroll">
+        <table class="table is-narrow is-hoverable results-table">
+          <thead>
+            <tr><th>Method</th><th>Backbone</th><th>In-domain easy</th><th>In-domain long-horizon</th><th>Out-of-domain</th><th>Object grounding</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>$\pi_{0.5}$</td><td>&ndash;</td><td>58.3</td><td>53.3</td><td>16.7</td><td>16.7</td></tr>
+            <tr><td>GR00T N1.7</td><td>&ndash;</td><td>41.7</td><td>60.0</td><td>18.8</td><td>22.9</td></tr>
+            <tr class="sep"><td>Fast-WAM</td><td>Wan2.2-5B</td><td>26.4</td><td>26.7</td><td>2.1</td><td>10.4</td></tr>
+            <tr><td>DiT4DiT</td><td>Wan2.2-5B</td><td>16.7</td><td>16.7</td><td>0.0</td><td>8.3</td></tr>
+            <tr><td>AGRA</td><td>Wan2.2-5B</td><td>41.7</td><td>31.7</td><td>10.4</td><td>33.3</td></tr>
+            <tr class="ours"><td>FRED (Ours)</td><td>Wan2.2-5B</td><td class="best">47.2</td><td class="best">46.7</td><td class="best">37.5</td><td class="best">37.5</td></tr>
+            <tr class="sep"><td>DreamZero</td><td>Wan2.1-14B</td><td>63.9</td><td>61.7</td><td>10.4</td><td>39.6</td></tr>
+            <tr class="ours"><td>FRED (Ours)</td><td>Wan2.1-14B</td><td class="best">79.2</td><td class="best">81.7</td><td class="best">52.1</td><td class="best">54.2</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <p class="table-note has-text-centered" style="margin-top:1.25rem">All rollout videos below are played at real-time speed (1&times;).</p>
+        <p class="has-text-centered" style="margin-top:1.25rem"><b>Real-robot rollouts (FRED 14B)</b></p>
+        <div class="tabs is-toggle is-centered is-small js-tabs" data-group="droid">
+          <ul>
+            <li class="is-active" data-target="droid-a"><a><span>In-domain (Easy)</span></a></li>
+            <li data-target="droid-b"><a><span>In-domain (Long-horizon)</span></a></li>
+            <li data-target="droid-c"><a><span>Out-of-domain</span></a></li>
+            <li data-target="droid-d"><a><span>Object Grounding</span></a></li>
+          </ul>
+        </div>
+        <div class="tab-panel" data-group="droid" id="droid-a">
+        <div class="columns is-multiline is-mobile is-centered">
+          <div class="column is-4-tablet is-6-mobile"><div class="video-card"><div class="video-wrap"><video controls muted loop playsinline preload="none"><source src="./static/videos/droid/pnp_banana_ours.mp4" type="video/mp4"></video><span class="speed-badge">1&times;</span></div><div class="video-title">PnP Banana</div></div></div>
+          <div class="column is-4-tablet is-6-mobile"><div class="video-card"><div class="video-wrap"><video controls muted loop playsinline preload="none"><source src="./static/videos/droid/pnp_cube_ours.mp4" type="video/mp4"></video><span class="speed-badge">1&times;</span></div><div class="video-title">PnP Cube</div></div></div>
+          <div class="column is-4-tablet is-6-mobile"><div class="video-card"><div class="video-wrap"><video controls muted loop playsinline preload="none"><source src="./static/videos/droid/open_microwave_ours.mp4" type="video/mp4"></video><span class="speed-badge">1&times;</span></div><div class="video-title">Open Microwave</div></div></div>
+          <div class="column is-4-tablet is-6-mobile"><div class="video-card"><div class="video-wrap"><video controls muted loop playsinline preload="none"><source src="./static/videos/droid/close_microwave_ours.mp4" type="video/mp4"></video><span class="speed-badge">1&times;</span></div><div class="video-title">Close Microwave</div></div></div>
+        </div>
+        </div>
+        <div class="tab-panel" data-group="droid" id="droid-b" hidden>
+        <div class="columns is-multiline is-mobile is-centered">
+          <div class="column is-4-tablet is-6-mobile"><div class="video-card"><div class="video-wrap"><video controls muted loop playsinline preload="none"><source src="./static/videos/droid/clear_table_ours.mp4" type="video/mp4"></video><span class="speed-badge">1&times;</span></div><div class="video-title">Clear Table (Uncut, 85s)</div></div></div>
+        </div>
+        </div>
+        <div class="tab-panel" data-group="droid" id="droid-c" hidden>
+        <div class="columns is-multiline is-mobile is-centered">
+          <div class="column is-4-tablet is-6-mobile"><div class="video-card"><div class="video-wrap"><video controls muted loop playsinline preload="none"><source src="./static/videos/droid/reveal_ours.mp4" type="video/mp4"></video><span class="speed-badge">1&times;</span></div><div class="video-title">Reveal</div></div></div>
+          <div class="column is-4-tablet is-6-mobile"><div class="video-card"><div class="video-wrap"><video controls muted loop playsinline preload="none"><source src="./static/videos/droid/stamp_ours.mp4" type="video/mp4"></video><span class="speed-badge">1&times;</span></div><div class="video-title">Stamp</div></div></div>
+        </div>
+        </div>
+        <div class="tab-panel" data-group="droid" id="droid-d" hidden>
+        <div class="columns is-multiline is-mobile is-centered">
+          <div class="column is-4-tablet is-6-mobile"><div class="video-card"><div class="video-wrap"><video controls muted loop playsinline preload="none"><source src="./static/videos/droid/pnp_cup_ours.mp4" type="video/mp4"></video><span class="speed-badge">1&times;</span></div><div class="video-title">PnP Cup</div></div></div>
+          <div class="column is-4-tablet is-6-mobile"><div class="video-card"><div class="video-wrap"><video controls muted loop playsinline preload="none"><source src="./static/videos/droid/pnp_cutlery_ours.mp4" type="video/mp4"></video><span class="speed-badge">1&times;</span></div><div class="video-title">PnP Cutlery</div></div></div>
+        </div>
+        </div>
+        <p class="has-text-centered" style="margin-top:2rem"><b>Inference speed comparison: FRED 14B vs. DreamZero 14B (Stamp, 1&times;)</b></p>
+        <div class="columns is-centered">
+          <div class="column is-9-tablet is-12-mobile"><div class="video-card"><div class="video-wrap wide"><video controls muted loop playsinline preload="none"><source src="./static/videos/droid/stamp_speed_fred14b_vs_dreamzero.mp4" type="video/mp4"></video><span class="speed-badge">1&times;</span></div></div></div>
+        </div>
+        <!--/ Zero-shot. -->
+        <!-- Co-training. -->
+        <h3 class="title is-4 has-text-centered" style="margin-top: 3.5rem;">Human-robot Co-training Results (OpenArm humanoid)</h3>
+        <div class="columns is-centered">
+          <div class="column is-half">
+            <p class="has-text-centered"><b>(a) In-domain robot tasks</b></p>
+            <div class="table-scroll">
+            <table class="table is-narrow is-hoverable results-table">
+              <thead>
+                <tr><th rowspan="2">Method</th><th colspan="2">Atomic</th><th colspan="2">Composite</th></tr>
+                <tr><th>w/o human</th><th>w/ human</th><th>w/o human</th><th>w/ human</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>$\pi_{0.5}$</td><td>66.7</td><td>&ndash;</td><td>50.0</td><td>&ndash;</td></tr>
+                <tr><td>GR00T N1.7</td><td>91.7</td><td>&ndash;</td><td>45.8</td><td>&ndash;</td></tr>
+                <tr class="sep"><td>DreamZero</td><td>68.1</td><td>68.1</td><td>0.0</td><td>0.0</td></tr>
+                <tr><td>Fast-WAM</td><td>56.9</td><td>65.3</td><td>0.0</td><td>0.0</td></tr>
+                <tr><td>DiT4DiT</td><td>77.8</td><td>86.1</td><td>50.0</td><td>41.7</td></tr>
+                <tr><td>AGRA</td><td>81.9</td><td>75.0</td><td>8.3</td><td>12.5</td></tr>
+                <tr class="ours"><td>FRED (Ours)</td><td class="best">91.7</td><td class="best">97.2</td><td class="best">70.8</td><td class="best">75.0</td></tr>
+              </tbody>
+            </table>
+            </div>
+          </div>
+          <div class="column is-half">
+            <p class="has-text-centered"><b>(b) Human skill transfer tasks</b></p>
+            <div class="table-scroll">
+            <table class="table is-narrow is-hoverable results-table">
+              <thead>
+                <tr><th rowspan="2">Method</th><th colspan="2">Task success</th><th colspan="2">Instruction following</th></tr>
+                <tr><th>w/o human</th><th>w/ human</th><th>w/o human</th><th>w/ human</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>$\pi_{0.5}$</td><td>0.0</td><td>&ndash;</td><td>16.7</td><td>&ndash;</td></tr>
+                <tr><td>GR00T N1.7</td><td>5.6</td><td>&ndash;</td><td>33.3</td><td>&ndash;</td></tr>
+                <tr class="sep"><td>DreamZero</td><td>0.0</td><td>0.0</td><td>0.0</td><td>13.9</td></tr>
+                <tr><td>Fast-WAM</td><td>0.0</td><td>0.0</td><td>0.0</td><td>11.1</td></tr>
+                <tr><td>DiT4DiT</td><td>0.0</td><td>19.4</td><td>0.0</td><td>55.6</td></tr>
+                <tr><td>AGRA</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td></tr>
+                <tr class="ours"><td>FRED (Ours)</td><td>0.0</td><td class="best">50.0</td><td>0.0</td><td class="best">97.2</td></tr>
+              </tbody>
+            </table>
+            </div>
+          </div>
+        </div>
+        <p class="has-text-centered" style="margin-top:1.25rem"><b>Real-robot rollouts (FRED 5B)</b></p>
+        <div class="tabs is-toggle is-centered is-small js-tabs" data-group="openarm">
+          <ul>
+            <li class="is-active" data-target="openarm-a"><a><span>In-domain (Atomic)</span></a></li>
+            <li data-target="openarm-b"><a><span>In-domain (Composite)</span></a></li>
+            <li data-target="openarm-c"><a><span>Human Skill Transfer</span></a></li>
+          </ul>
+        </div>
+        <div class="tab-panel" data-group="openarm" id="openarm-a">
+        <div class="columns is-multiline is-mobile is-centered">
+          <div class="column is-4-tablet is-6-mobile"><div class="video-card"><video controls muted loop playsinline preload="none"><source src="./static/videos/openarm/pnp_banana_ours.mp4" type="video/mp4"></video><div class="video-title">PnP Banana</div></div></div>
+          <div class="column is-4-tablet is-6-mobile"><div class="video-card"><video controls muted loop playsinline preload="none"><source src="./static/videos/openarm/open_close_air_fryer_ours.mp4" type="video/mp4"></video><div class="video-title">Open/Close Air Fryer</div></div></div>
+          <div class="column is-4-tablet is-6-mobile"><div class="video-card"><video controls muted loop playsinline preload="none"><source src="./static/videos/openarm/pnp_apple_mango_ours.mp4" type="video/mp4"></video><div class="video-title">PnP Apple/Mango</div></div></div>
+        </div>
+        </div>
+        <div class="tab-panel" data-group="openarm" id="openarm-b" hidden>
+        <div class="columns is-multiline is-mobile is-centered">
+          <div class="column is-4-tablet is-6-mobile"><div class="video-card"><video controls muted loop playsinline preload="none"><source src="./static/videos/openarm/open_air_fryer_and_place_apple_ours.mp4" type="video/mp4"></video><div class="video-title">Open Air Fryer and Place Apple</div></div></div>
+        </div>
+        </div>
+        <div class="tab-panel" data-group="openarm" id="openarm-c" hidden>
+        <div class="columns is-multiline is-mobile is-centered">
+          <div class="column is-4-tablet is-12-mobile"><div class="video-card">
+            <div class="video-title">Place Bottle on Basket</div>
+            <div class="video-sub">Human demonstration</div>
+            <video controls muted loop playsinline preload="none"><source src="./static/videos/openarm/place_bottle_on_basket_human.mp4" type="video/mp4"></video>
+            <div class="h2r-arrow"><i class="fas fa-arrow-down"></i></div>
+            <div class="video-sub">FRED rollout</div>
+            <video controls muted loop playsinline preload="none"><source src="./static/videos/openarm/place_bottle_on_basket_ours.mp4" type="video/mp4"></video>
+          </div></div>
+          <div class="column is-4-tablet is-12-mobile"><div class="video-card">
+            <div class="video-title">PnP Novel Objects</div>
+            <div class="video-sub">Human demonstration</div>
+            <video controls muted loop playsinline preload="none"><source src="./static/videos/openarm/pnp_novel_objects_human.mp4" type="video/mp4"></video>
+            <div class="h2r-arrow"><i class="fas fa-arrow-down"></i></div>
+            <div class="video-sub">FRED rollout</div>
+            <video controls muted loop playsinline preload="none"><source src="./static/videos/openarm/pnp_novel_objects_ours.mp4" type="video/mp4"></video>
+          </div></div>
+          <div class="column is-4-tablet is-12-mobile"><div class="video-card">
+            <div class="video-title">Pour Coffee</div>
+            <div class="video-sub">Human demonstration</div>
+            <video controls muted loop playsinline preload="none"><source src="./static/videos/openarm/pour_coffee_human.mp4" type="video/mp4"></video>
+            <div class="h2r-arrow"><i class="fas fa-arrow-down"></i></div>
+            <div class="video-sub">FRED rollout</div>
+            <video controls muted loop playsinline preload="none"><source src="./static/videos/openarm/pour_coffee_ours.mp4" type="video/mp4"></video>
+          </div></div>
+        </div>
+        </div>
+        <!--/ Co-training. -->
+      </div>
+    </div>
+    <!--/ Real-world experiments. -->
+  </div>
+</section>
+
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Analysis. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3 has-text-centered">Analysis</h2>
+        <h3 class="title is-4">A single denoising step is a future representation generator</h3>
+        <div class="column has-text-centered">
+          <img class="figure-img" src="./static/images/fig3_correlation.png" alt="Success rate versus one-step video quality, clean-feature probing, and one-step feature probing">
+          <p class="figure-caption">
+            Using <a href="https://arxiv.org/abs/2603.10448">DiT4DiT</a> as the base WAM on RoboCasa Kitchen, task success is only weakly correlated with
+            (a) one-step video generation quality ($r=0.24$) and (b) the quality of representations extracted from <i>observed</i> future videos ($r=0.49$),
+            but strongly correlated with (c) the quality of future representations <i>generated from noise</i> in one step ($r=0.89$).
+          </p>
+        </div>
+        <div class="content has-text-justified">
+          <p>
+            Recent WAMs achieve competitive performance with a separate action decoder that generates actions conditioned on intermediate hidden states of the video diffusion model,
+            obtained from a single forward pass with Gaussian noise $\boldsymbol{\epsilon}$ as input.
+            This design avoids iterative denoising with large video backbones, but it also means that policy performance depends on how accurately these hidden states capture future robot-object dynamics.
+            We therefore interpret the hidden states as future representations and the video diffusion model as a <span style="color: #EA4335;"><b>future representation generator</b></span>,
+            $\mathbf{h} = \mathbf{f}_\theta(\boldsymbol{\epsilon} \mid \mathbf{o}_t, \mathbf{c})$.
+            The generated representation captures the semantics of plausible futures, yet it may still lack details needed for control (e.g., target object location or end-effector pose),
+            since the generator must infer them from the current observation alone.
+          </p>
+          <p>
+            Is the quality of this generated future representation what matters for control?
+            In Figures (a) and (b), task success is only weakly correlated with one-step video generation quality ($r=0.24$) and representation quality on observed future videos ($r=0.49$).
+            In contrast, in Figure (c), the quality of future representations generated from noise shows a stronger correlation with task success ($r=0.89$).
+            This supports our view of the video diffusion model as a future representation generator and suggests that improving the representations directly used for
+            action generation may be particularly relevant to control performance.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Analysis. -->
+  </div>
+</section>
+
+
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Hardware. -->
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3 has-text-centered">Hardware setup</h2>
+        <div class="columns is-centered is-variable is-4">
+          <div class="column is-half hw-col">
+            <div class="hw-img"><img src="./static/images/fig4_droid_setup.png" alt="DROID evaluation setup"></div>
+            <p class="figure-caption">
+              <b>Franka Research 3</b> with a Robotiq 2F-85 gripper, a wrist camera, and left/right exterior cameras.
+              Actions are relative joint angles (7D) and absolute gripper opening (1D).
+            </p>
+          </div>
+          <div class="column is-half hw-col">
+            <div class="hw-img"><img src="./static/images/fig6_openarm_setup.png" alt="OpenArm evaluation setup"></div>
+            <p class="figure-caption">
+              <b>OpenArm humanoid</b> with two 7-DoF arms, 6-DoF Inspire RH56F1 hands, and a ZED 2i stereo camera on a 2-DoF neck; both egocentric views are used as input.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--/ Hardware. -->
+  </div>
+</section>
+
+
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content has-text-centered">
+          <p>
+            Website adapted from <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
