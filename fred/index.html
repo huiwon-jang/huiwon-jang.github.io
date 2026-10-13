@@ -236,7 +236,7 @@
         <h2 class="title is-3 has-text-centered">Method overview</h2>
         <div class="content has-text-justified">
           <p>
-            FRED builds on recent World Action Models (WAMs) that keep the pre-trained video diffusion model (VDM) $\mathbf{v}_\theta$ unchanged and use a separate diffusion-based action decoder
+            FRED builds on recent WAMs that keep the pre-trained video diffusion model (VDM) $\mathbf{v}_\theta$ unchanged and use a separate diffusion-based action decoder
             $\pi_\phi(\mathbf{a}_t \mid \mathbf{q}_t, \mathbf{h})$, where $\mathbf{h}$ is an intermediate hidden state of $\mathbf{v}_\theta$ obtained through a single forward pass from Gaussian noise $\boldsymbol{\epsilon}$.
             This avoids iterative video denoising at inference, but policy performance now depends on how well $\mathbf{h}$ captures the future.
           </p>
