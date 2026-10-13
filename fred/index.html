@@ -240,7 +240,7 @@
         <div class="content has-text-justified">
           <p>
             FRED is built on the decoupled WAM architecture: a video diffusion model $\mathbf{v}_\theta$, whose first layers $\mathbf{f}_\theta$ produce an intermediate representation $\mathbf{h}$,
-            and a diffusion-based action decoder $\pi_\psi$ conditioned on $\mathbf{h}$ and the proprioceptive state.
+            and a diffusion-based action decoder $\pi_\phi$ conditioned on $\mathbf{h}$ and the proprioceptive state.
             Given the current observation $\mathbf{o}_t$ and a language instruction $\mathbf{c}$, the video model runs a single denoising step from Gaussian noise $\boldsymbol{\epsilon}$ to produce $\mathbf{h}$,
             and the action decoder predicts actions from $\mathbf{h}$ without generating a video.
             FRED adds two components to this architecture.
@@ -248,21 +248,21 @@
           <p>
             <span style="color: #EA4335;"><b>Self-distillation from noisy futures.</b></span>
             The <span style="color: #EA4335;">student</span> $\mathbf{f}_\theta$ generates $\mathbf{h}$ from noise, while a momentum
-            <span style="color: #4285F4;">teacher</span> $\mathbf{f}_{\theta^-}$ processes a lightly corrupted ground-truth future observation
+            <span style="color: #4285F4;">teacher</span> $\mathbf{f}_{\bar{\theta}}$ processes a lightly corrupted ground-truth future observation
             $\mathbf{o}^\tau_{t+1} = (1-\tau)\,\mathbf{o}_{t+1} + \tau\,\boldsymbol{\epsilon}$ under the same conditioning to produce the target $\mathbf{h}^\tau$:
           </p>
           <p class="has-text-centered">
             $\mathbf{h} = \mathbf{f}_\theta(\boldsymbol{\epsilon} \mid \mathbf{o}_{t-H:t}, \mathbf{c}) \quad \text{and} \quad
-             \mathbf{h}^\tau = \mathbf{f}_{\theta^-}(\mathbf{o}^\tau_{t+1} \mid \mathbf{o}_{t-H:t}, \mathbf{c})$
+             \mathbf{h}^\tau = \mathbf{f}_{\bar{\theta}}(\mathbf{o}^\tau_{t+1} \mid \mathbf{o}_{t-H:t}, \mathbf{c})$
           </p>
           <p>
-            Patch-wise projection heads $\mathbf{g}_\theta, \mathbf{g}_{\theta^-}$ map both representations to distributions;
+            Patch-wise projection heads $\mathbf{g}_\theta, \mathbf{g}_{\bar{\theta}}$ map both representations to distributions;
             the teacher logits are centered by the mean teacher logits $\mathbf{m}$ and sharpened with a lower temperature $\gamma_2$ to prevent representation collapse, following DINO and iBOT.
             The self-distillation loss is a per-patch KL divergence:
           </p>
           <p class="has-text-centered">
             $\mathbf{p} = \mathrm{softmax}\!\left(\mathbf{g}_\theta(\mathbf{h}) / \gamma_1\right), \quad
-             \mathbf{p}^\tau = \mathrm{softmax}\!\left((\mathbf{g}_{\theta^-}(\mathbf{h}^\tau) - \mathbf{m}) / \gamma_2\right), \quad
+             \mathbf{p}^\tau = \mathrm{softmax}\!\left((\mathbf{g}_{\bar{\theta}}(\mathbf{h}^\tau) - \mathbf{m}) / \gamma_2\right), \quad
              \mathcal{L}_{\mathrm{SD}}(\theta) = \frac{1}{N} \sum_{i=1}^{N} \mathrm{KL}\!\left(\mathbf{p}^\tau_i \,\|\, \mathbf{p}_i\right)$
           </p>
           <p>
@@ -272,12 +272,12 @@
           </p>
           <p>
             <b>Training objective.</b> The video model is trained with the video flow-matching loss plus self-distillation, and the action decoder with its own flow-matching loss.
-            The action loss does <b>not</b> update the video model, so the representation generator $\mathbf{f}_\theta$ is trained only by the video generation and self-distillation objectives; the teacher is the EMA of the student, $\theta^- \leftarrow m\theta^- + (1-m)\theta$.
+            The action loss does <b>not</b> update the video model, so the representation generator $\mathbf{f}_\theta$ is trained only by the video generation and self-distillation objectives; the teacher is the EMA of the student, $\bar{\theta} \leftarrow m\bar{\theta} + (1-m)\theta$.
           </p>
           <p class="has-text-centered">
             $\mathcal{L}_{\text{video}}(\theta) = \mathcal{L}_{\mathrm{FM}}(\theta) + \lambda_{\mathrm{SD}}\,\mathcal{L}_{\mathrm{SD}}(\theta)
              \quad \text{and} \quad
-             \mathcal{L}_{\text{action}}(\psi) = \mathcal{L}_{\mathrm{FM}}(\psi)$
+             \mathcal{L}_{\text{action}}(\phi) = \mathcal{L}_{\mathrm{FM}}(\phi)$
           </p>
         </div>
       </div>
