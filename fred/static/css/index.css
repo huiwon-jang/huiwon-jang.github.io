@@ -25,6 +25,10 @@ body {
 .link-block .button.coming-soon .icon {
     color: #8a8a8a;
 }
+.link-block .button .hf-emoji {
+    font-size: 1.05em;
+    line-height: 1;
+}
 .link-block .button.coming-soon .coming-soon-note {
     font-size: 0.8em;
     font-weight: normal;
