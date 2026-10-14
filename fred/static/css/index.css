@@ -8,9 +8,27 @@ body {
     color: #000;
 }
 
-.link-block a {
+.link-block a,
+.link-block .button {
     margin-top: 5px;
     margin-bottom: 5px;
+}
+
+/* Placeholder buttons for resources that are not released yet. */
+.link-block .button.coming-soon {
+    background-color: #e9e9e9;
+    border-color: #e9e9e9;
+    color: #8a8a8a;
+    cursor: default;
+    pointer-events: none;
+}
+.link-block .button.coming-soon .icon {
+    color: #8a8a8a;
+}
+.link-block .button.coming-soon .coming-soon-note {
+    font-size: 0.8em;
+    font-weight: normal;
+    color: #a0a0a0;
 }
 
 .dnerf {
