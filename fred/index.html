@@ -136,13 +136,13 @@
             <span class="author-block">
               <a href="https://suhyeok-jang.github.io/">Suhyeok Jang</a><sup>1,2*</sup>,</span>
             <span class="author-block">
-              <a href="https://sihyun.me/">Sihyun Yu</a><sup>1</sup>,</span>
-            <span class="author-block">
               Hyeonmo Kang<sup>1</sup>,</span>
             <span class="author-block">
               Seungku Kim<sup>1</sup>,</span>
             <span class="author-block">
-              <a href="https://alinlab.kaist.ac.kr/shin.html">Jinwoo Shin</a><sup>1,2</sup>
+              <a href="https://alinlab.kaist.ac.kr/shin.html">Jinwoo Shin</a><sup>1,2</sup>,</span>
+            <span class="author-block">
+              <a href="https://sihyun.me/">Sihyun Yu</a><sup>1</sup>
             </span>
           </div>
 
@@ -190,7 +190,7 @@
               </span>
               <!-- Checkpoints Link. -->
               <span class="link-block">
-                <a href="https://huggingface.co/FRED-AGI-LAB" target="_blank" rel="noopener"
+                <a href="https://huggingface.co/FRED-AGI-LAB/models" target="_blank" rel="noopener"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <span class="hf-emoji" aria-hidden="true">&#129303;</span>
@@ -225,7 +225,7 @@
             World Action Models (WAMs) have emerged as a promising approach to learning generalist robot policies using rich spatiotemporal priors from pre-trained video diffusion models.
             A recent line of WAMs improves inference efficiency by conditioning a separate action decoder on intermediate future video representations extracted from a single denoising step, avoiding costly iterative denoising required for video generation.
             This design makes action prediction depend directly on the quality of these future representations.
-            In this paper, we introduce <i>Future REpresentation learning via self-Distillation with temporal context</i> (FRED), a framework that trains WAMs to improve the quality of future video representations from noise in a single denoising step.
+            In this paper, we introduce <b>F</b>uture <b>RE</b>presentation learning via self-<b>D</b>istillation with temporal context (FRED), a framework that trains WAMs to improve the quality of future video representations from noise in a single denoising step.
             Specifically, FRED uses self-distillation to predict future representations from noise, using representations extracted from ground-truth future observations as targets.
             We further condition the video model on historical observations, providing temporal context for predicting future representations better.
             Across diverse real-world manipulation scenarios, FRED consistently outperforms competing WAMs.
@@ -248,8 +248,8 @@
         <h2 class="title is-3 has-text-centered">Method overview</h2>
         <div class="content has-text-justified">
           <p>
-            FRED builds on recent WAMs that keep the pre-trained video diffusion model (VDM) $\mathbf{v}_\theta$ unchanged and use a separate diffusion-based action decoder
-            $\pi_\phi(\mathbf{a}_t \mid \mathbf{q}_t, \mathbf{h})$, where $\mathbf{h}$ is an intermediate hidden state of $\mathbf{v}_\theta$ obtained through a single forward pass from Gaussian noise $\boldsymbol{\epsilon}$.
+            FRED builds on recent WAMs that keep the architecture of the pre-trained video diffusion model (VDM) $\mathbf{v}_\theta$ unchanged and use a separate diffusion-based action decoder
+            $\pi_\phi(\mathbf{a}_t^{\tau_a} \mid \mathbf{q}_t, \mathbf{h})$, where $\mathbf{h}$ is an intermediate hidden state of $\mathbf{v}_\theta$ obtained through a single forward pass from Gaussian noise $\boldsymbol{\epsilon}$.
             This avoids iterative video denoising at inference, but policy performance now depends on how well $\mathbf{h}$ captures the future.
           </p>
           <p>
@@ -285,11 +285,11 @@
             <span style="color: #4285F4;"><b>Self-distillation from noisy futures.</b></span>
             The <span style="color: #EA4335;">student</span> $\mathbf{f}_\theta$ generates $\mathbf{h}$ from noise, while a momentum
             <span style="color: #4285F4;">teacher</span> $\mathbf{f}_{\theta^{-}}$ processes a lightly corrupted ground-truth future observation
-            $\mathbf{o}^\tau_{t+1} = (1-\tau)\,\mathbf{o}_{t+1} + \tau\,\boldsymbol{\epsilon}$ under the same conditioning to produce the target $\mathbf{h}^\tau$:
+            $\mathbf{o}^\tau_{t+1} := (1-\tau)\,\mathbf{o}_{t+1} + \tau\,\boldsymbol{\epsilon}$ under the same conditioning to produce the target $\mathbf{h}^\tau$:
           </p>
           <p class="has-text-centered">
-            $\mathbf{h} = \mathbf{f}_\theta(\boldsymbol{\epsilon} \mid \mathbf{o}_{t-H:t}, \mathbf{c}) \quad \text{and} \quad
-             \mathbf{h}^\tau = \mathbf{f}_{\theta^{-}}(\mathbf{o}^\tau_{t+1} \mid \mathbf{o}_{t-H:t}, \mathbf{c})$
+            $\mathbf{h} = \mathbf{f}_\theta(\boldsymbol{\epsilon} \mid \mathbf{o}_t, \mathbf{c}) \quad \text{and} \quad
+             \mathbf{h}^\tau = \mathbf{f}_{\theta^{-}}(\mathbf{o}^\tau_{t+1} \mid \mathbf{o}_t, \mathbf{c})$
           </p>
           <p>
             Patch-wise projection heads $\mathbf{g}_\theta, \mathbf{g}_{\theta^{-}}$ map both representations to distributions;
@@ -303,12 +303,13 @@
           </p>
           <p>
             <span style="color: #4285F4;"><b>History as temporal context.</b></span>
-            Both student and teacher are conditioned on a short history $\mathbf{o}_{t-H:t}$ rather than only the current frame,
-            which provides motion cues (e.g., where the arm is heading) that disambiguate the future.
+            We additionally condition both the student $\mathbf{f}_\theta$ and the teacher $\mathbf{f}_{\theta^{-}}$ on an $H$-frame short history of observations
+            $\mathbf{o}_{t-H:t} := [\mathbf{o}_{t-H+1}, \cdots, \mathbf{o}_t]$, rather than only the current frame $\mathbf{o}_t$.
+            This provides temporal cues (e.g., recent robot motion) that encourage the VDM to infer how the robot has been moving and better predict the future dynamics.
           </p>
           <p>
             <b>Training objective.</b> The video model is trained with the video flow-matching loss plus self-distillation, and the action decoder with its own flow-matching loss.
-            The action loss does <b>not</b> update the video model, so the representation generator $\mathbf{f}_\theta$ is trained only by the video generation and self-distillation objectives; the teacher is the EMA of the student, $\theta^{-} \leftarrow m\theta^{-} + (1-m)\theta$.
+            The action loss does <b>not</b> update the video model, so the representation generator $\mathbf{f}_\theta$ is trained only by the video denoising and self-distillation objectives; the teacher is the EMA of the student, $\theta^{-} \leftarrow m\theta^{-} + (1-m)\theta$.
           </p>
           <p class="has-text-centered">
             $\mathcal{L}_{\text{video}}(\theta) = \mathcal{L}_{\mathrm{FM}}(\theta) + \lambda_{\mathrm{SD}}\,\mathcal{L}_{\mathrm{SD}}(\theta)
@@ -514,7 +515,7 @@
         </div>
         <div class="content has-text-justified">
           <p>
-            We compare WAM variants trained with different video-model objectives, from one-step video distillation (DMD2) to representation learning (VideoREPA, SRA, Self-Flow),
+            We compare WAM variants trained with different video model objectives, from one-step video distillation (DMD2) to representation learning (VideoREPA, SRA, Self-Flow),
             along three dimensions.
             Task success is only weakly correlated with one-step video generation quality and with representation quality on observed future videos,
             but strongly correlated with the quality of future representations generated from noise.
