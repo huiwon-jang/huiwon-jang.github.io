@@ -38,6 +38,13 @@
     .tldr { margin-top: 1.5rem; padding: 1rem 1.5rem; border-left: 4px solid #7BAAF7; background: #EEF4FE; border-radius: 4px; text-align: left; font-size: 1.05rem; line-height: 1.5; }
     .tldr p { margin: 0; }
     .tldr strong { color: #4285F4; }
+    /* overview video between the TL;DR and the abstract: plays once (muted) on page load, then user-controlled */
+    .overview-video { display: block; width: 100%; aspect-ratio: 16 / 9; margin-top: 1.5rem; border-radius: 10px; background: #fff; border: 1px solid #e3e3e3; box-shadow: 0 2px 10px rgba(0,0,0,0.08); }
+    /* keep the abstract close to the overview video (default gap: 3rem + 3rem) */
+    .hero .hero-body { padding-bottom: 1.5rem; }
+    .section.abstract-section { padding-top: 2rem; }
+    /* phones: smaller title so long words ("Representations") are not broken mid-word */
+    @media screen and (max-width: 768px) { .title.is-1.publication-title { font-size: clamp(1.6rem, 8vw, 2.5rem); } }
     /* result tables */
     .results-table { margin: 0 auto 0.5rem auto; font-size: 0.92rem; }
     .results-table th, .results-table td { vertical-align: middle; white-space: nowrap; }
@@ -102,7 +109,8 @@
     .video-slot .icon { font-size: 1.6rem; margin-bottom: 0.3rem; color: #aaa; }
   </style>
   <script>
-    // Tabs + lazy video playback: a video loads and plays only while visible.
+    // Tabs + lazy video playback: a video loads and plays only while visible
+    // (videos marked data-no-scroll-play, i.e. the overview video, are left to the viewer).
     $(function () {
       var io = ('IntersectionObserver' in window) ? new IntersectionObserver(function (entries) {
         entries.forEach(function (e) {
@@ -111,7 +119,7 @@
           else if (!v.paused) { v.pause(); }
         });
       }, { threshold: 0.25 }) : null;
-      document.querySelectorAll('video').forEach(function (v) { if (io) io.observe(v); });
+      document.querySelectorAll('video:not([data-no-scroll-play])').forEach(function (v) { if (io) io.observe(v); });
       $('.js-tabs li').on('click', function () {
         var group = $(this).closest('.js-tabs').data('group'), target = $(this).data('target');
         $(this).siblings().removeClass('is-active'); $(this).addClass('is-active');
@@ -208,6 +216,12 @@
               <strong>TL;DR:</strong> We introduce FRED, a framework that trains World Action Models to generate better future video representations in a single denoising step by self-distilling from noisy ground-truth futures and conditioning on observation history.
             </p>
           </div>
+
+          <!-- Overview video: plays once on page load (muted autoplay; the video has no sound), then user-controlled. -->
+          <video class="overview-video" autoplay muted playsinline controls data-no-scroll-play
+                 poster="./static/images/fred_overview_poster.jpg">
+            <source src="./static/videos/fred_overview.mp4" type="video/mp4">
+          </video>
         </div>
       </div>
     </div>
@@ -216,7 +230,7 @@
 
 
 
-<section class="section">
+<section class="section abstract-section">
   <div class="container is-max-desktop">
     <!-- Abstract. -->
     <div class="columns is-centered has-text-centered">
