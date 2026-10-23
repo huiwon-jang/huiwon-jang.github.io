@@ -60,7 +60,15 @@
     /* centered equations: each part stays whole, and parts wrap onto new lines on narrow screens
        (margins give the 1em \quad gap between parts on one line) */
     .eq .eq-part { display: inline-block; margin: 0 0.5em; }
+    /* phones/tablets: the same equations stacked and aligned at "=" instead of wrapped part by part */
+    .eq-narrow { display: none; }
+    @media screen and (max-width: 768px) { .eq-wide { display: none; } .eq-narrow { display: block; } }
     @media screen and (max-width: 480px) { .eq { font-size: 0.85em; overflow-x: auto; overflow-y: hidden; padding: 0.15em 0; } }
+    @media screen and (max-width: 400px) { .eq { font-size: 0.78em; } }
+    /* keeps a formula on the same line as the text touching it (parentheses, hyphens) */
+    .nowrap { white-space: nowrap; }
+    /* phones: justified text leaves wide gaps between words on short lines */
+    @media screen and (max-width: 768px) { .has-text-justified { text-align: left !important; } }
     /* result tables */
     .results-table { margin: 0 auto 0.5rem auto; font-size: 0.92rem; }
     .results-table th, .results-table td { vertical-align: middle; white-space: nowrap; }
@@ -110,6 +118,7 @@
     .tab-panel .columns.is-multiline.is-centered > .column { flex: 0 0 33.333%; max-width: 33.333%; scroll-snap-align: start; }
     .tab-panel .columns.is-multiline.is-centered > .column:first-child { margin-left: auto; }
     .tab-panel .columns.is-multiline.is-centered > .column:last-child { margin-right: auto; }
+    @media screen and (max-width: 768px) { #BibTeX pre { white-space: pre-wrap; overflow-wrap: anywhere; } }
     @media screen and (max-width: 768px) { .tab-panel .columns.is-multiline.is-centered > .column { flex: 0 0 70%; max-width: 70%; } }
     /* rollout videos */
     .video-card { text-align: center; }
@@ -335,7 +344,13 @@
             <span style="color: #4285F4;">teacher</span> $\mathbf{f}_{\theta^{-}}$ processes a lightly corrupted ground-truth future observation
             $\mathbf{o}^\tau_{t+1} := (1-\tau)\,\mathbf{o}_{t+1} + \tau\,\boldsymbol{\epsilon}$ under the same conditioning to produce the target $\mathbf{h}^\tau$:
           </p>
-          <p class="has-text-centered eq">
+          <p class="has-text-centered eq eq-narrow">
+            $\begin{aligned}
+              \mathbf{h} &amp;= \mathbf{f}_\theta(\boldsymbol{\epsilon} \mid \mathbf{o}_t, \mathbf{c}) \quad \text{and} \\
+              \mathbf{h}^\tau &amp;= \mathbf{f}_{\theta^{-}}(\mathbf{o}^\tau_{t+1} \mid \mathbf{o}_t, \mathbf{c})
+            \end{aligned}$
+          </p>
+          <p class="has-text-centered eq eq-wide">
             <span class="eq-part">$\mathbf{h} = \mathbf{f}_\theta(\boldsymbol{\epsilon} \mid \mathbf{o}_t, \mathbf{c})$</span>
             <span class="eq-part">$\text{and}$</span>
             <span class="eq-part">$\mathbf{h}^\tau = \mathbf{f}_{\theta^{-}}(\mathbf{o}^\tau_{t+1} \mid \mathbf{o}_t, \mathbf{c})$</span>
@@ -345,14 +360,21 @@
             the teacher logits are centered by the mean teacher logits $\mathbf{m}$ and sharpened with a lower temperature $\gamma_2$ to prevent representation collapse.
             The self-distillation loss is a per-patch KL divergence:
           </p>
-          <p class="has-text-centered eq">
+          <p class="has-text-centered eq eq-narrow">
+            $\begin{aligned}
+              \mathbf{p} &amp;= \mathrm{softmax}\!\left(\mathbf{g}_\theta(\mathbf{h}) / \gamma_1\right), \\
+              \mathbf{p}^\tau &amp;= \mathrm{softmax}\!\left((\mathbf{g}_{\theta^{-}}(\mathbf{h}^\tau) - \mathbf{m}) / \gamma_2\right), \\
+              \mathcal{L}_{\mathrm{SD}}(\theta) &amp;= \frac{1}{N} \sum_{i=1}^{N} \mathrm{KL}\!\left(\mathbf{p}^\tau_i \,\|\, \mathbf{p}_i\right)
+            \end{aligned}$
+          </p>
+          <p class="has-text-centered eq eq-wide">
             <span class="eq-part">$\mathbf{p} = \mathrm{softmax}\!\left(\mathbf{g}_\theta(\mathbf{h}) / \gamma_1\right),$</span>
             <span class="eq-part">$\mathbf{p}^\tau = \mathrm{softmax}\!\left((\mathbf{g}_{\theta^{-}}(\mathbf{h}^\tau) - \mathbf{m}) / \gamma_2\right),$</span>
             <span class="eq-part">$\mathcal{L}_{\mathrm{SD}}(\theta) = \frac{1}{N} \sum_{i=1}^{N} \mathrm{KL}\!\left(\mathbf{p}^\tau_i \,\|\, \mathbf{p}_i\right)$</span>
           </p>
           <p>
             <span style="color: #4285F4;"><b>History as temporal context.</b></span>
-            We additionally condition both the student $\mathbf{f}_\theta$ and the teacher $\mathbf{f}_{\theta^{-}}$ on an $H$-frame short history of observations
+            We additionally condition both the student $\mathbf{f}_\theta$ and the teacher $\mathbf{f}_{\theta^{-}}$ on an <span class="nowrap">$H$-frame</span> short history of observations
             $\mathbf{o}_{t-H:t} := [\mathbf{o}_{t-H+1}, \cdots, \mathbf{o}_t]$, rather than only the current frame $\mathbf{o}_t$.
             This provides temporal cues (e.g., recent robot motion) that encourage the VDM to infer how the robot has been moving and better predict the future dynamics.
           </p>
@@ -360,7 +382,13 @@
             <b>Training objective.</b> The video model is trained with the video flow-matching loss plus self-distillation, and the action decoder with its own flow-matching loss.
             The action loss does <b>not</b> update the video model, so the representation generator $\mathbf{f}_\theta$ is trained only by the video denoising and self-distillation objectives; the teacher is the EMA of the student, $\theta^{-} \leftarrow m\theta^{-} + (1-m)\theta$.
           </p>
-          <p class="has-text-centered eq">
+          <p class="has-text-centered eq eq-narrow">
+            $\begin{aligned}
+              \mathcal{L}_{\text{video}}(\theta) &amp;= \mathcal{L}_{\mathrm{FM}}(\theta) + \lambda_{\mathrm{SD}}\,\mathcal{L}_{\mathrm{SD}}(\theta) \quad \text{and} \\
+              \mathcal{L}_{\text{action}}(\phi) &amp;= \mathcal{L}_{\mathrm{FM}}(\phi)
+            \end{aligned}$
+          </p>
+          <p class="has-text-centered eq eq-wide">
             <span class="eq-part">$\mathcal{L}_{\text{video}}(\theta) = \mathcal{L}_{\mathrm{FM}}(\theta) + \lambda_{\mathrm{SD}}\,\mathcal{L}_{\mathrm{SD}}(\theta)$</span>
             <span class="eq-part">$\text{and}$</span>
             <span class="eq-part">$\mathcal{L}_{\text{action}}(\phi) = \mathcal{L}_{\mathrm{FM}}(\phi)$</span>
@@ -558,8 +586,8 @@
           <img class="figure-img" src="./static/images/fig3_correlation.png" alt="Success rate versus one-step video quality, clean-feature probing, and one-step feature probing">
           <p class="figure-caption">
             Using <a href="https://arxiv.org/abs/2603.10448">DiT4DiT</a> as the base WAM on RoboCasa Kitchen, task success is only weakly correlated with
-            (a) one-step video generation quality ($r=0.24$) and (b) the quality of representations extracted from <i>observed</i> future videos ($r=0.49$),
-            but strongly correlated with (c) the quality of future representations <i>generated from noise</i> in one step ($r=0.89$).
+            (a) one-step video generation quality <span class="nowrap">($r=0.24$)</span> and (b) the quality of representations extracted from <i>observed</i> future videos <span class="nowrap">($r=0.49$)</span>,
+            but strongly correlated with (c) the quality of future representations <i>generated from noise</i> in one step <span class="nowrap">($r=0.89$)</span>.
           </p>
         </div>
         <div class="content has-text-justified">
