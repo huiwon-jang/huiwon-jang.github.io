@@ -35,6 +35,11 @@ body {
     color: #a0a0a0;
 }
 
+/* Small enough that the BibTeX author line fits the box on desktop. */
+#BibTeX pre {
+  font-size: 0.8em;
+}
+
 .dnerf {
   font-variant: small-caps;
 }
