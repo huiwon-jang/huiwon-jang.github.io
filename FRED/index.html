@@ -57,6 +57,10 @@
     .section.abstract-section { padding-top: 2rem; }
     /* phones: smaller title so long words ("Representations") are not broken mid-word */
     @media screen and (max-width: 768px) { .title.is-1.publication-title { font-size: clamp(1.6rem, 8vw, 2.5rem); } }
+    /* centered equations: each part stays whole, and parts wrap onto new lines on narrow screens
+       (margins give the 1em \quad gap between parts on one line) */
+    .eq .eq-part { display: inline-block; margin: 0 0.5em; }
+    @media screen and (max-width: 480px) { .eq { font-size: 0.85em; overflow-x: auto; overflow-y: hidden; padding: 0.15em 0; } }
     /* result tables */
     .results-table { margin: 0 auto 0.5rem auto; font-size: 0.92rem; }
     .results-table th, .results-table td { vertical-align: middle; white-space: nowrap; }
@@ -68,6 +72,17 @@
     .results-table tr.sep td { border-top: 2px solid #b5b5b5; }
     .table-note { font-size: 0.85rem; color: #666; }
     .table-scroll { overflow-x: auto; }
+    /* phones: wide tables scroll inside their box; a soft edge shadow shows there are more columns */
+    @media screen and (max-width: 768px) {
+      .table-scroll {
+        background:
+          linear-gradient(to right, #fff 30%, rgba(255,255,255,0)) left center / 40px 100% no-repeat local,
+          linear-gradient(to left, #fff 30%, rgba(255,255,255,0)) right center / 40px 100% no-repeat local,
+          radial-gradient(farthest-side at 0 50%, rgba(0,0,0,0.18), rgba(0,0,0,0)) left center / 12px 100% no-repeat scroll,
+          radial-gradient(farthest-side at 100% 50%, rgba(0,0,0,0.18), rgba(0,0,0,0)) right center / 12px 100% no-repeat scroll;
+      }
+      .table-scroll .results-table { background-color: transparent; }
+    }
     /* figures */
     .figure-img { max-width: 100%; height: auto; }
     .figure-caption { font-size: 0.9rem; color: #555; margin-top: 0.5rem; margin-bottom: 1rem; }
@@ -83,6 +98,13 @@
     .js-tabs { margin-bottom: 1rem; }
     .js-tabs a { font-family: 'Google Sans', sans-serif; }
     .tabs.is-toggle.js-tabs li.is-active a { background-color: #363636; border-color: #363636; color: #fff; z-index: 1; }
+    /* phones: tabs wrap onto a second row as separate chips instead of running off the screen */
+    @media screen and (max-width: 768px) {
+      .tabs.js-tabs { white-space: normal; }
+      .tabs.js-tabs ul { flex-wrap: wrap; flex-shrink: 1; gap: 6px; }
+      .tabs.is-toggle.js-tabs li + li { margin-left: 0; }
+      .tabs.is-toggle.js-tabs li a { border-radius: 4px; }
+    }
     /* rollout rows: one horizontal row, scroll when more tiles than fit */
     .tab-panel .columns.is-multiline.is-centered { flex-wrap: nowrap; justify-content: flex-start; overflow-x: auto; overflow-y: hidden; padding-bottom: 0.5rem; scroll-snap-type: x proximity; }
     .tab-panel .columns.is-multiline.is-centered > .column { flex: 0 0 33.333%; max-width: 33.333%; scroll-snap-align: start; }
@@ -313,19 +335,20 @@
             <span style="color: #4285F4;">teacher</span> $\mathbf{f}_{\theta^{-}}$ processes a lightly corrupted ground-truth future observation
             $\mathbf{o}^\tau_{t+1} := (1-\tau)\,\mathbf{o}_{t+1} + \tau\,\boldsymbol{\epsilon}$ under the same conditioning to produce the target $\mathbf{h}^\tau$:
           </p>
-          <p class="has-text-centered">
-            $\mathbf{h} = \mathbf{f}_\theta(\boldsymbol{\epsilon} \mid \mathbf{o}_t, \mathbf{c}) \quad \text{and} \quad
-             \mathbf{h}^\tau = \mathbf{f}_{\theta^{-}}(\mathbf{o}^\tau_{t+1} \mid \mathbf{o}_t, \mathbf{c})$
+          <p class="has-text-centered eq">
+            <span class="eq-part">$\mathbf{h} = \mathbf{f}_\theta(\boldsymbol{\epsilon} \mid \mathbf{o}_t, \mathbf{c})$</span>
+            <span class="eq-part">$\text{and}$</span>
+            <span class="eq-part">$\mathbf{h}^\tau = \mathbf{f}_{\theta^{-}}(\mathbf{o}^\tau_{t+1} \mid \mathbf{o}_t, \mathbf{c})$</span>
           </p>
           <p>
             Patch-wise projection heads $\mathbf{g}_\theta, \mathbf{g}_{\theta^{-}}$ map both representations to distributions;
             the teacher logits are centered by the mean teacher logits $\mathbf{m}$ and sharpened with a lower temperature $\gamma_2$ to prevent representation collapse.
             The self-distillation loss is a per-patch KL divergence:
           </p>
-          <p class="has-text-centered">
-            $\mathbf{p} = \mathrm{softmax}\!\left(\mathbf{g}_\theta(\mathbf{h}) / \gamma_1\right), \quad
-             \mathbf{p}^\tau = \mathrm{softmax}\!\left((\mathbf{g}_{\theta^{-}}(\mathbf{h}^\tau) - \mathbf{m}) / \gamma_2\right), \quad
-             \mathcal{L}_{\mathrm{SD}}(\theta) = \frac{1}{N} \sum_{i=1}^{N} \mathrm{KL}\!\left(\mathbf{p}^\tau_i \,\|\, \mathbf{p}_i\right)$
+          <p class="has-text-centered eq">
+            <span class="eq-part">$\mathbf{p} = \mathrm{softmax}\!\left(\mathbf{g}_\theta(\mathbf{h}) / \gamma_1\right),$</span>
+            <span class="eq-part">$\mathbf{p}^\tau = \mathrm{softmax}\!\left((\mathbf{g}_{\theta^{-}}(\mathbf{h}^\tau) - \mathbf{m}) / \gamma_2\right),$</span>
+            <span class="eq-part">$\mathcal{L}_{\mathrm{SD}}(\theta) = \frac{1}{N} \sum_{i=1}^{N} \mathrm{KL}\!\left(\mathbf{p}^\tau_i \,\|\, \mathbf{p}_i\right)$</span>
           </p>
           <p>
             <span style="color: #4285F4;"><b>History as temporal context.</b></span>
@@ -337,10 +360,10 @@
             <b>Training objective.</b> The video model is trained with the video flow-matching loss plus self-distillation, and the action decoder with its own flow-matching loss.
             The action loss does <b>not</b> update the video model, so the representation generator $\mathbf{f}_\theta$ is trained only by the video denoising and self-distillation objectives; the teacher is the EMA of the student, $\theta^{-} \leftarrow m\theta^{-} + (1-m)\theta$.
           </p>
-          <p class="has-text-centered">
-            $\mathcal{L}_{\text{video}}(\theta) = \mathcal{L}_{\mathrm{FM}}(\theta) + \lambda_{\mathrm{SD}}\,\mathcal{L}_{\mathrm{SD}}(\theta)
-             \quad \text{and} \quad
-             \mathcal{L}_{\text{action}}(\phi) = \mathcal{L}_{\mathrm{FM}}(\phi)$
+          <p class="has-text-centered eq">
+            <span class="eq-part">$\mathcal{L}_{\text{video}}(\theta) = \mathcal{L}_{\mathrm{FM}}(\theta) + \lambda_{\mathrm{SD}}\,\mathcal{L}_{\mathrm{SD}}(\theta)$</span>
+            <span class="eq-part">$\text{and}$</span>
+            <span class="eq-part">$\mathcal{L}_{\text{action}}(\phi) = \mathcal{L}_{\mathrm{FM}}(\phi)$</span>
           </p>
         </div>
       </div>
