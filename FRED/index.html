@@ -79,6 +79,10 @@
     .results-table td.best { font-weight: 700; }
     .results-table tr.sep td { border-top: 2px solid #b5b5b5; }
     .table-note { font-size: 0.85rem; color: #666; }
+    /* centered notes and captions: even line lengths on wider screens (no lone last word); on phones the text is longer
+       than balance handles (6 lines in Chrome), so just avoid a lone last word. Unsupported browsers wrap normally. */
+    .table-note, .figure-caption { text-wrap: balance; }
+    @media screen and (max-width: 768px) { .table-note, .figure-caption { text-wrap: pretty; } }
     .table-scroll { overflow-x: auto; }
     /* phones: wide tables scroll inside their box; a soft edge shadow shows there are more columns */
     @media screen and (max-width: 768px) {
@@ -90,6 +94,19 @@
           radial-gradient(farthest-side at 100% 50%, rgba(0,0,0,0.18), rgba(0,0,0,0)) right center / 12px 100% no-repeat scroll;
       }
       .table-scroll .results-table { background-color: transparent; }
+      /* keep the Method column in view while the numbers scroll (only true first-column cells; the second
+         header row starts with a sub-column such as "Env. 1" / "w/o human") */
+      .table-scroll .results-table thead tr:first-child th:first-child,
+      .table-scroll .results-table tbody td:first-child {
+        position: sticky; left: 0; z-index: 1; background-color: #fff; box-shadow: 3px 0 4px -3px rgba(0,0,0,0.25);
+      }
+    }
+    /* Analysis correlation figure: one wide image on larger screens, its three panels stacked on phones */
+    .corr-stack { display: none; }
+    @media screen and (max-width: 768px) {
+      .corr-wide { display: none; }
+      .corr-stack { display: block; }
+      .corr-stack img { display: block; width: 100%; max-width: 380px; margin: 0 auto 0.5rem auto; }
     }
     /* figures */
     .figure-img { max-width: 100%; height: auto; }
@@ -190,7 +207,7 @@
             <span class="author-block">
               Hyeonmo Kang<sup>1</sup>,</span>
             <span class="author-block">
-              Seungku Kim<sup>1</sup>,</span>
+              <a href="https://seungkukim.github.io/">Seungku Kim</a><sup>1</sup>,</span>
             <span class="author-block">
               <a href="https://alinlab.kaist.ac.kr/shin.html">Jinwoo Shin</a><sup>1,2</sup>,</span>
             <span class="author-block">
@@ -438,7 +455,7 @@
         <p class="table-note has-text-centered">
           Average task progress rate (%) for the long-horizon task and average success rate (%) otherwise, without environment-specific fine-tuning.
           Env. 1 and Env. 2 are two environments with different tabletop appearances (wooden tabletop / blue checkered tablecloth); all other tasks are evaluated in Env. 1.
-          $\pi_{0.5}$, GR00T N1.7, and DreamZero use public checkpoints; the remaining 5B and 14B models are trained for 150K and 100K iterations. Standard errors are reported in the paper.
+          $\pi_{0.5}$, GR00T N1.7, and DreamZero use public checkpoints; the remaining 5B and 14B models are trained for 150K and 100K iterations. Standard errors are reported in the&nbsp;paper.
         </p>
         <p class="table-note has-text-centered" style="margin-top:1.25rem">All rollout videos below are played at real-time speed (1&times;).</p>
         <p class="has-text-centered" style="margin-top:1.25rem"><b>Real-robot rollouts (FRED 14B)</b></p>
@@ -455,17 +472,13 @@
         <div class="columns is-multiline is-mobile is-centered">
           <div class="column is-4-tablet is-6-mobile"><div class="video-card"><div class="video-wrap"><video controls muted loop playsinline preload="none"><source src="./static/videos/droid/pnp_banana_ours.mp4" type="video/mp4"></video><span class="speed-badge">1&times;</span></div><div class="video-title">PnP Banana</div></div></div>
           <div class="column is-4-tablet is-6-mobile"><div class="video-card"><div class="video-wrap"><video controls muted loop playsinline preload="none"><source src="./static/videos/droid/pnp_cube_ours.mp4" type="video/mp4"></video><span class="speed-badge">1&times;</span></div><div class="video-title">PnP Cube</div></div></div>
-          <div class="column is-4-tablet is-6-mobile"><div class="video-card"><div class="video-wrap"><video controls muted loop playsinline preload="none"><source src="./static/videos/droid/open_microwave_ours.mp4" type="video/mp4"></video><span class="speed-badge">1&times;</span></div><div class="video-title">Open Microwave</div></div></div>
-          <div class="column is-4-tablet is-6-mobile"><div class="video-card"><div class="video-wrap"><video controls muted loop playsinline preload="none"><source src="./static/videos/droid/close_microwave_ours.mp4" type="video/mp4"></video><span class="speed-badge">1&times;</span></div><div class="video-title">Close Microwave</div></div></div>
-        </div>
+          <div class="column is-4-tablet is-6-mobile"><div class="video-card"><div class="video-wrap"><video controls muted loop playsinline preload="none"><source src="./static/videos/droid/open_microwave_ours.mp4" type="video/mp4"></video><span class="speed-badge">1&times;</span></div><div class="video-title">Open Microwave</div></div></div>        </div>
         </div>
         <div class="tab-panel" data-group="droid" id="droid-a2" hidden>
         <div class="columns is-multiline is-mobile is-centered">
-          <div class="column is-4-tablet is-6-mobile"><div class="video-card"><div class="video-slot"><div class="icon"><i class="fas fa-video"></i></div><div class="slot-title">PnP Banana</div><div class="slot-sub">Video coming soon</div></div><div class="video-title">PnP Banana</div></div></div>
-          <div class="column is-4-tablet is-6-mobile"><div class="video-card"><div class="video-slot"><div class="icon"><i class="fas fa-video"></i></div><div class="slot-title">PnP Cube</div><div class="slot-sub">Video coming soon</div></div><div class="video-title">PnP Cube</div></div></div>
-          <div class="column is-4-tablet is-6-mobile"><div class="video-card"><div class="video-slot"><div class="icon"><i class="fas fa-video"></i></div><div class="slot-title">Open Microwave</div><div class="slot-sub">Video coming soon</div></div><div class="video-title">Open Microwave</div></div></div>
-          <div class="column is-4-tablet is-6-mobile"><div class="video-card"><div class="video-slot"><div class="icon"><i class="fas fa-video"></i></div><div class="slot-title">Close Microwave</div><div class="slot-sub">Video coming soon</div></div><div class="video-title">Close Microwave</div></div></div>
-        </div>
+          <div class="column is-4-tablet is-6-mobile"><div class="video-card"><div class="video-wrap"><video controls muted loop playsinline preload="none"><source src="./static/videos/droid/env2_pnp_banana_ours.mp4" type="video/mp4"></video><span class="speed-badge">1&times;</span></div><div class="video-title">PnP Banana</div></div></div>
+          <div class="column is-4-tablet is-6-mobile"><div class="video-card"><div class="video-wrap"><video controls muted loop playsinline preload="none"><source src="./static/videos/droid/env2_pnp_cube_ours.mp4" type="video/mp4"></video><span class="speed-badge">1&times;</span></div><div class="video-title">PnP Cube</div></div></div>
+          <div class="column is-4-tablet is-6-mobile"><div class="video-card"><div class="video-wrap"><video controls muted loop playsinline preload="none"><source src="./static/videos/droid/env2_open_microwave_ours.mp4" type="video/mp4"></video><span class="speed-badge">1&times;</span></div><div class="video-title">Open Microwave</div></div></div>        </div>
         </div>
         <div class="tab-panel" data-group="droid" id="droid-b" hidden>
         <div class="columns is-multiline is-mobile is-centered">
@@ -474,7 +487,7 @@
         </div>
         <div class="tab-panel" data-group="droid" id="droid-c" hidden>
         <div class="columns is-multiline is-mobile is-centered">
-          <div class="column is-4-tablet is-6-mobile"><div class="video-card"><div class="video-slot"><div class="icon"><i class="fas fa-video"></i></div><div class="slot-title">Perch</div><div class="slot-sub">Video coming soon</div></div><div class="video-title">Perch</div></div></div>
+          <div class="column is-4-tablet is-6-mobile"><div class="video-card"><div class="video-wrap"><video controls muted loop playsinline preload="none"><source src="./static/videos/droid/perch_ours.mp4" type="video/mp4"></video><span class="speed-badge">1&times;</span></div><div class="video-title">Perch</div></div></div>
           <div class="column is-4-tablet is-6-mobile"><div class="video-card"><div class="video-wrap"><video controls muted loop playsinline preload="none"><source src="./static/videos/droid/reveal_ours.mp4" type="video/mp4"></video><span class="speed-badge">1&times;</span></div><div class="video-title">Reveal</div></div></div>
           <div class="column is-4-tablet is-6-mobile"><div class="video-card"><div class="video-wrap"><video controls muted loop playsinline preload="none"><source src="./static/videos/droid/stamp_ours.mp4" type="video/mp4"></video><span class="speed-badge">1&times;</span></div><div class="video-title">Stamp</div></div></div>
         </div>
@@ -503,7 +516,7 @@
               </thead>
               <tbody>
                 <tr><td>$\pi_{0.5}$</td><td>63.9</td><td>&ndash;</td><td>50.0</td><td>&ndash;</td></tr>
-                <tr><td>GR00T N1.7</td><td class="best">91.7</td><td>&ndash;</td><td>45.8</td><td>&ndash;</td></tr>
+                <tr><td>GR00T N1.7</td><td>91.7</td><td>&ndash;</td><td>45.8</td><td>&ndash;</td></tr>
                 <tr class="sep"><td>DreamZero</td><td>61.1</td><td>58.3</td><td>0.0</td><td>0.0</td></tr>
                 <tr><td>Fast-WAM</td><td>55.6</td><td>63.9</td><td>0.0</td><td>0.0</td></tr>
                 <tr><td>DiT4DiT</td><td>77.8</td><td>86.1</td><td>50.0</td><td>41.7</td></tr>
@@ -535,7 +548,7 @@
           </div>
         </div>
         <p class="table-note has-text-centered">
-          Average success rate (%) on in-domain atomic tasks, average task progress rate (%) on the in-domain composite task, and average success / instruction-following rates (%) on human skill transfer tasks (12 trials per task). All WAMs use a 5B video backbone. Standard errors are reported in the paper.
+          Average success rate (%) on in-domain atomic tasks, average task progress rate (%) on the in-domain composite task, and average success / instruction-following rates (%) on human skill transfer tasks (12 trials per task). All WAMs use a 5B video backbone. Standard errors are reported in the&nbsp;paper.
         </p>
         <p class="has-text-centered" style="margin-top:1.25rem"><b>Real-robot rollouts (FRED 5B)</b></p>
         <div class="tabs is-toggle is-centered is-small js-tabs" data-group="openarm">
@@ -556,7 +569,7 @@
         </div>
         <div class="tab-panel" data-group="openarm" id="openarm-b" hidden>
         <div class="columns is-multiline is-mobile is-centered">
-          <div class="column is-4-tablet is-6-mobile"><div class="video-card"><video controls muted loop playsinline preload="none"><source src="./static/videos/openarm/open_air_fryer_and_place_apple_ours.mp4" type="video/mp4"></video><div class="video-title">Open Air Fryer and Place Apple</div></div></div>
+          <div class="column is-4-tablet is-6-mobile"><div class="video-card"><video controls muted loop playsinline preload="none"><source src="./static/videos/openarm/open_air_fryer_and_place_apple_ours.mp4" type="video/mp4"></video><div class="video-title">Open Air Fryer and PnP Apple</div></div></div>
         </div>
         </div>
         <div class="tab-panel" data-group="openarm" id="openarm-c" hidden>
@@ -644,7 +657,12 @@
         <h2 class="title is-3 has-text-centered">Analysis</h2>
         <h3 class="title is-4">Quality of generated future representations correlates with control performance</h3>
         <div class="column has-text-centered">
-          <img class="figure-img" src="./static/images/fig3_correlation.png" alt="Success rate versus one-step video quality, clean-feature probing, and one-step feature probing">
+          <img class="figure-img corr-wide" src="./static/images/fig3_correlation.png" alt="Success rate versus one-step video quality, clean-feature probing, and one-step feature probing">
+          <div class="corr-stack">
+            <img class="figure-img" src="./static/images/fig3_correlation_a.png" alt="(a) Success rate versus one-step video generation quality (FVD), r = 0.17">
+            <img class="figure-img" src="./static/images/fig3_correlation_b.png" alt="(b) Success rate versus probing accuracy of representations from clean future observations, r = 0.44">
+            <img class="figure-img" src="./static/images/fig3_correlation_c.png" alt="(c) Success rate versus probing accuracy of one-step future representations generated from noise, r = 0.90">
+          </div>
           <p class="figure-caption">
             Using <a href="https://arxiv.org/abs/2603.10448">DiT4DiT</a> as the base WAM on RoboCasa Kitchen, task success is only weakly correlated with
             (a) one-step video generation quality <span class="nowrap">($r=0.17$)</span> and (b) the quality of representations extracted from <i>observed</i> future videos <span class="nowrap">($r=0.44$)</span>,
@@ -675,14 +693,21 @@
     <div class="columns is-centered">
       <div class="column is-full-width">
         <h2 class="title is-3 has-text-centered">Hardware setup</h2>
-        <div class="columns is-centered is-variable is-4">
+        <div class="columns is-centered is-variable is-4 is-mobile">
           <div class="column is-half hw-col">
-            <div class="hw-img"><img src="./static/images/fig4_droid_setup.png" alt="DROID evaluation setup"></div>
-            <p class="figure-caption">
-              <b>Franka Research 3</b> with a Robotiq 2F-85 gripper, a wrist camera, and left/right exterior cameras.
-              Actions are relative joint angles (7D) and absolute gripper opening (1D).
-            </p>
+            <div class="hw-img"><img src="./static/images/fig4_droid_setup_env1.png" alt="DROID evaluation setup, Env. 1 (exposed wooden tabletop)"></div>
+            <p class="figure-caption">(a) Env. 1: exposed wooden tabletop</p>
           </div>
+          <div class="column is-half hw-col">
+            <div class="hw-img"><img src="./static/images/fig4_droid_setup_env2.png" alt="DROID evaluation setup, Env. 2 (blue checkered tablecloth)"></div>
+            <p class="figure-caption">(b) Env. 2: blue checkered tablecloth</p>
+          </div>
+        </div>
+        <p class="figure-caption has-text-centered">
+          <b>Franka Research 3</b> with a Robotiq 2F-85 gripper, a wrist-mounted ZED Mini camera, and two external ZED 2 cameras (left and right), in two new environments.
+          Actions are relative joint angles (7D) and absolute gripper opening (1D).
+        </p>
+        <div class="columns is-centered" style="margin-top: 1.5rem;">
           <div class="column is-half hw-col">
             <div class="hw-img"><img src="./static/images/fig6_openarm_setup.png" alt="OpenArm evaluation setup"></div>
             <p class="figure-caption">
