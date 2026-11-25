@@ -120,6 +120,7 @@
     .tab-panel .columns.is-multiline.is-centered > .column:last-child { margin-right: auto; }
     @media screen and (max-width: 768px) { #BibTeX pre { white-space: pre-wrap; overflow-wrap: anywhere; } }
     @media screen and (max-width: 768px) { .tab-panel .columns.is-multiline.is-centered > .column { flex: 0 0 70%; max-width: 70%; } }
+    .row-label { font-size: 0.9rem; color: #555; margin: 0.75rem 0 0.25rem; }
     /* rollout videos */
     .video-card { text-align: center; }
     .video-card video { width: 100%; aspect-ratio: 16 / 9; border-radius: 10px; background: #000; display: block; }
@@ -451,11 +452,19 @@
           </ul>
         </div>
         <div class="tab-panel" data-group="droid" id="droid-a">
+        <p class="row-label has-text-centered"><b>Env. 1</b> (wooden tabletop)</p>
         <div class="columns is-multiline is-mobile is-centered">
           <div class="column is-4-tablet is-6-mobile"><div class="video-card"><div class="video-wrap"><video controls muted loop playsinline preload="none"><source src="./static/videos/droid/pnp_banana_ours.mp4" type="video/mp4"></video><span class="speed-badge">1&times;</span></div><div class="video-title">PnP Banana</div></div></div>
           <div class="column is-4-tablet is-6-mobile"><div class="video-card"><div class="video-wrap"><video controls muted loop playsinline preload="none"><source src="./static/videos/droid/pnp_cube_ours.mp4" type="video/mp4"></video><span class="speed-badge">1&times;</span></div><div class="video-title">PnP Cube</div></div></div>
           <div class="column is-4-tablet is-6-mobile"><div class="video-card"><div class="video-wrap"><video controls muted loop playsinline preload="none"><source src="./static/videos/droid/open_microwave_ours.mp4" type="video/mp4"></video><span class="speed-badge">1&times;</span></div><div class="video-title">Open Microwave</div></div></div>
           <div class="column is-4-tablet is-6-mobile"><div class="video-card"><div class="video-wrap"><video controls muted loop playsinline preload="none"><source src="./static/videos/droid/close_microwave_ours.mp4" type="video/mp4"></video><span class="speed-badge">1&times;</span></div><div class="video-title">Close Microwave</div></div></div>
+        </div>
+        <p class="row-label has-text-centered"><b>Env. 2</b> (blue checkered tablecloth)</p>
+        <div class="columns is-multiline is-mobile is-centered">
+          <div class="column is-4-tablet is-6-mobile"><div class="video-card"><div class="video-slot"><div class="icon"><i class="fas fa-video"></i></div><div class="slot-title">PnP Banana</div><div class="slot-sub">Video coming soon</div></div><div class="video-title">PnP Banana</div></div></div>
+          <div class="column is-4-tablet is-6-mobile"><div class="video-card"><div class="video-slot"><div class="icon"><i class="fas fa-video"></i></div><div class="slot-title">PnP Cube</div><div class="slot-sub">Video coming soon</div></div><div class="video-title">PnP Cube</div></div></div>
+          <div class="column is-4-tablet is-6-mobile"><div class="video-card"><div class="video-slot"><div class="icon"><i class="fas fa-video"></i></div><div class="slot-title">Open Microwave</div><div class="slot-sub">Video coming soon</div></div><div class="video-title">Open Microwave</div></div></div>
+          <div class="column is-4-tablet is-6-mobile"><div class="video-card"><div class="video-slot"><div class="icon"><i class="fas fa-video"></i></div><div class="slot-title">Close Microwave</div><div class="slot-sub">Video coming soon</div></div><div class="video-title">Close Microwave</div></div></div>
         </div>
         </div>
         <div class="tab-panel" data-group="droid" id="droid-b" hidden>
@@ -533,7 +542,9 @@
           <ul>
             <li class="is-active" data-target="openarm-a"><a><span>In-domain (Atomic)</span></a></li>
             <li data-target="openarm-b"><a><span>In-domain (Composite)</span></a></li>
-            <li data-target="openarm-c"><a><span>Human Skill Transfer</span></a></li>
+            <li data-target="openarm-c"><a><span>Human Skill Transfer (Unseen Objects)</span></a></li>
+            <li data-target="openarm-d"><a><span>Human Skill Transfer (Unseen Placement)</span></a></li>
+            <li data-target="openarm-e"><a><span>Human Skill Transfer (Unseen Action Verb)</span></a></li>
           </ul>
         </div>
         <div class="tab-panel" data-group="openarm" id="openarm-a">
@@ -551,20 +562,48 @@
         <div class="tab-panel" data-group="openarm" id="openarm-c" hidden>
         <div class="columns is-multiline is-mobile is-centered">
           <div class="column is-4-tablet is-12-mobile"><div class="video-card">
+            <div class="video-title">PnP Novel Bottle</div>
+            <div class="video-sub">Human demonstration</div>
+            <div class="video-slot"><div class="icon"><i class="fas fa-video"></i></div><div class="slot-title">PnP Novel Bottle</div><div class="slot-sub">Human video coming soon</div></div>
+            <div class="h2r-arrow"><i class="fas fa-arrow-down"></i></div>
+            <div class="video-sub">FRED rollout</div>
+            <div class="video-slot"><div class="icon"><i class="fas fa-video"></i></div><div class="slot-title">PnP Novel Bottle</div><div class="slot-sub">Rollout video coming soon</div></div>
+          </div></div>
+          <div class="column is-4-tablet is-12-mobile"><div class="video-card">
+            <div class="video-title">PnP Novel Doll</div>
+            <div class="video-sub">Human demonstration</div>
+            <div class="video-slot"><div class="icon"><i class="fas fa-video"></i></div><div class="slot-title">PnP Novel Doll</div><div class="slot-sub">Human video coming soon</div></div>
+            <div class="h2r-arrow"><i class="fas fa-arrow-down"></i></div>
+            <div class="video-sub">FRED rollout</div>
+            <div class="video-slot"><div class="icon"><i class="fas fa-video"></i></div><div class="slot-title">PnP Novel Doll</div><div class="slot-sub">Rollout video coming soon</div></div>
+          </div></div>
+          <div class="column is-4-tablet is-12-mobile"><div class="video-card">
+            <div class="video-title">PnP Novel Box</div>
+            <div class="video-sub">Human demonstration</div>
+            <video controls muted loop playsinline preload="none"><source src="./static/videos/openarm/pnp_novel_box_human.mp4" type="video/mp4"></video>
+            <div class="h2r-arrow"><i class="fas fa-arrow-down"></i></div>
+            <div class="video-sub">FRED rollout</div>
+            <video controls muted loop playsinline preload="none"><source src="./static/videos/openarm/pnp_novel_box_ours.mp4" type="video/mp4"></video>
+          </div></div>
+          <div class="column is-4-tablet is-12-mobile"><div class="video-card">
+            <div class="video-title">PnP Novel Ball</div>
+            <div class="video-sub">Human demonstration</div>
+            <video controls muted loop playsinline preload="none"><source src="./static/videos/openarm/pnp_novel_ball_human.mp4" type="video/mp4"></video>
+            <div class="h2r-arrow"><i class="fas fa-arrow-down"></i></div>
+            <div class="video-sub">FRED rollout</div>
+            <video controls muted loop playsinline preload="none"><source src="./static/videos/openarm/pnp_novel_ball_ours.mp4" type="video/mp4"></video>
+          </div></div>
+        </div>
+        </div>
+        <div class="tab-panel" data-group="openarm" id="openarm-d" hidden>
+        <div class="columns is-multiline is-mobile is-centered">
+          <div class="column is-4-tablet is-12-mobile"><div class="video-card">
             <div class="video-title">Place Bottle on Basket</div>
             <div class="video-sub">Human demonstration</div>
             <video controls muted loop playsinline preload="none"><source src="./static/videos/openarm/place_bottle_on_basket_human.mp4" type="video/mp4"></video>
             <div class="h2r-arrow"><i class="fas fa-arrow-down"></i></div>
             <div class="video-sub">FRED rollout</div>
             <video controls muted loop playsinline preload="none"><source src="./static/videos/openarm/place_bottle_on_basket_ours.mp4" type="video/mp4"></video>
-          </div></div>
-          <div class="column is-4-tablet is-12-mobile"><div class="video-card">
-            <div class="video-title">PnP Novel Objects</div>
-            <div class="video-sub">Human demonstration</div>
-            <video controls muted loop playsinline preload="none"><source src="./static/videos/openarm/pnp_novel_objects_human.mp4" type="video/mp4"></video>
-            <div class="h2r-arrow"><i class="fas fa-arrow-down"></i></div>
-            <div class="video-sub">FRED rollout</div>
-            <video controls muted loop playsinline preload="none"><source src="./static/videos/openarm/pnp_novel_objects_ours.mp4" type="video/mp4"></video>
           </div></div>
           <div class="column is-4-tablet is-12-mobile"><div class="video-card">
             <div class="video-title">PnP Box to Center</div>
@@ -574,6 +613,10 @@
             <div class="video-sub">FRED rollout</div>
             <div class="video-slot"><div class="icon"><i class="fas fa-video"></i></div><div class="slot-title">PnP Box to Center</div><div class="slot-sub">Rollout video coming soon</div></div>
           </div></div>
+        </div>
+        </div>
+        <div class="tab-panel" data-group="openarm" id="openarm-e" hidden>
+        <div class="columns is-multiline is-mobile is-centered">
           <div class="column is-4-tablet is-12-mobile"><div class="video-card">
             <div class="video-title">Pour Coffee</div>
             <div class="video-sub">Human demonstration</div>
