@@ -120,7 +120,6 @@
     .tab-panel .columns.is-multiline.is-centered > .column:last-child { margin-right: auto; }
     @media screen and (max-width: 768px) { #BibTeX pre { white-space: pre-wrap; overflow-wrap: anywhere; } }
     @media screen and (max-width: 768px) { .tab-panel .columns.is-multiline.is-centered > .column { flex: 0 0 70%; max-width: 70%; } }
-    .row-label { font-size: 0.9rem; color: #555; margin: 0.75rem 0 0.25rem; }
     /* rollout videos */
     .video-card { text-align: center; }
     .video-card video { width: 100%; aspect-ratio: 16 / 9; border-radius: 10px; background: #000; display: block; }
@@ -445,21 +444,22 @@
         <p class="has-text-centered" style="margin-top:1.25rem"><b>Real-robot rollouts (FRED 14B)</b></p>
         <div class="tabs is-toggle is-centered is-small js-tabs" data-group="droid">
           <ul>
-            <li class="is-active" data-target="droid-a"><a><span>In-domain (Easy)</span></a></li>
+            <li class="is-active" data-target="droid-a"><a><span>In-domain (Easy; Env. 1)</span></a></li>
+            <li data-target="droid-a2"><a><span>In-domain (Easy; Env. 2)</span></a></li>
             <li data-target="droid-b"><a><span>In-domain (Long-horizon)</span></a></li>
             <li data-target="droid-c"><a><span>Out-of-domain</span></a></li>
             <li data-target="droid-d"><a><span>Object Grounding</span></a></li>
           </ul>
         </div>
         <div class="tab-panel" data-group="droid" id="droid-a">
-        <p class="row-label has-text-centered"><b>Env. 1</b> (wooden tabletop)</p>
         <div class="columns is-multiline is-mobile is-centered">
           <div class="column is-4-tablet is-6-mobile"><div class="video-card"><div class="video-wrap"><video controls muted loop playsinline preload="none"><source src="./static/videos/droid/pnp_banana_ours.mp4" type="video/mp4"></video><span class="speed-badge">1&times;</span></div><div class="video-title">PnP Banana</div></div></div>
           <div class="column is-4-tablet is-6-mobile"><div class="video-card"><div class="video-wrap"><video controls muted loop playsinline preload="none"><source src="./static/videos/droid/pnp_cube_ours.mp4" type="video/mp4"></video><span class="speed-badge">1&times;</span></div><div class="video-title">PnP Cube</div></div></div>
           <div class="column is-4-tablet is-6-mobile"><div class="video-card"><div class="video-wrap"><video controls muted loop playsinline preload="none"><source src="./static/videos/droid/open_microwave_ours.mp4" type="video/mp4"></video><span class="speed-badge">1&times;</span></div><div class="video-title">Open Microwave</div></div></div>
           <div class="column is-4-tablet is-6-mobile"><div class="video-card"><div class="video-wrap"><video controls muted loop playsinline preload="none"><source src="./static/videos/droid/close_microwave_ours.mp4" type="video/mp4"></video><span class="speed-badge">1&times;</span></div><div class="video-title">Close Microwave</div></div></div>
         </div>
-        <p class="row-label has-text-centered"><b>Env. 2</b> (blue checkered tablecloth)</p>
+        </div>
+        <div class="tab-panel" data-group="droid" id="droid-a2" hidden>
         <div class="columns is-multiline is-mobile is-centered">
           <div class="column is-4-tablet is-6-mobile"><div class="video-card"><div class="video-slot"><div class="icon"><i class="fas fa-video"></i></div><div class="slot-title">PnP Banana</div><div class="slot-sub">Video coming soon</div></div><div class="video-title">PnP Banana</div></div></div>
           <div class="column is-4-tablet is-6-mobile"><div class="video-card"><div class="video-slot"><div class="icon"><i class="fas fa-video"></i></div><div class="slot-title">PnP Cube</div><div class="slot-sub">Video coming soon</div></div><div class="video-title">PnP Cube</div></div></div>
