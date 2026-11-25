@@ -286,7 +286,7 @@
             Specifically, FRED uses self-distillation to predict future representations from noise, using representations extracted from ground-truth future observations as targets.
             We further condition the video model on historical observations, providing temporal context for predicting future representations better.
             Across diverse real-world manipulation scenarios, FRED consistently outperforms competing WAMs.
-            It achieves particularly large gains on long-horizon and out-of-domain tasks under zero-shot environment generalization, and substantially improves human-to-robot skill transfer, reaching 50.0% task success on tasks absent from robot training data and demonstrated only in human videos, compared with 19.4% for the best competing WAM.
+            It achieves particularly large gains on long-horizon and out-of-domain tasks under zero-shot environment generalization, and substantially improves human-to-robot skill transfer, reaching 50.0% task success on tasks absent from robot training data and demonstrated only in human videos, compared with 10.7% for the best competing WAM.
           </p>
         </div>
       </div>
@@ -410,7 +410,7 @@
         <div class="column has-text-centered">
           <img class="figure-img" src="./static/images/fig2_setup.png" alt="Training and evaluation setup">
           <p class="figure-caption">
-            (a) Zero-shot environment generalization: train on <a href="https://droid-dataset.github.io/">DROID</a> and evaluate in a new real-world environment on a Franka Research 3 without task-specific fine-tuning.
+            (a) Zero-shot environment generalization: train on <a href="https://droid-dataset.github.io/">DROID</a> and evaluate in two new real-world environments on a Franka Research 3 without task-specific fine-tuning.
             (b) Human-robot co-training: train an OpenArm humanoid on robot demonstrations, optionally jointly with egocentric human videos, and evaluate on in-domain robot tasks and human-to-robot skill-transfer tasks.
           </p>
         </div>
@@ -420,20 +420,26 @@
         <div class="table-scroll">
         <table class="table is-narrow is-hoverable results-table">
           <thead>
-            <tr><th>Method</th><th>Backbone</th><th>In-domain easy</th><th>In-domain long-horizon</th><th>Out-of-domain</th><th>Object grounding</th></tr>
+            <tr><th rowspan="2">Method</th><th rowspan="2">Backbone</th><th colspan="2">In-domain easy</th><th rowspan="2">In-domain long-horizon</th><th rowspan="2">Out-of-domain</th><th rowspan="2">Object grounding</th></tr>
+            <tr><th>Env. 1</th><th>Env. 2</th></tr>
           </thead>
           <tbody>
-            <tr><td>$\pi_{0.5}$</td><td>&ndash;</td><td>58.3</td><td>53.3</td><td>16.7</td><td>16.7</td></tr>
-            <tr><td>GR00T N1.7</td><td>&ndash;</td><td>41.7</td><td>60.0</td><td>18.8</td><td>22.9</td></tr>
-            <tr class="sep"><td>Fast-WAM</td><td>Wan2.2-5B</td><td>26.4</td><td>26.7</td><td>2.1</td><td>10.4</td></tr>
-            <tr><td>DiT4DiT</td><td>Wan2.2-5B</td><td>16.7</td><td>16.7</td><td>0.0</td><td>8.3</td></tr>
-            <tr><td>AGRA</td><td>Wan2.2-5B</td><td>41.7</td><td>31.7</td><td>10.4</td><td>33.3</td></tr>
-            <tr class="ours"><td>FRED (Ours)</td><td>Wan2.2-5B</td><td class="best">47.2</td><td class="best">46.7</td><td class="best">37.5</td><td class="best">37.5</td></tr>
-            <tr class="sep"><td>DreamZero</td><td>Wan2.1-14B</td><td>63.9</td><td>61.7</td><td>10.4</td><td>39.6</td></tr>
-            <tr class="ours"><td>FRED (Ours)</td><td>Wan2.1-14B</td><td class="best">79.2</td><td class="best">81.7</td><td class="best">52.1</td><td class="best">54.2</td></tr>
+            <tr><td>$\pi_{0.5}$</td><td>&ndash;</td><td>55.6</td><td>47.2</td><td>53.3</td><td>5.6</td><td>16.7</td></tr>
+            <tr><td>GR00T N1.7</td><td>&ndash;</td><td>41.7</td><td>41.7</td><td>60.0</td><td>2.8</td><td>20.8</td></tr>
+            <tr class="sep"><td>Fast-WAM</td><td>Wan2.2-5B</td><td>25.0</td><td>30.6</td><td>26.7</td><td>0.0</td><td>8.3</td></tr>
+            <tr><td>DiT4DiT</td><td>Wan2.2-5B</td><td>16.7</td><td>8.3</td><td>16.7</td><td>0.0</td><td>8.3</td></tr>
+            <tr><td>AGRA</td><td>Wan2.2-5B</td><td class="best">41.7</td><td>44.4</td><td>31.7</td><td>5.6</td><td>33.3</td></tr>
+            <tr class="ours"><td>FRED (Ours)</td><td>Wan2.2-5B</td><td class="best">41.7</td><td class="best">52.8</td><td class="best">46.7</td><td class="best">19.4</td><td class="best">37.5</td></tr>
+            <tr class="sep"><td>DreamZero</td><td>Wan2.1-14B</td><td>63.9</td><td>58.3</td><td>61.7</td><td>11.1</td><td>16.7</td></tr>
+            <tr class="ours"><td>FRED (Ours)</td><td>Wan2.1-14B</td><td class="best">77.8</td><td class="best">61.1</td><td class="best">81.7</td><td class="best">38.9</td><td class="best">54.2</td></tr>
           </tbody>
         </table>
         </div>
+        <p class="table-note has-text-centered">
+          Average task progress rate (%) for the long-horizon task and average success rate (%) otherwise, without environment-specific fine-tuning.
+          Env. 1 and Env. 2 are two environments with different tabletop appearances (wooden tabletop / blue checkered tablecloth); all other tasks are evaluated in Env. 1.
+          $\pi_{0.5}$, GR00T N1.7, and DreamZero use public checkpoints; the remaining 5B and 14B models are trained for 150K and 100K iterations. Standard errors are reported in the paper.
+        </p>
         <p class="table-note has-text-centered" style="margin-top:1.25rem">All rollout videos below are played at real-time speed (1&times;).</p>
         <p class="has-text-centered" style="margin-top:1.25rem"><b>Real-robot rollouts (FRED 14B)</b></p>
         <div class="tabs is-toggle is-centered is-small js-tabs" data-group="droid">
@@ -459,6 +465,7 @@
         </div>
         <div class="tab-panel" data-group="droid" id="droid-c" hidden>
         <div class="columns is-multiline is-mobile is-centered">
+          <div class="column is-4-tablet is-6-mobile"><div class="video-card"><div class="video-slot"><div class="icon"><i class="fas fa-video"></i></div><div class="slot-title">Perch</div><div class="slot-sub">Video coming soon</div></div><div class="video-title">Perch</div></div></div>
           <div class="column is-4-tablet is-6-mobile"><div class="video-card"><div class="video-wrap"><video controls muted loop playsinline preload="none"><source src="./static/videos/droid/reveal_ours.mp4" type="video/mp4"></video><span class="speed-badge">1&times;</span></div><div class="video-title">Reveal</div></div></div>
           <div class="column is-4-tablet is-6-mobile"><div class="video-card"><div class="video-wrap"><video controls muted loop playsinline preload="none"><source src="./static/videos/droid/stamp_ours.mp4" type="video/mp4"></video><span class="speed-badge">1&times;</span></div><div class="video-title">Stamp</div></div></div>
         </div>
@@ -486,12 +493,12 @@
                 <tr><th>w/o human</th><th>w/ human</th><th>w/o human</th><th>w/ human</th></tr>
               </thead>
               <tbody>
-                <tr><td>$\pi_{0.5}$</td><td>66.7</td><td>&ndash;</td><td>50.0</td><td>&ndash;</td></tr>
-                <tr><td>GR00T N1.7</td><td>91.7</td><td>&ndash;</td><td>45.8</td><td>&ndash;</td></tr>
-                <tr class="sep"><td>DreamZero</td><td>68.1</td><td>68.1</td><td>0.0</td><td>0.0</td></tr>
-                <tr><td>Fast-WAM</td><td>56.9</td><td>65.3</td><td>0.0</td><td>0.0</td></tr>
+                <tr><td>$\pi_{0.5}$</td><td>63.9</td><td>&ndash;</td><td>50.0</td><td>&ndash;</td></tr>
+                <tr><td>GR00T N1.7</td><td class="best">91.7</td><td>&ndash;</td><td>45.8</td><td>&ndash;</td></tr>
+                <tr class="sep"><td>DreamZero</td><td>61.1</td><td>58.3</td><td>0.0</td><td>0.0</td></tr>
+                <tr><td>Fast-WAM</td><td>55.6</td><td>63.9</td><td>0.0</td><td>0.0</td></tr>
                 <tr><td>DiT4DiT</td><td>77.8</td><td>86.1</td><td>50.0</td><td>41.7</td></tr>
-                <tr><td>AGRA</td><td>81.9</td><td>75.0</td><td>8.3</td><td>12.5</td></tr>
+                <tr><td>AGRA</td><td>80.6</td><td>75.0</td><td>8.3</td><td>12.5</td></tr>
                 <tr class="ours"><td>FRED (Ours)</td><td class="best">91.7</td><td class="best">97.2</td><td class="best">70.8</td><td class="best">75.0</td></tr>
               </tbody>
             </table>
@@ -506,18 +513,21 @@
                 <tr><th>w/o human</th><th>w/ human</th><th>w/o human</th><th>w/ human</th></tr>
               </thead>
               <tbody>
-                <tr><td>$\pi_{0.5}$</td><td>0.0</td><td>&ndash;</td><td>16.7</td><td>&ndash;</td></tr>
-                <tr><td>GR00T N1.7</td><td>5.6</td><td>&ndash;</td><td>33.3</td><td>&ndash;</td></tr>
-                <tr class="sep"><td>DreamZero</td><td>0.0</td><td>0.0</td><td>0.0</td><td>13.9</td></tr>
-                <tr><td>Fast-WAM</td><td>0.0</td><td>0.0</td><td>0.0</td><td>11.1</td></tr>
-                <tr><td>DiT4DiT</td><td>0.0</td><td>19.4</td><td>0.0</td><td>55.6</td></tr>
+                <tr><td>$\pi_{0.5}$</td><td>0.0</td><td>&ndash;</td><td>17.9</td><td>&ndash;</td></tr>
+                <tr><td>GR00T N1.7</td><td>9.5</td><td>&ndash;</td><td>66.7</td><td>&ndash;</td></tr>
+                <tr class="sep"><td>DreamZero</td><td>0.0</td><td>1.2</td><td>0.0</td><td>9.5</td></tr>
+                <tr><td>Fast-WAM</td><td>0.0</td><td>0.0</td><td>0.0</td><td>8.3</td></tr>
+                <tr><td>DiT4DiT</td><td>0.0</td><td>10.7</td><td>0.0</td><td>42.9</td></tr>
                 <tr><td>AGRA</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td></tr>
-                <tr class="ours"><td>FRED (Ours)</td><td>0.0</td><td class="best">50.0</td><td>0.0</td><td class="best">97.2</td></tr>
+                <tr class="ours"><td>FRED (Ours)</td><td>0.0</td><td class="best">50.0</td><td>0.0</td><td class="best">96.4</td></tr>
               </tbody>
             </table>
             </div>
           </div>
         </div>
+        <p class="table-note has-text-centered">
+          Average success rate (%) on in-domain atomic tasks, average task progress rate (%) on the in-domain composite task, and average success / instruction-following rates (%) on human skill transfer tasks (12 trials per task). All WAMs use a 5B video backbone. Standard errors are reported in the paper.
+        </p>
         <p class="has-text-centered" style="margin-top:1.25rem"><b>Real-robot rollouts (FRED 5B)</b></p>
         <div class="tabs is-toggle is-centered is-small js-tabs" data-group="openarm">
           <ul>
@@ -557,6 +567,14 @@
             <video controls muted loop playsinline preload="none"><source src="./static/videos/openarm/pnp_novel_objects_ours.mp4" type="video/mp4"></video>
           </div></div>
           <div class="column is-4-tablet is-12-mobile"><div class="video-card">
+            <div class="video-title">PnP Box to Center</div>
+            <div class="video-sub">Human demonstration</div>
+            <div class="video-slot"><div class="icon"><i class="fas fa-video"></i></div><div class="slot-title">PnP Box to Center</div><div class="slot-sub">Human video coming soon</div></div>
+            <div class="h2r-arrow"><i class="fas fa-arrow-down"></i></div>
+            <div class="video-sub">FRED rollout</div>
+            <div class="video-slot"><div class="icon"><i class="fas fa-video"></i></div><div class="slot-title">PnP Box to Center</div><div class="slot-sub">Rollout video coming soon</div></div>
+          </div></div>
+          <div class="column is-4-tablet is-12-mobile"><div class="video-card">
             <div class="video-title">Pour Coffee</div>
             <div class="video-sub">Human demonstration</div>
             <video controls muted loop playsinline preload="none"><source src="./static/videos/openarm/pour_coffee_human.mp4" type="video/mp4"></video>
@@ -586,8 +604,8 @@
           <img class="figure-img" src="./static/images/fig3_correlation.png" alt="Success rate versus one-step video quality, clean-feature probing, and one-step feature probing">
           <p class="figure-caption">
             Using <a href="https://arxiv.org/abs/2603.10448">DiT4DiT</a> as the base WAM on RoboCasa Kitchen, task success is only weakly correlated with
-            (a) one-step video generation quality <span class="nowrap">($r=0.24$)</span> and (b) the quality of representations extracted from <i>observed</i> future videos <span class="nowrap">($r=0.49$)</span>,
-            but strongly correlated with (c) the quality of future representations <i>generated from noise</i> in one step <span class="nowrap">($r=0.89$)</span>.
+            (a) one-step video generation quality <span class="nowrap">($r=0.17$)</span> and (b) the quality of representations extracted from <i>observed</i> future videos <span class="nowrap">($r=0.44$)</span>,
+            but strongly correlated with (c) the quality of future representations <i>generated from noise</i> in one step <span class="nowrap">($r=0.90$)</span>.
           </p>
         </div>
         <div class="content has-text-justified">
